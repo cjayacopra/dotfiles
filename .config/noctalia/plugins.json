@@ -10,7 +10,10 @@
         "catwalk": {
             "enabled": true
         },
-        "network-indicator": {
+        "mini-docker": {
+            "enabled": true
+        },
+        "update-count": {
             "enabled": true
         }
     },
