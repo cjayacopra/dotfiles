@@ -144,7 +144,7 @@
         ]
     },
     "colorSchemes": {
-        "darkMode": true,
+        "darkMode": false,
         "generateTemplatesForPredefined": true,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
@@ -258,8 +258,7 @@
         "onlySameOutput": true,
         "pinnedApps": [
             "dev.warp.Warp",
-            "zen",
-            "lstopo"
+            "zen"
         ],
         "pinnedStatic": true,
         "size": 1
@@ -369,7 +368,7 @@
         "countdownDuration": 10000,
         "enableCountdown": false,
         "largeButtonsStyle": false,
-        "position": "top_center",
+        "position": "center",
         "powerOptions": [
             {
                 "action": "lock",
@@ -478,8 +477,8 @@
         "monitorDirectories": [
         ],
         "overviewEnabled": false,
-        "panelPosition": "follow_bar",
-        "randomEnabled": true,
+        "panelPosition": "center",
+        "randomEnabled": false,
         "randomIntervalSec": 300,
         "recursiveSearch": true,
         "setWallpaperOnAllMonitors": true,
