@@ -134,7 +134,7 @@
     "break",
     {
       "type": "custom",
-      "format": "\u001b[90m┌────────────────Age / Uptime / IP───────────────┐"
+      "format": "\u001b[90m┌───────────────────Age / Uptime / IP────────────────┐"
     },
     {
       "type": "command",
