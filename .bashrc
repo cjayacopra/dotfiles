@@ -15,3 +15,7 @@ alias lampp="sudo /opt/lampp/lampp"
 
 # ENVIRONMENT VARIABLES
 export WEBKIT_DISABLE_COMPOSITING_MODE=1
+
+export XDG_DATA_HOME="/home/shiraneko/.local/share"
+
+export XDG_DATA_HOME="/home/shiraneko/.local/share"

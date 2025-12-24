@@ -250,7 +250,6 @@
         ],
         "onlySameOutput": true,
         "pinnedApps": [
-            "dev.warp.Warp",
             "zen"
         ],
         "pinnedStatic": true,
@@ -439,7 +438,7 @@
         "ghostty": true,
         "gtk": true,
         "helix": false,
-        "hyprland": false,
+        "hyprland": true,
         "kcolorscheme": true,
         "kitty": true,
         "mango": false,
