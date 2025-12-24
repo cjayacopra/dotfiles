@@ -1,9 +1,10 @@
 {
     "appLauncher": {
-        "customLaunchPrefix": "uwsm-app --",
-        "customLaunchPrefixEnabled": true,
+        "customLaunchPrefix": "",
+        "customLaunchPrefixEnabled": false,
         "enableClipPreview": true,
         "enableClipboardHistory": true,
+        "iconMode": "tabler",
         "pinnedExecs": [
         ],
         "position": "center",
@@ -19,7 +20,6 @@
         "mprisBlacklist": [
         ],
         "preferredPlayer": "spotify",
-        "visualizerQuality": "high",
         "visualizerType": "linear",
         "volumeOverdrive": false,
         "volumeStep": 5
@@ -89,12 +89,6 @@
                     ]
                 },
                 {
-                    "id": "plugin:update-count"
-                },
-                {
-                    "id": "plugin:mini-docker"
-                },
-                {
                     "id": "ScreenRecorder"
                 },
                 {
@@ -144,7 +138,7 @@
         ]
     },
     "colorSchemes": {
-        "darkMode": false,
+        "darkMode": true,
         "generateTemplatesForPredefined": true,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
@@ -204,7 +198,6 @@
         }
     },
     "desktopWidgets": {
-        "editMode": false,
         "enabled": true,
         "gridSnap": true,
         "monitorWidgets": [
@@ -289,6 +282,8 @@
     "hooks": {
         "darkModeChange": "",
         "enabled": true,
+        "performanceModeDisabled": "",
+        "performanceModeEnabled": "",
         "screenLock": "",
         "screenUnlock": "",
         "wallpaperChange": ""
@@ -409,7 +404,7 @@
         ],
         "showHeader": true
     },
-    "settingsVersion": 31,
+    "settingsVersion": 32,
     "systemMonitor": {
         "cpuCriticalThreshold": 90,
         "cpuPollingInterval": 3000,
@@ -418,7 +413,7 @@
         "diskCriticalThreshold": 90,
         "diskPollingInterval": 3000,
         "diskWarningThreshold": 80,
-        "enableNvidiaGpu": false,
+        "enableDgpuMonitoring": false,
         "gpuCriticalThreshold": 90,
         "gpuPollingInterval": 3000,
         "gpuWarningThreshold": 80,
@@ -443,6 +438,8 @@
         "fuzzel": false,
         "ghostty": true,
         "gtk": true,
+        "helix": false,
+        "hyprland": false,
         "kcolorscheme": true,
         "kitty": true,
         "mango": false,
@@ -458,6 +455,8 @@
         "zed": false
     },
     "ui": {
+        "bluetoothDetailsViewMode": "grid",
+        "bluetoothHideUnnamedDevices": false,
         "fontDefault": "Liberation Sans",
         "fontDefaultScale": 1,
         "fontFixed": "monospace",
@@ -465,7 +464,8 @@
         "panelBackgroundOpacity": 1,
         "panelsAttachedToBar": true,
         "settingsPanelMode": "centered",
-        "tooltipsEnabled": true
+        "tooltipsEnabled": true,
+        "wifiDetailsViewMode": "grid"
     },
     "wallpaper": {
         "directory": "/mnt/files/Pictures/Wallpapers",
@@ -490,6 +490,7 @@
         "wallhavenOrder": "desc",
         "wallhavenPurity": "100",
         "wallhavenQuery": "",
+        "wallhavenRatios": "",
         "wallhavenResolutionHeight": "",
         "wallhavenResolutionMode": "atleast",
         "wallhavenResolutionWidth": "",
