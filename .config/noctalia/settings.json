@@ -12,7 +12,7 @@
         "sortByMostUsed": true,
         "terminalCommand": "alacritty -e",
         "useApp2Unit": false,
-        "viewMode": "grid"
+        "viewMode": "list"
     },
     "audio": {
         "cavaFrameRate": 60,
@@ -36,7 +36,7 @@
         "outerCorners": true,
         "position": "top",
         "showCapsule": true,
-        "showOutline": false,
+        "showOutline": true,
         "transparent": true,
         "widgets": {
             "center": [
@@ -78,6 +78,34 @@
                 }
             ],
             "right": [
+                {
+                    "colorName": "primary",
+                    "hideWhenIdle": true,
+                    "id": "AudioVisualizer",
+                    "width": 200
+                },
+                {
+                    "hideMode": "hidden",
+                    "hideWhenIdle": false,
+                    "id": "MediaMini",
+                    "maxWidth": 145,
+                    "scrollingMode": "hover",
+                    "showAlbumArt": false,
+                    "showArtistFirst": true,
+                    "showProgressRing": true,
+                    "showVisualizer": false,
+                    "useFixedWidth": false,
+                    "visualizerType": "linear"
+                },
+                {
+                    "id": "plugin:todo"
+                },
+                {
+                    "id": "plugin:mini-docker"
+                },
+                {
+                    "id": "plugin:update-count"
+                },
                 {
                     "blacklist": [
                     ],
@@ -211,8 +239,8 @@
                         "showBackground": true,
                         "visualizerType": "linear",
                         "visualizerVisibility": "always",
-                        "x": 100,
-                        "y": 260
+                        "x": 1500,
+                        "y": 980
                     },
                     {
                         "clockStyle": "analog",
@@ -232,6 +260,31 @@
                         "showBackground": true,
                         "x": 180,
                         "y": 120
+                    },
+                    {
+                        "defaultSettings": {
+                            "barWidth": 0.6,
+                            "bloomIntensity": 0.5,
+                            "ringOpacity": 0.8,
+                            "rotationSpeed": 0.5,
+                            "sensitivity": 1.5,
+                            "showBars": true,
+                            "showRings": true
+                        },
+                        "id": "plugin:fancy-audiovisualizer",
+                        "showBackground": true,
+                        "x": 1560,
+                        "y": 660
+                    },
+                    {
+                        "defaultSettings": {
+                            "hideBackground": false,
+                            "minimumThreshold": 10
+                        },
+                        "id": "plugin:catwalk",
+                        "showBackground": true,
+                        "x": 180,
+                        "y": 240
                     }
                 ]
             }
@@ -446,12 +499,12 @@
         "pywalfox": false,
         "qt": true,
         "spicetify": false,
-        "telegram": false,
+        "telegram": true,
         "vicinae": false,
         "walker": true,
         "wezterm": false,
         "yazi": false,
-        "zed": false
+        "zed": true
     },
     "ui": {
         "bluetoothDetailsViewMode": "grid",

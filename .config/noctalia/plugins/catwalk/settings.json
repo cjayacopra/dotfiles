@@ -1,3 +1,4 @@
 {
-  "minimumThreshold": 10
+  "minimumThreshold": 10,
+  "hideBackground": true
 }

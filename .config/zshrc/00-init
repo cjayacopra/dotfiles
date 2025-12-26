@@ -11,3 +11,4 @@ export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/.local/bin
 export WEBKIT_DISABLE_COMPOSITING_MODE=1
 export ZOXIDE_CMD_OVERRIDE=cd
+export PATH=$PATH:~/.local/share/JetBrains/Toolbox/scripts

@@ -10,8 +10,17 @@
         "catwalk": {
             "enabled": true
         },
-        "network-indicator": {
-            "enabled": false
+        "fancy-audiovisualizer": {
+            "enabled": true
+        },
+        "mini-docker": {
+            "enabled": true
+        },
+        "todo": {
+            "enabled": true
+        },
+        "update-count": {
+            "enabled": true
         }
     },
     "version": 1
