@@ -16,6 +16,9 @@
         "mini-docker": {
             "enabled": true
         },
+        "simple-notes": {
+            "enabled": true
+        },
         "todo": {
             "enabled": true
         },
