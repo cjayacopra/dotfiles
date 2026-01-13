@@ -34,3 +34,4 @@ done
 if [ -f ~/.zshrc_custom ]; then
     source ~/.zshrc_custom
 fi
+export PATH=$PATH:/home/shiraneko/.spicetify

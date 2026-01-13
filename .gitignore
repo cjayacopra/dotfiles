@@ -1,2 +1,5 @@
-GEMINI.md
+# Ignore Noctalia plugin settings
+.config/noctalia/plugins/**/settings.json
+
+# Gemini CLI metadata
 .gemini

@@ -31,6 +31,12 @@ Rectangle {
   color: Style.capsuleColor
   radius: Style.radiusL
 
+  Connections {
+    target: Color
+    function onMOnHoverChanged() { }
+    function onMOnSurfaceChanged() { }
+  }
+
   RowLayout {
     id: contentRow
     anchors.centerIn: parent
@@ -51,7 +57,7 @@ Rectangle {
         return text.replace("{count}", count);
       }
       color: mouseArea.containsMouse ? Color.mOnHover : Color.mOnSurface
-      pointSize: Style.fontSizeS
+      pointSize: Style.barFontSize
       font.weight: Font.Medium
     }
   }

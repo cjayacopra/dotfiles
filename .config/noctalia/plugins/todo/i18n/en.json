@@ -32,7 +32,8 @@
       "title": "Todo List"
     },
     "todo_item": {
-      "delete_button_tooltip": "Delete"
+      "delete_button_tooltip": "Delete",
+      "edit_button_tooltip": "Edit"
     }
   },
   "settings": {

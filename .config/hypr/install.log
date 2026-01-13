@@ -1,0 +1,9 @@
+[00:39:28 2026-01-14] FETCHING Version 2.42.7
+[00:39:28 2026-01-14] CREATING /home/shiraneko/.spicetify
+[00:39:28 2026-01-14] DOWNLOADING https://github.com/spicetify/cli/releases/download/v2.42.7/spicetify-2.42.7-linux-amd64.tar.gz
+[00:39:30 2026-01-14] EXTRACTING /home/shiraneko/.spicetify/spicetify.tar.gz
+[00:39:30 2026-01-14] SETTING EXECUTABLE PERMISSIONS TO /home/shiraneko/.spicetify/spicetify
+[00:39:30 2026-01-14] REMOVING /home/shiraneko/.spicetify/spicetify.tar.gz
+[00:39:30 2026-01-14] APPENDING /home/shiraneko/.spicetify to PATH in /home/shiraneko/.zshrc
+[00:39:30 2026-01-14] spicetify v2.42.7 was installed successfully to /home/shiraneko/.spicetify
+[00:39:30 2026-01-14] Run 'spicetify --help' to get started

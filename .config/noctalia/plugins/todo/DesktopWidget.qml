@@ -13,11 +13,53 @@ DraggableDesktopWidget {
   property bool showCompleted: pluginApi?.pluginSettings?.showCompleted !== undefined ? pluginApi.pluginSettings.showCompleted : pluginApi?.manifest?.metadata?.defaultSettings?.showCompleted
   property ListModel filteredTodosModel: ListModel {}
 
+  function moveTodoToCorrectPosition(todoId) {
+    if (!pluginApi) return;
+
+    var todos = pluginApi.pluginSettings.todos || [];
+    var todoIndex = -1;
+
+    for (var i = 0; i < todos.length; i++) {
+      if (todos[i].id === todoId) {
+        todoIndex = i;
+        break;
+      }
+    }
+
+    if (todoIndex !== -1) {
+      var movedTodo = todos[todoIndex];
+
+      todos.splice(todoIndex, 1);
+
+      if (movedTodo.completed) {
+        var insertIndex = todos.length;
+        for (var j = todos.length - 1; j >= 0; j--) {
+          if (todos[j].completed) {
+            insertIndex = j + 1;
+            break;
+          }
+        }
+        todos.splice(insertIndex, 0, movedTodo);
+      } else {
+        var insertIndex = 0;
+        for (; insertIndex < todos.length; insertIndex++) {
+          if (todos[insertIndex].completed) {
+            break;
+          }
+        }
+        todos.splice(insertIndex, 0, movedTodo);
+      }
+
+      pluginApi.pluginSettings.todos = todos;
+      pluginApi.saveSettings();
+    }
+  }
+
   showBackground: (pluginApi && pluginApi.pluginSettings ? (pluginApi.pluginSettings.showBackground !== undefined ? pluginApi.pluginSettings.showBackground : pluginApi?.manifest?.metadata?.defaultSettings?.showBackground) : pluginApi?.manifest?.metadata?.defaultSettings?.showBackground)
 
-  readonly property color todoBg: showBackground ? Qt.rgba(0, 0, 0, 0.2) : Color.transparent
-  readonly property color itemBg: showBackground ? Color.mSurface : Color.transparent
-  readonly property color completedItemBg: showBackground ? Color.mSurfaceVariant : Color.transparent
+  readonly property color todoBg: showBackground ? Qt.rgba(0, 0, 0, 0.2) : "transparent"
+  readonly property color itemBg: showBackground ? Color.mSurface : "transparent"
+  readonly property color completedItemBg: showBackground ? Color.mSurfaceVariant : "transparent"
 
   // Scaled dimensions
   readonly property int scaledMarginM: Math.round(Style.marginM * widgetScale)
@@ -99,55 +141,60 @@ DraggableDesktopWidget {
     }
   }
 
-  MouseArea {
-    anchors.fill: parent
-    onClicked: {
-      root.expanded = !root.expanded;
-    }
-  }
-
   ColumnLayout {
     anchors.fill: parent
     anchors.margins: scaledMarginM
     spacing: scaledMarginS
 
-    RowLayout {
-      spacing: scaledMarginS
+    Item {
       Layout.fillWidth: true
+      height: scaledBaseWidgetSize
 
-      NIcon {
-        icon: "checklist"
-        pointSize: scaledFontSizeL
-      }
-
-      NText {
-        text: pluginApi?.tr("desktop_widget.header_title")
-        font.pointSize: scaledFontSizeL
-        font.weight: Font.Medium
-      }
-
-      Item {
-        Layout.fillWidth: true
-      }
-
-      NText {
-        text: {
-          var todos = pluginApi?.pluginSettings?.todos || [];
-          var activeTodos = todos.filter(function (todo) {
-            return !todo.completed;
-          }).length;
-
-          var text = pluginApi?.tr("desktop_widget.items_count");
-          return text.replace("{active}", activeTodos).replace("{total}", todos.length);
+      MouseArea {
+        anchors.fill: parent
+        onClicked: {
+          root.expanded = !root.expanded;
         }
-        color: Color.mOnSurfaceVariant
-        font.pointSize: scaledFontSizeS
       }
 
-      NIcon {
-        icon: root.expanded ? "chevron-up" : "chevron-down"
-        pointSize: scaledFontSizeM
-        color: Color.mOnSurfaceVariant
+      RowLayout {
+        anchors.fill: parent
+        spacing: scaledMarginS
+
+        NIcon {
+          icon: "checklist"
+          pointSize: scaledFontSizeL
+        }
+
+        NText {
+          text: pluginApi?.tr("desktop_widget.header_title")
+          font.pointSize: scaledFontSizeL
+          font.weight: Font.Medium
+        }
+
+        Item {
+          Layout.fillWidth: true
+        }
+
+        NText {
+          text: {
+            var todos = pluginApi?.pluginSettings?.todos || [];
+            var activeTodos = todos.filter(function (todo) {
+              return !todo.completed;
+            }).length;
+
+            var text = pluginApi?.tr("desktop_widget.items_count");
+            return text.replace("{active}", activeTodos).replace("{total}", todos.length);
+          }
+          color: Color.mOnSurfaceVariant
+          font.pointSize: scaledFontSizeS
+        }
+
+        NIcon {
+          icon: root.expanded ? "chevron-up" : "chevron-down"
+          pointSize: scaledFontSizeM
+          color: Color.mOnSurfaceVariant
+        }
       }
     }
 
@@ -162,7 +209,7 @@ DraggableDesktopWidget {
         anchors.fill: parent
         color: root.todoBg
         radius: scaledRadiusM
-        border.color: showBackground ? Color.mOutline : Color.transparent
+        border.color: showBackground ? Color.mOutline : "transparent"
         border.width: showBackground ? 1 : 0
       }
 
@@ -185,6 +232,9 @@ DraggableDesktopWidget {
           flickableDirection: Flickable.VerticalFlick
           clip: true  // Critical: ensures content doesn't render outside bounds
           boundsBehavior: Flickable.StopAtBounds  // Completely stop at bounds, no overscroll
+          interactive: true
+          // Increase pressDelay to give child TapHandler priority for short taps
+          pressDelay: 150  // Longer delay to distinguish between tap and flick
 
           Column {
             id: columnLayout
@@ -208,21 +258,76 @@ DraggableDesktopWidget {
                     anchors.fill: parent
                     anchors.margins: scaledMarginM
 
-                    NIcon {
-                      id: iconItem
-                      icon: model.completed ? "square-check" : "square"
-                      color: model.completed ? Color.mPrimary : Color.mOnSurfaceVariant
-                      pointSize: scaledFontSizeS
+                    // Custom checkbox implementation with TapHandler
+                    Item {
+                      id: customCheckboxContainer
+                      width: scaledBaseWidgetSize * 0.7  // Slightly larger touch area
+                      height: scaledBaseWidgetSize * 0.7
                       anchors.left: parent.left
                       anchors.verticalCenter: parent.verticalCenter
+
+                      Rectangle {
+                        id: customCheckbox
+                        width: scaledBaseWidgetSize * 0.5
+                        height: scaledBaseWidgetSize * 0.5
+                        radius: Style.iRadiusXS
+                        color: showBackground ? (model.completed ? Color.mPrimary : Color.mSurface) : "transparent"
+                        border.color: Color.mOutline
+                        border.width: Style.borderS
+                        anchors.centerIn: parent
+
+                        NIcon {
+                          visible: model.completed
+                          anchors.centerIn: parent
+                          anchors.horizontalCenterOffset: 0  // Center the checkmark properly
+                          icon: "check"
+                          color: showBackground ? Color.mOnPrimary : Color.mPrimary
+                          pointSize: Math.max(Style.fontSizeXS, width * 0.5)
+                        }
+
+                        // MouseArea for the checkbox
+                        MouseArea {
+                          anchors.fill: parent
+                          hoverEnabled: false  // Disable hover to prevent cursor flickering
+
+                          onClicked: {
+                            if (pluginApi) {
+                              var todos = pluginApi.pluginSettings.todos || [];
+
+                              for (var i = 0; i < todos.length; i++) {
+                                if (todos[i].id === model.id) {
+                                  todos[i].completed = !todos[i].completed;  // Toggle the completed status
+                                  break;
+                                }
+                              }
+
+                              pluginApi.pluginSettings.todos = todos;
+
+                              var completedCount = 0;
+                              for (var j = 0; j < todos.length; j++) {
+                                if (todos[j].completed) {
+                                  completedCount++;
+                                }
+                              }
+                              pluginApi.pluginSettings.completedCount = completedCount;
+
+                              moveTodoToCorrectPosition(model.id);
+
+                              pluginApi.saveSettings();
+                              updateFilteredTodos(); // Refresh the display
+                            }
+                          }
+                        }
+                      }
                     }
 
+                    // Text for the todo item
                     NText {
                       text: model.text
                       color: model.completed ? Color.mOnSurfaceVariant : Color.mOnSurface
                       font.strikeout: model.completed
                       elide: Text.ElideRight
-                      anchors.left: iconItem.right
+                      anchors.left: customCheckboxContainer.right
                       anchors.leftMargin: scaledMarginS
                       anchors.right: parent.right
                       anchors.verticalCenter: parent.verticalCenter
