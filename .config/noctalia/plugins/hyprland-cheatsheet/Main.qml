@@ -45,8 +45,7 @@ Item {
   function runGenerator() {
     logDebug("HyprlandCheatsheet: === START GENERATOR ===");
     
-    // Get HOME from environment
-    var homeDir = process.environment["HOME"];
+    var homeDir = Quickshell.env("HOME");
     if (!homeDir) {
       logError("HyprlandCheatsheet: ERROR - cannot get $HOME");
       saveToDb([{
@@ -57,57 +56,46 @@ Item {
     }
 
     var filePath = homeDir + "/.config/hypr/keybind.conf";
-    var cmd = "cat " + filePath;
-
     logDebug("HyprlandCheatsheet: HOME = " + homeDir);
     logDebug("HyprlandCheatsheet: Full path = " + filePath);
-    logDebug("HyprlandCheatsheet: Command = " + cmd);
     
-    var proc = process.create("bash", ["-c", cmd]);
-    
-    proc.finished.connect(function() {
-      logDebug("HyprlandCheatsheet: Process finished. ExitCode: " + proc.exitCode);
-      logDebug("HyprlandCheatsheet: Stdout length: " + proc.stdout.length);
-      logDebug("HyprlandCheatsheet: Stderr: " + proc.stderr);
+    // Most robust execution: use bash redirection to a temp file
+    // This avoids all stream/listener issues in Quickshell
+    var tmpFile = "/tmp/hypr_cheatsheet.tmp";
+    runner.command = ["bash", "-c", "cat " + filePath + " > " + tmpFile];
+    runner.running = true;
+  }
 
-      if (proc.exitCode !== 0) {
-          logError("HyprlandCheatsheet: ERROR! Code: " + proc.exitCode);
-          logError("HyprlandCheatsheet: Full stderr: " + proc.stderr);
-          
+  Process {
+    id: runner
+
+    onExited: (exitCode) => {
+      logDebug("HyprlandCheatsheet: Process finished. ExitCode: " + exitCode);
+      running = false;
+      
+      if (exitCode !== 0) {
+          logError("HyprlandCheatsheet: ERROR! Code: " + exitCode);
           saveToDb([{
               "title": pluginApi?.tr("main.read_error") || "READ ERROR",
-              "binds": [
-                { "keys": pluginApi?.tr("main.exit_code") || "EXIT CODE", "desc": proc.exitCode.toString() },
-                { "keys": pluginApi?.tr("main.stderr") || "STDERR", "desc": proc.stderr }
-              ]
+              "binds": [{ "keys": "EXIT CODE", "desc": exitCode.toString() }]
           }]);
           return;
       }
 
-      var content = proc.stdout;
-      logDebug("HyprlandCheatsheet: Content retrieved. Length: " + content.length);
-
-      // Show first 200 chars
-      if (content.length > 0) {
-          logDebug("HyprlandCheatsheet: First 200 chars: " + content.substring(0, 200));
-          parseAndSave(content);
-      } else {
-          logWarn("HyprlandCheatsheet: File is empty!");
-          saveToDb([{
-              "title": pluginApi?.tr("main.file_empty") || "FILE EMPTY",
-              "binds": [{ "keys": "INFO", "desc": pluginApi?.tr("main.file_no_data") || "File contains no data" }]
-          }]);
-      }
-    });
+      // Now read the temp file using FileView
+      logDebug("HyprlandCheatsheet: Reading temp file");
+      tmpFileReader.path = "/tmp/hypr_cheatsheet.tmp";
+    }
   }
 
-  Process {
-    id: process
-    function create(cmd, args) {
-      logDebug("HyprlandCheatsheet: Creating process: " + cmd + " " + args.join(" "));
-      command = [cmd].concat(args);
-      running = true;
-      return this;
+  FileView {
+    id: tmpFileReader
+    onTextChanged: {
+        if (text && text.length > 0) {
+            logDebug("HyprlandCheatsheet: Content retrieved from temp file. Length: " + text.length);
+            parseAndSave(text);
+            path = ""; // Reset
+        }
     }
   }
 
@@ -120,42 +108,50 @@ Item {
     var currentCategory = null;
 
     for (var i = 0; i < lines.length; i++) {
-      var line = lines[i].trim();
+        var line = lines[i].trim();
 
-      if (line.startsWith("#") && line.match(/#\s*\d+\./)) {
-        if (currentCategory) {
-          logDebug("HyprlandCheatsheet: Saving category: " + currentCategory.title + " with " + currentCategory.binds.length + " binds");
-          categories.push(currentCategory);
-        }
-        var title = line.replace(/#\s*\d+\.\s*/, "").trim();
-        logDebug("HyprlandCheatsheet: New category: " + title);
-        currentCategory = { "title": title, "binds": [] };
-      } 
-      else if (line.includes("bind") && line.includes('#"')) {
-        if (currentCategory) {
-            var descMatch = line.match(/#"(.*?)"$/);
-            var description = descMatch ? descMatch[1] : "Description";
-            
-            var parts = line.split(',');
-            if (parts.length >= 2) {
-                var mod = parts[0].split('=')[1].trim().replace("$mod", "SUPER");
-                var key = parts[1].trim().toUpperCase();
-                if (parts[0].includes("SHIFT")) mod += "+SHIFT";
-                if (parts[0].includes("CTRL")) mod += "+CTRL";
+        if (line.startsWith("#") && line.match(/#\s*\d+\./)) {
+            if (currentCategory) {
+                categories.push(currentCategory);
+            }
+            var title = line.replace(/#\s*\d+\.\s*/, "").trim();
+            currentCategory = { "title": title, "binds": [] };
+        } 
+        else if (line.includes("bind") && line.includes('#"')) {
+            if (currentCategory) {
+                var descMatch = line.match(/#"(.*?)"$/);
+                var description = descMatch ? descMatch[1] : "Description";
                 
-                currentCategory.binds.push({
-                    "keys": mod + " + " + key,
-                    "desc": description
-                });
-                logDebug("HyprlandCheatsheet: Added bind: " + mod + " + " + key);
+                var parts = line.split(',');
+                if (parts.length >= 2) {
+                    var modMatch = parts[0].match(/bind\s*=\s*([^,]+)/);
+                    var mod = modMatch ? modMatch[1].trim() : parts[0].trim();
+                    mod = mod.replace("$mod", "Super"); // Using Title Case to match Panel.qml expectation
+                    
+                    var keyPart = parts[1].trim();
+                    var key = keyPart.toUpperCase();
+                    
+                    // Standardize key names for color coding in Panel.qml
+                    var fullKey = mod;
+                    if (mod.includes("SHIFT")) fullKey = fullKey.replace("SHIFT", "Shift");
+                    if (mod.includes("CTRL")) fullKey = fullKey.replace("CTRL", "Ctrl");
+                    if (mod.includes("ALT")) fullKey = fullKey.replace("ALT", "Alt");
+                    
+                    // Ensure space around +
+                    if (fullKey && key) fullKey += " + " + key;
+                    else if (key) fullKey = key;
+
+                    currentCategory.binds.push({
+                        "keys": fullKey,
+                        "desc": description
+                    });
+                }
             }
         }
-      }
     }
     
     if (currentCategory) {
-      logDebug("HyprlandCheatsheet: Saving last category: " + currentCategory.title);
-      categories.push(currentCategory);
+        categories.push(currentCategory);
     }
 
     logDebug("HyprlandCheatsheet: Found " + categories.length + " categories.");
@@ -180,6 +176,11 @@ Item {
         runGenerator();
         pluginApi.withCurrentScreen(screen => pluginApi.openPanel(screen));
       }
+    }
+    
+    function generate() {
+      logDebug("HyprlandCheatsheet: IPC generate called");
+      runGenerator();
     }
   }
 }

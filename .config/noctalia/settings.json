@@ -13,11 +13,11 @@
             "anytype"
         ],
         "position": "center",
-        "screenshotAnnotationTool": "",
+        "screenshotAnnotationTool": "satt --filename -",
         "showCategories": true,
         "showIconBackground": true,
         "sortByMostUsed": true,
-        "terminalCommand": "alacritty -e",
+        "terminalCommand": "kitty -e",
         "useApp2Unit": false,
         "viewMode": "list"
     },
@@ -32,7 +32,7 @@
     },
     "bar": {
         "backgroundOpacity": 0.5,
-        "capsuleOpacity": 1,
+        "capsuleOpacity": 0,
         "density": "default",
         "exclusive": true,
         "floating": false,
@@ -65,9 +65,6 @@
             ],
             "left": [
                 {
-                    "id": "NoctaliaPerformance"
-                },
-                {
                     "customFont": "",
                     "formatHorizontal": "h:mm AP dd ddd",
                     "formatVertical": "HH mm - dd MM",
@@ -82,14 +79,28 @@
                     "id": "SystemMonitor",
                     "showCpuTemp": true,
                     "showCpuUsage": true,
-                    "showDiskUsage": true,
+                    "showDiskUsage": false,
                     "showGpuTemp": true,
                     "showLoadAverage": false,
                     "showMemoryAsPercent": false,
                     "showMemoryUsage": true,
-                    "showNetworkStats": true,
+                    "showNetworkStats": false,
                     "useMonospaceFont": true,
-                    "usePrimaryColor": false
+                    "usePrimaryColor": true
+                },
+                {
+                    "defaultSettings": {
+                        "arrowType": "caret",
+                        "byteThresholdActive": 1024,
+                        "fontSizeModifier": 1,
+                        "forceMegabytes": false,
+                        "iconSizeModifier": 1,
+                        "minWidth": 0,
+                        "showNumbers": true,
+                        "spacingInbetween": 0,
+                        "useCustomColors": false
+                    },
+                    "id": "plugin:network-indicator"
                 },
                 {
                     "defaultSettings": {
@@ -97,6 +108,25 @@
                         "minimumThreshold": 10
                     },
                     "id": "plugin:catwalk"
+                },
+                {
+                    "defaultSettings": {
+                        "completedCount": 0,
+                        "count": 0,
+                        "showBackground": true,
+                        "showCompleted": true,
+                        "todos": [
+                        ]
+                    },
+                    "id": "plugin:todo"
+                },
+                {
+                    "defaultSettings": {
+                        "notes": [
+                        ],
+                        "showCountInBar": true
+                    },
+                    "id": "plugin:simple-notes"
                 },
                 {
                     "colorName": "primary",
@@ -126,49 +156,30 @@
                 },
                 {
                     "defaultSettings": {
-                        "parsedData": [
-                        ]
+                        "autoStartBreaks": false,
+                        "autoStartWork": false,
+                        "compactMode": false,
+                        "longBreakDuration": 15,
+                        "sessionsBeforeLongBreak": 4,
+                        "shortBreakDuration": 5,
+                        "workDuration": 25
                     },
-                    "id": "plugin:hyprland-cheatsheet"
+                    "id": "plugin:pomodoro"
                 },
                 {
                     "defaultSettings": {
-                        "notes": [
-                        ],
-                        "showCountInBar": true
+                        "currentIconName": "world-download",
+                        "hideOnZero": false,
+                        "updateIntervalMinutes": 30,
+                        "updateTerminalCommand": "foot -e"
                     },
-                    "id": "plugin:simple-notes"
-                },
-                {
-                    "defaultSettings": {
-                        "completedCount": 0,
-                        "count": 0,
-                        "showBackground": true,
-                        "showCompleted": true,
-                        "todos": [
-                        ]
-                    },
-                    "id": "plugin:todo"
-                },
-                {
-                    "id": "Spacer",
-                    "width": 20
+                    "id": "plugin:update-count"
                 },
                 {
                     "defaultSettings": {
                         "refreshInterval": 5000
                     },
                     "id": "plugin:mini-docker"
-                },
-                {
-                    "blacklist": [
-                    ],
-                    "colorizeIcons": false,
-                    "drawerEnabled": true,
-                    "hidePassive": false,
-                    "id": "Tray",
-                    "pinned": [
-                    ]
                 },
                 {
                     "defaultSettings": {
@@ -197,6 +208,9 @@
                     "middleClickCommand": "pwvucontrol || pavucontrol"
                 },
                 {
+                    "id": "NoctaliaPerformance"
+                },
+                {
                     "colorizeDistroLogo": false,
                     "colorizeSystemIcon": "none",
                     "customIconPath": "",
@@ -206,13 +220,21 @@
                     "useDistroLogo": true
                 },
                 {
+                    "blacklist": [
+                    ],
+                    "colorizeIcons": false,
+                    "drawerEnabled": true,
+                    "hidePassive": false,
+                    "id": "Tray",
+                    "pinned": [
+                    ]
+                },
+                {
                     "defaultSettings": {
-                        "currentIconName": "world-download",
-                        "hideOnZero": false,
-                        "updateIntervalMinutes": 30,
-                        "updateTerminalCommand": "foot -e"
+                        "parsedData": [
+                        ]
                     },
-                    "id": "plugin:update-count"
+                    "id": "plugin:hyprland-cheatsheet"
                 }
             ]
         }
@@ -286,11 +308,21 @@
                 },
                 {
                     "id": "DarkMode"
+                },
+                {
+                    "defaultSettings": {
+                        "compactMode": false,
+                        "defaultDuration": 0
+                    },
+                    "id": "plugin:timer"
                 }
             ],
             "right": [
                 {
                     "id": "PowerProfile"
+                },
+                {
+                    "id": "Network"
                 },
                 {
                     "id": "KeepAwake"
@@ -374,14 +406,15 @@
     },
     "dock": {
         "animationSpeed": 1,
-        "backgroundOpacity": 0.86,
+        "backgroundOpacity": 0.5,
         "colorizeIcons": false,
-        "deadOpacity": 0.6,
+        "deadOpacity": 0.5,
         "displayMode": "auto_hide",
         "enabled": true,
         "floatingRatio": 1,
         "inactiveIndicators": true,
         "monitors": [
+            "HDMI-A-1"
         ],
         "onlySameOutput": true,
         "pinnedApps": [
@@ -444,7 +477,7 @@
         "bluetoothRssiPollIntervalMs": 10000,
         "bluetoothRssiPollingEnabled": false,
         "wifiDetailsViewMode": "grid",
-        "wifiEnabled": false
+        "wifiEnabled": true
     },
     "nightLight": {
         "autoSchedule": true,
@@ -604,7 +637,7 @@
         "fontDefaultScale": 1,
         "fontFixed": "monospace",
         "fontFixedScale": 1,
-        "networkPanelView": "wifi",
+        "networkPanelView": "ethernet",
         "panelBackgroundOpacity": 0.5,
         "panelsAttachedToBar": true,
         "settingsPanelMode": "centered",

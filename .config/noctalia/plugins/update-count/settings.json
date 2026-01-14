@@ -3,6 +3,6 @@
   "updateTerminalCommand": "kitty -e",
   "currentIconName": "world-download",
   "hideOnZero": true,
-  "customCmdGetNumUpdates": "",
-  "customCmdDoSystemUpdate": "yay -Syyu"
+  "customCmdGetNumUpdates": "paru -Qu 2>/dev/null | wc -l",
+  "customCmdDoSystemUpdate": "paru -Syyu"
 }

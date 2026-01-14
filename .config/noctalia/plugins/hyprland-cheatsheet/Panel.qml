@@ -16,6 +16,7 @@ Item {
   property var column2Items: []
 
   onRawCategoriesChanged: {
+    isLoading = false;
     categories = processCategories(rawCategories);
     updateColumnItems();
   }
@@ -46,74 +47,11 @@ Item {
   function checkAndGenerate() {
       if (root.rawCategories.length === 0) {
           isLoading = true;
-          allLines = [];
-          catProcess.running = true;
-      }
-  }
-
-  Process {
-      id: catProcess
-      command: ["sh", "-c", "cat ~/.config/hypr/keybind.conf"]
-      running: false
-      
-      stdout: SplitParser {
-          onRead: data => {
-              root.allLines.push(data);
-          }
-      }
-      
-      onExited: (exitCode, exitStatus) => {
-          isLoading = false;
-          if (exitCode === 0 && root.allLines.length > 0) {
-              var fullContent = root.allLines.join("\n");
-              parseAndSave(fullContent);
-              root.allLines = [];
-          } else {
-              errorText.text = pluginApi?.tr("panel.error_read_file") || "File read error";
-              errorView.visible = true;
-          }
-      }
-  }
-
-  function parseAndSave(text) {
-      var lines = text.split('\n');
-      var cats = [];
-      var currentCat = null;
-
-      for (var i = 0; i < lines.length; i++) {
-          var line = lines[i].trim();
-          if (line.startsWith("#") && line.match(/#\s*\d+\./)) {
-              if (currentCat) cats.push(currentCat);
-              var title = line.replace(/#\s*\d+\.\s*/, "").trim();
-              currentCat = { "title": title, "binds": [] };
-          } 
-          else if (line.includes("bind") && line.includes('#"')) {
-              if (currentCat) {
-                  var descMatch = line.match(/#"(.*?)"$/);
-                  var desc = descMatch ? descMatch[1] : (pluginApi?.tr("panel.no_description") || "No description");
-                  var parts = line.split(',');
-                  if (parts.length >= 2) {
-                      var bindPart = parts[0].trim();
-                      var keyPart = parts[1].trim();
-                      var mod = "";
-                      if (bindPart.includes("$mod")) mod = "Super";
-                      if (bindPart.includes("SHIFT")) mod += (mod ? " + Shift" : "Shift");
-                      if (bindPart.includes("CTRL")) mod += (mod ? " + Ctrl" : "Ctrl");
-                      if (bindPart.includes("ALT")) mod += (mod ? " + Alt" : "Alt");
-                      var key = keyPart.toUpperCase();
-                      var fullKey = mod + (mod && key ? " + " : "") + key;
-                      currentCat.binds.push({ "keys": fullKey, "desc": desc });
-                  }
-              }
-          }
-      }
-      if (currentCat) cats.push(currentCat);
-      if (cats.length > 0) {
-          pluginApi.pluginSettings.cheatsheetData = cats;
-          pluginApi.saveSettings();
-      } else {
-          errorText.text = pluginApi?.tr("panel.no_categories") || "No categories found";
-          errorView.visible = true;
+          // Trigger the central generator in Main.qml via IPC
+          Quickshell.ipcCall("plugin:hyprland-cheatsheet", "generate");
+          // The data will be updated in settings, and rawCategories will reactively update
+          // We can set a timeout to stop loading if it fails too long, but for now 
+          // let's just wait for the setting change.
       }
   }
 
