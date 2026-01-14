@@ -59,15 +59,21 @@ Item {
     logDebug("HyprlandCheatsheet: HOME = " + homeDir);
     logDebug("HyprlandCheatsheet: Full path = " + filePath);
     
-    // Most robust execution: use bash redirection to a temp file
-    // This avoids all stream/listener issues in Quickshell
-    var tmpFile = "/tmp/hypr_cheatsheet.tmp";
-    runner.command = ["bash", "-c", "cat " + filePath + " > " + tmpFile];
+    // Reset buffers and start process
+    runner.allLines = [];
+    runner.command = ["cat", filePath];
     runner.running = true;
   }
 
   Process {
     id: runner
+    property var allLines: []
+
+    stdout: SplitParser {
+      onRead: (data) => {
+        runner.allLines.push(data);
+      }
+    }
 
     onExited: (exitCode) => {
       logDebug("HyprlandCheatsheet: Process finished. ExitCode: " + exitCode);
@@ -82,20 +88,12 @@ Item {
           return;
       }
 
-      // Now read the temp file using FileView
-      logDebug("HyprlandCheatsheet: Reading temp file");
-      tmpFileReader.path = "/tmp/hypr_cheatsheet.tmp";
-    }
-  }
-
-  FileView {
-    id: tmpFileReader
-    onTextChanged: {
-        if (text && text.length > 0) {
-            logDebug("HyprlandCheatsheet: Content retrieved from temp file. Length: " + text.length);
-            parseAndSave(text);
-            path = ""; // Reset
-        }
+      if (allLines.length > 0) {
+          logDebug("HyprlandCheatsheet: Content retrieved. Lines: " + allLines.length);
+          parseAndSave(allLines.join("\n"));
+      } else {
+          logWarn("HyprlandCheatsheet: No lines retrieved on exit!");
+      }
     }
   }
 
@@ -110,11 +108,11 @@ Item {
     for (var i = 0; i < lines.length; i++) {
         var line = lines[i].trim();
 
-        if (line.startsWith("#") && line.match(/#\s*\d+\./)) {
+        if (line.startsWith("#") && line.match(/#\s*[0-9]*[A-Z].*/)) {
             if (currentCategory) {
                 categories.push(currentCategory);
             }
-            var title = line.replace(/#\s*\d+\.\s*/, "").trim();
+            var title = line.replace(/#\s*[0-9\.]*\s*/, "").trim();
             currentCategory = { "title": title, "binds": [] };
         } 
         else if (line.includes("bind") && line.includes('#"')) {
@@ -126,18 +124,17 @@ Item {
                 if (parts.length >= 2) {
                     var modMatch = parts[0].match(/bind\s*=\s*([^,]+)/);
                     var mod = modMatch ? modMatch[1].trim() : parts[0].trim();
-                    mod = mod.replace("$mod", "Super"); // Using Title Case to match Panel.qml expectation
+                    mod = mod.replace("$mod", "Super");
                     
                     var keyPart = parts[1].trim();
                     var key = keyPart.toUpperCase();
                     
-                    // Standardize key names for color coding in Panel.qml
                     var fullKey = mod;
-                    if (mod.includes("SHIFT")) fullKey = fullKey.replace("SHIFT", "Shift");
-                    if (mod.includes("CTRL")) fullKey = fullKey.replace("CTRL", "Ctrl");
-                    if (mod.includes("ALT")) fullKey = fullKey.replace("ALT", "Alt");
-                    
-                    // Ensure space around +
+                    // Standardize modifiers to match Panel.qml's getKeyColor
+                    if (fullKey.includes("SHIFT")) fullKey = fullKey.replace("SHIFT", "Shift");
+                    if (fullKey.includes("CTRL")) fullKey = fullKey.replace("CTRL", "Ctrl");
+                    if (fullKey.includes("ALT")) fullKey = fullKey.replace("ALT", "Alt");
+
                     if (fullKey && key) fullKey += " + " + key;
                     else if (key) fullKey = key;
 

@@ -1,26 +1,26 @@
 {
   "todos": [
     {
-      "id": 1768328825845,
-      "text": "Fix Hyprland Cheatsheet",
-      "completed": false,
-      "createdAt": "2026-01-13T18:27:05.845Z"
-    },
-    {
-      "id": 1768388818910,
-      "text": "Add $HOME env to hypr conifigs",
-      "completed": false,
-      "createdAt": "2026-01-14T11:06:58.910Z"
-    },
-    {
       "id": 1768328813480,
       "text": "Fix AB Download Manager autostart",
       "completed": true,
       "createdAt": "2026-01-13T18:26:53.480Z"
+    },
+    {
+      "id": 1768388818910,
+      "text": "Add $HOME env to hypr conifigs",
+      "completed": true,
+      "createdAt": "2026-01-14T11:06:58.910Z"
+    },
+    {
+      "id": 1768328825845,
+      "text": "Fix Hyprland Cheatsheet",
+      "completed": true,
+      "createdAt": "2026-01-13T18:27:05.845Z"
     }
   ],
   "count": 3,
-  "completedCount": 1,
+  "completedCount": 3,
   "showCompleted": true,
   "showBackground": true
 }
