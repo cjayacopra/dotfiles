@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell.Io
+import qs.Commons
 import qs.Services.UI
 
 Item {
@@ -48,8 +49,23 @@ Item {
       });
     }
 
-    function addTodo(text: string) {
+    function addTodo(text: string, pageId: int) {
       if (pluginApi && text) {
+        var pages = pluginApi.pluginSettings.pages || [];
+        var isValidPageId = false;
+
+        for (var i = 0; i < pages.length; i++) {
+          if (pages[i].id === pageId) {
+            isValidPageId = true;
+            break;
+          }
+        }
+
+        if (!isValidPageId) {
+          Logger.e("Todo", "Invalid pageId: " + pageId);
+          return;
+        }
+
         var todos = pluginApi.pluginSettings.todos || [];
 
         var newTodo = {
@@ -57,7 +73,7 @@ Item {
           text: text,
           completed: false,
           createdAt: new Date().toISOString(),
-          pageId: 0
+          pageId: pageId
         };
 
         todos.push(newTodo);
@@ -68,6 +84,10 @@ Item {
 
         ToastService.showNotice(pluginApi?.tr("main.added_new_todo") + text);
       }
+    }
+
+    function addTodoDefault(text: string) {
+      addTodo(text, 0);
     }
 
     function toggleTodo(id: int) {
