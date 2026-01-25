@@ -1,5 +1,7 @@
 # Ignore Noctalia plugin settings
 .config/noctalia/plugins/**/settings.json
+.config/noctalia/plugins/simple-notes/settings.json
 
 # Gemini CLI metadata
 .gemini
+GEMINI.md

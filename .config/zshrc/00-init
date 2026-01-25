@@ -13,3 +13,6 @@ export WEBKIT_DISABLE_COMPOSITING_MODE=1
 export ZOXIDE_CMD_OVERRIDE=cd
 export PATH=$PATH:~/.local/share/JetBrains/Toolbox/scripts
 export PATH=$PATH:~/.spicetify
+
+# opencode
+export PATH=/home/shiraneko/.opencode/bin:$PATH
