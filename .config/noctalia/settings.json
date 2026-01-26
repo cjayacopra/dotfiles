@@ -27,7 +27,7 @@
         "mprisBlacklist": [
         ],
         "preferredPlayer": "spotify",
-        "visualizerType": "linear",
+        "visualizerType": "mirrored",
         "volumeFeedback": false,
         "volumeOverdrive": false,
         "volumeStep": 5
@@ -116,6 +116,22 @@
                     "id": "plugin:network-indicator"
                 },
                 {
+                    "colorName": "primary",
+                    "hideWhenIdle": true,
+                    "id": "AudioVisualizer",
+                    "width": 200
+                }
+            ],
+            "right": [
+                {
+                    "defaultSettings": {
+                        "notes": [
+                        ],
+                        "showCountInBar": true
+                    },
+                    "id": "plugin:simple-notes"
+                },
+                {
                     "defaultSettings": {
                         "completedCount": 0,
                         "count": 0,
@@ -128,20 +144,22 @@
                 },
                 {
                     "defaultSettings": {
-                        "notes": [
+                        "autoHeight": true,
+                        "cheatsheetData": [
                         ],
-                        "showCountInBar": true
+                        "columnCount": 3,
+                        "detectedCompositor": "",
+                        "hyprlandConfigPath": "~/.config/hypr/hyprland.conf",
+                        "modKeyVariable": "$mod",
+                        "niriConfigPath": "~/.config/niri/config.kdl",
+                        "windowHeight": 0,
+                        "windowWidth": 1400
                     },
-                    "id": "plugin:simple-notes"
+                    "id": "plugin:keybind-cheatsheet"
                 },
                 {
-                    "colorName": "primary",
-                    "hideWhenIdle": true,
-                    "id": "AudioVisualizer",
-                    "width": 200
-                }
-            ],
-            "right": [
+                    "id": "plugin:clipper"
+                },
                 {
                     "defaultSettings": {
                         "autoStartBreaks": false,
@@ -153,15 +171,6 @@
                         "workDuration": 25
                     },
                     "id": "plugin:pomodoro"
-                },
-                {
-                    "defaultSettings": {
-                        "currentIconName": "world-download",
-                        "hideOnZero": false,
-                        "updateIntervalMinutes": 30,
-                        "updateTerminalCommand": "foot -e"
-                    },
-                    "id": "plugin:update-count"
                 },
                 {
                     "defaultSettings": {
@@ -178,18 +187,14 @@
                         "directory": "",
                         "filenamePattern": "recording_yyyyMMdd_HHmmss",
                         "frameRate": "60",
+                        "hideInactive": false,
                         "quality": "very_high",
+                        "resolution": "original",
                         "showCursor": true,
                         "videoCodec": "h264",
                         "videoSource": "portal"
                     },
                     "id": "plugin:screen-recorder"
-                },
-                {
-                    "defaultSettings": {
-                        "mode": "region"
-                    },
-                    "id": "plugin:screenshot"
                 },
                 {
                     "hideWhenZero": true,
@@ -206,13 +211,13 @@
                     "id": "NoctaliaPerformance"
                 },
                 {
-                    "colorizeDistroLogo": false,
-                    "colorizeSystemIcon": "none",
-                    "customIconPath": "",
-                    "enableColorization": true,
-                    "icon": "noctalia",
-                    "id": "ControlCenter",
-                    "useDistroLogo": true
+                    "defaultSettings": {
+                        "currentIconName": "world-download",
+                        "hideOnZero": false,
+                        "updateIntervalMinutes": 30,
+                        "updateTerminalCommand": "foot -e"
+                    },
+                    "id": "plugin:update-count"
                 },
                 {
                     "blacklist": [
@@ -225,19 +230,13 @@
                     ]
                 },
                 {
-                    "defaultSettings": {
-                        "autoHeight": true,
-                        "cheatsheetData": [
-                        ],
-                        "columnCount": 3,
-                        "detectedCompositor": "",
-                        "hyprlandConfigPath": "~/.config/hypr/hyprland.conf",
-                        "modKeyVariable": "$mod",
-                        "niriConfigPath": "~/.config/niri/config.kdl",
-                        "windowHeight": 0,
-                        "windowWidth": 1400
-                    },
-                    "id": "plugin:keybind-cheatsheet"
+                    "colorizeDistroLogo": false,
+                    "colorizeSystemIcon": "none",
+                    "customIconPath": "",
+                    "enableColorization": true,
+                    "icon": "noctalia",
+                    "id": "ControlCenter",
+                    "useDistroLogo": true
                 }
             ]
         }
@@ -435,7 +434,7 @@
         "allowPanelsOnScreenWithoutBar": true,
         "animationDisabled": false,
         "animationSpeed": 1,
-        "avatarImage": "/mnt/files/Pictures/Profile/animegenius_3828cd0f4dba92ea818861dbd05b5750.png",
+        "avatarImage": "/mnt/files/Pictures/Profile/viber_image_2022-06-02_14-55-08-562~5.jpg",
         "boxRadiusRatio": 1,
         "compactLockScreen": false,
         "dimmerOpacity": 0,
@@ -690,7 +689,7 @@
         "wifiDetailsViewMode": "grid"
     },
     "wallpaper": {
-        "automationEnabled": false,
+        "automationEnabled": true,
         "directory": "/home/shiraneko/Pictures/Wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
@@ -701,7 +700,7 @@
         ],
         "overviewEnabled": false,
         "panelPosition": "center",
-        "randomIntervalSec": 300,
+        "randomIntervalSec": 7200,
         "setWallpaperOnAllMonitors": true,
         "showHiddenFiles": false,
         "solidColor": "#1a1a2e",

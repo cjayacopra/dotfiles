@@ -121,10 +121,8 @@ Rectangle {
     }
 
     onTriggered: action => {
-        var popupMenuWindow = PanelService.getPopupMenuWindow(screen);
-        if (popupMenuWindow) {
-            popupMenuWindow.close();
-        }
+        contextMenu.close();
+        PanelService.closeContextMenu(screen);
 
         if (action === "widget-settings") {
             BarService.openPluginSettings(screen, pluginApi.manifest);
@@ -133,7 +131,7 @@ Rectangle {
                  if (mainInstance.timerRunning) {
                     mainInstance.timerPause();
                 } else {
-                    mainInstance.timerStart(); 
+                    mainInstance.timerStart();
                 }
             } else if (action === "reset") {
                 mainInstance.timerReset();
@@ -148,30 +146,26 @@ Rectangle {
     hoverEnabled: true
     cursorShape: Qt.PointingHandCursor
     acceptedButtons: Qt.LeftButton | Qt.RightButton
-    
+
     onEntered: {
         if (!mainInstance || (!mainInstance.timerRunning && !mainInstance.timerSoundPlaying)) {
              root.color = Color.mHover
         }
     }
-    
+
     onExited: {
         if (!mainInstance || (!mainInstance.timerRunning && !mainInstance.timerSoundPlaying)) {
              root.color = Style.capsuleColor
         }
     }
-    
+
     onClicked: (mouse) => {
       if (mouse.button === Qt.LeftButton) {
           if (pluginApi) {
             pluginApi.openPanel(root.screen, root)
           }
       } else if (mouse.button === Qt.RightButton) {
-          var popupMenuWindow = PanelService.getPopupMenuWindow(screen);
-          if (popupMenuWindow) {
-              popupMenuWindow.showContextMenu(contextMenu);
-              contextMenu.openAtItem(root, screen);
-          }
+          PanelService.showContextMenu(contextMenu, root, screen);
       }
     }
   }
