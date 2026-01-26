@@ -13,10 +13,17 @@
       "completed": false,
       "createdAt": "2026-01-23T21:42:01.956Z",
       "pageId": 0
+    },
+    {
+      "id": 1769410052038,
+      "text": "set default applications",
+      "completed": true,
+      "createdAt": "2026-01-26T06:47:32.038Z",
+      "pageId": 0
     }
   ],
-  "count": 2,
-  "completedCount": 0,
+  "count": 3,
+  "completedCount": 1,
   "showCompleted": true,
   "showBackground": true,
   "pages": [
