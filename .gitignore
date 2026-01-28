@@ -5,3 +5,4 @@
 # Gemini CLI metadata
 .gemini
 GEMINI.md
+.config/zshrc/01-env

@@ -1,6 +1,34 @@
 {
   "todos": [
     {
+      "id": 1769559683167,
+      "text": "Creat a github repo for crawler",
+      "completed": false,
+      "createdAt": "2026-01-28T00:21:23.167Z",
+      "pageId": 0
+    },
+    {
+      "id": 1769478801466,
+      "text": "Add a summary of the website crawled just to give an insight of how their webiste is seen",
+      "completed": false,
+      "createdAt": "2026-01-27T01:53:21.466Z",
+      "pageId": 0
+    },
+    {
+      "id": 1769473279124,
+      "text": "add description of the points so it can be understood by business owners",
+      "completed": false,
+      "createdAt": "2026-01-27T00:21:19.124Z",
+      "pageId": 0
+    },
+    {
+      "id": 1769472819386,
+      "text": "move recomendations as dropdown of their categorized point so it's better to distinguished which factors affect which",
+      "completed": false,
+      "createdAt": "2026-01-27T00:13:39.386Z",
+      "pageId": 0
+    },
+    {
       "id": 1769400162019,
       "text": "Test in optus http://192.168.1.1/#/developermode",
       "completed": false,
@@ -20,10 +48,24 @@
       "completed": true,
       "createdAt": "2026-01-26T06:47:32.038Z",
       "pageId": 0
+    },
+    {
+      "id": 1769473926441,
+      "text": "JS based website detection",
+      "completed": true,
+      "createdAt": "2026-01-27T00:32:06.441Z",
+      "pageId": 0
+    },
+    {
+      "id": 1769472997704,
+      "text": "Display a note as well which crawled data failed as well. For example, if we have a note to add Image Alt, which image doesn't have one?",
+      "completed": true,
+      "createdAt": "2026-01-27T00:16:37.704Z",
+      "pageId": 0
     }
   ],
-  "count": 3,
-  "completedCount": 1,
+  "count": 9,
+  "completedCount": 3,
   "showCompleted": true,
   "showBackground": true,
   "pages": [
