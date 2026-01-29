@@ -1,10 +1,24 @@
 {
   "todos": [
     {
-      "id": 1769559683167,
-      "text": "Creat a github repo for crawler",
+      "id": 1769654208727,
+      "text": "add captcha",
       "completed": false,
-      "createdAt": "2026-01-28T00:21:23.167Z",
+      "createdAt": "2026-01-29T02:36:48.727Z",
+      "pageId": 0
+    },
+    {
+      "id": 1769654200757,
+      "text": "once crawl button is clicked, button should be disabled to avoid spamming and crash",
+      "completed": false,
+      "createdAt": "2026-01-29T02:36:40.757Z",
+      "pageId": 0
+    },
+    {
+      "id": 1769634543734,
+      "text": "Add label for fix-it list items so it will be easier to identify to which scoring category they belong",
+      "completed": false,
+      "createdAt": "2026-01-28T21:09:03.734Z",
       "pageId": 0
     },
     {
@@ -12,20 +26,6 @@
       "text": "Add a summary of the website crawled just to give an insight of how their webiste is seen",
       "completed": false,
       "createdAt": "2026-01-27T01:53:21.466Z",
-      "pageId": 0
-    },
-    {
-      "id": 1769473279124,
-      "text": "add description of the points so it can be understood by business owners",
-      "completed": false,
-      "createdAt": "2026-01-27T00:21:19.124Z",
-      "pageId": 0
-    },
-    {
-      "id": 1769472819386,
-      "text": "move recomendations as dropdown of their categorized point so it's better to distinguished which factors affect which",
-      "completed": false,
-      "createdAt": "2026-01-27T00:13:39.386Z",
       "pageId": 0
     },
     {
@@ -62,10 +62,52 @@
       "completed": true,
       "createdAt": "2026-01-27T00:16:37.704Z",
       "pageId": 0
+    },
+    {
+      "id": 1769559683167,
+      "text": "Creat a github repo for crawler",
+      "completed": true,
+      "createdAt": "2026-01-28T00:21:23.167Z",
+      "pageId": 0
+    },
+    {
+      "id": 1769473279124,
+      "text": "add description of the points so it can be understood by business owners",
+      "completed": true,
+      "createdAt": "2026-01-27T00:21:19.124Z",
+      "pageId": 0
+    },
+    {
+      "id": 1769472819386,
+      "text": "move recomendations as dropdown of their categorized point so it's better to distinguished which factors affect which",
+      "completed": true,
+      "createdAt": "2026-01-27T00:13:39.386Z",
+      "pageId": 0
+    },
+    {
+      "id": 1769590259631,
+      "text": "fix \"Web Crawler\" showing in WP dashboard",
+      "completed": true,
+      "createdAt": "2026-01-28T08:50:59.631Z",
+      "pageId": 0
+    },
+    {
+      "id": 1769653770486,
+      "text": "removed non-image detection",
+      "completed": true,
+      "createdAt": "2026-01-29T02:29:30.486Z",
+      "pageId": 0
+    },
+    {
+      "id": 1769648275861,
+      "text": "fix missing image-alt but 100% in image alt",
+      "completed": true,
+      "createdAt": "2026-01-29T00:57:55.861Z",
+      "pageId": 0
     }
   ],
-  "count": 9,
-  "completedCount": 3,
+  "count": 15,
+  "completedCount": 9,
   "showCompleted": true,
   "showBackground": true,
   "pages": [

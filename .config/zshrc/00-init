@@ -14,5 +14,7 @@ export ZOXIDE_CMD_OVERRIDE=cd
 export PATH=$PATH:~/.local/share/JetBrains/Toolbox/scripts
 export PATH=$PATH:~/.spicetify
 
+
 # opencode
 export PATH=/home/shiraneko/.opencode/bin:$PATH
+
