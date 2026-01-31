@@ -5,16 +5,30 @@
 # -----------------------------------------------------
 # Exports
 # -----------------------------------------------------
-export EDITOR=nvim
-export ZSH="$HOME/.oh-my-zsh"
+
+# -----------------------------------------------------
+# Applications
+# -----------------------------------------------------
+export EDITOR=antigravity
+export BROWSER=zen-browser
+export TERM=kitty
+
+
+# -----------------------------------------------------
+# PATH
+# -----------------------------------------------------
 export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/.local/bin
-export WEBKIT_DISABLE_COMPOSITING_MODE=1
-export ZOXIDE_CMD_OVERRIDE=cd
 export PATH=$PATH:~/.local/share/JetBrains/Toolbox/scripts
 export PATH=$PATH:~/.spicetify
+export PATH=$PATH:/.opencode/bin
 
 
-# opencode
-export PATH=/home/shiraneko/.opencode/bin:$PATH
-
+# -----------------------------------------------------
+# Overrides
+# -----------------------------------------------------
+export ZOXIDE_CMD_OVERRIDE=cd
+export ZSH="$HOME/.oh-my-zsh"
+export WEBKIT_DISABLE_COMPOSITING_MODE=1
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export GTK_THEME=adw-gtk3-dark

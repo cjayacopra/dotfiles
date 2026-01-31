@@ -16,13 +16,9 @@ alias shutdown='systemctl poweroff'
 alias v='$EDITOR'
 alias vim='$EDITOR'
 alias wifi='nmtui'
-alias lock='hyprlock'
 alias clock='tty-clock'
 
 alias lampp="sudo /opt/lampp/lampp"
-
-# Recent installed packages
-alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
 # -----------------------------------------------------
 # System
