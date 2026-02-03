@@ -1,0 +1,22 @@
+window-rule {
+    // Match AB Download Manager main window
+    match app-id="(?i)ab-download-manager"
+    match app-id="com-abdownloadmanager-desktop-AppKt"
+    match title="(?i)ab download manager"
+    
+    open-floating true
+
+}
+
+// Submenus and popups for ABDM
+// window-rule {
+//     match title="(?i)Untitled"
+//     match app-id="(?i)ab-download-manager"
+//     match app-id="com-abdownloadmanager-desktop-AppKt"
+    
+//     open-floating true
+    
+//     focus-ring { off; }
+//     border { off; }
+//     shadow { off; }
+// }
