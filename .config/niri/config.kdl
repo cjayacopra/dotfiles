@@ -5,10 +5,13 @@ include "./cfg/display.kdl"
 include "./cfg/layout.kdl"
 include "./cfg/rules.kdl"
 include "./cfg/misc.kdl"
-include "./cfg/pip.kdl"
+include "./cfg/cursor.kdl"
 
 // ─── Application Rules ───
 include "./app-rules/abdm.kdl"
+include "./app-rules/maximized.kdl"
+include "./app-rules/pip.kdl"
+include "./app-rules/cast.kdl"
 
 // ─── Noctalia ───
 include "./noctalia.kdl"

@@ -3,6 +3,7 @@ window-rule {
     match title="^Picture-in-Picture$"
     match app-id="firefox" // Optional, for Firefox specific
     match app-id="google-chrome" // Optional, for Chrome specific
+    match app-id="chromium"
     open-floating true
     default-floating-position x=16 y=16 relative-to="bottom-right"
 }
