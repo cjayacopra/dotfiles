@@ -1,22 +1,20 @@
+// AB Download Manager Rules
 window-rule {
-    // Match AB Download Manager main window
-    match app-id="(?i)ab-download-manager"
     match app-id="com-abdownloadmanager-desktop-AppKt"
-    match title="(?i)ab download manager"
-    
+    // geometry-corner-radius 0
+    clip-to-geometry true
     open-floating true
-
 }
 
-// Submenus and popups for ABDM
+// // Submenus and popups
 // window-rule {
-//     match title="(?i)Untitled"
-//     match app-id="(?i)ab-download-manager"
+//     match title="Untitled"
 //     match app-id="com-abdownloadmanager-desktop-AppKt"
     
 //     open-floating true
+//     open-focused true // Force focus here since we enabled strict-new-window-focus-policy
     
-//     focus-ring { off; }
-//     border { off; }
-//     shadow { off; }
+//     // focus-ring { off; }
+//     // border { off; }
+//     // shadow { off; }
 // }
