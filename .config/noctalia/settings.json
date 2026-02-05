@@ -1,16 +1,16 @@
 {
     "appLauncher": {
-        "autoPasteClipboard": false,
+        "autoPasteClipboard": true,
         "clipboardWatchImageCommand": "wl-paste --type image --watch cliphist store",
         "clipboardWatchTextCommand": "wl-paste --type text --watch cliphist store",
         "clipboardWrapText": true,
         "customLaunchPrefix": "",
         "customLaunchPrefixEnabled": false,
         "enableClipPreview": true,
-        "enableClipboardHistory": false,
+        "enableClipboardHistory": true,
         "enableSettingsSearch": true,
         "enableWindowsSearch": true,
-        "iconMode": "tabler",
+        "iconMode": "native",
         "ignoreMouseInput": false,
         "pinnedApps": [
         ],
@@ -24,10 +24,10 @@
         "viewMode": "list"
     },
     "audio": {
-        "cavaFrameRate": 30,
+        "cavaFrameRate": 120,
         "mprisBlacklist": [
         ],
-        "preferredPlayer": "",
+        "preferredPlayer": "spotify",
         "visualizerType": "linear",
         "volumeFeedback": false,
         "volumeOverdrive": false,
@@ -37,12 +37,12 @@
         "autoHideDelay": 500,
         "autoShowDelay": 150,
         "backgroundOpacity": 0.73,
-        "barType": "simple",
+        "barType": "framed",
         "capsuleOpacity": 1,
         "density": "default",
         "displayMode": "always_visible",
         "floating": false,
-        "frameRadius": 12,
+        "frameRadius": 24,
         "frameThickness": 8,
         "hideOnOverview": false,
         "marginHorizontal": 4,
@@ -66,7 +66,7 @@
                     "focusedColor": "primary",
                     "followFocusedScreen": false,
                     "groupedBorderOpacity": 1,
-                    "hideUnoccupied": false,
+                    "hideUnoccupied": true,
                     "iconScale": 0.8,
                     "id": "Workspace",
                     "labelMode": "index",
@@ -81,12 +81,10 @@
             ],
             "left": [
                 {
-                    "icon": "rocket",
-                    "id": "Launcher",
-                    "usePrimaryColor": false
+                    "id": "NoctaliaPerformance"
                 },
                 {
-                    "clockColor": "none",
+                    "clockColor": "primary",
                     "customFont": "",
                     "formatHorizontal": "h:mm ddd, MMM dd",
                     "formatVertical": "h mm - dd MM",
@@ -114,7 +112,10 @@
                     "usePrimaryColor": false
                 },
                 {
-                    "colorizeIcons": false,
+                    "id": "plugin:catwalk"
+                },
+                {
+                    "colorizeIcons": true,
                     "hideMode": "hidden",
                     "id": "ActiveWindow",
                     "maxWidth": 145,
@@ -134,14 +135,32 @@
                     "panelShowVisualizer": true,
                     "scrollingMode": "hover",
                     "showAlbumArt": true,
-                    "showArtistFirst": true,
+                    "showArtistFirst": false,
                     "showProgressRing": true,
-                    "showVisualizer": false,
+                    "showVisualizer": true,
                     "useFixedWidth": false,
                     "visualizerType": "linear"
                 }
             ],
             "right": [
+                {
+                    "id": "plugin:privacy-indicator"
+                },
+                {
+                    "id": "plugin:pomodoro"
+                },
+                {
+                    "id": "plugin:assistant-panel"
+                },
+                {
+                    "id": "plugin:notes-scratchpad"
+                },
+                {
+                    "id": "plugin:screen-recorder"
+                },
+                {
+                    "id": "plugin:mini-docker"
+                },
                 {
                     "blacklist": [
                     ],
@@ -151,21 +170,6 @@
                     "id": "Tray",
                     "pinned": [
                     ]
-                },
-                {
-                    "defaultSettings": {
-                        "autoHeight": true,
-                        "cheatsheetData": [
-                        ],
-                        "columnCount": 3,
-                        "detectedCompositor": "",
-                        "hyprlandConfigPath": "~/.config/hypr/hyprland.conf",
-                        "modKeyVariable": "$mod",
-                        "niriConfigPath": "~/.config/niri/config.kdl",
-                        "windowHeight": 0,
-                        "windowWidth": 1400
-                    },
-                    "id": "plugin:keybind-cheatsheet"
                 },
                 {
                     "hideWhenZero": false,
@@ -241,11 +245,11 @@
                 "id": "audio-card"
             },
             {
-                "enabled": false,
+                "enabled": true,
                 "id": "brightness-card"
             },
             {
-                "enabled": false,
+                "enabled": true,
                 "id": "weather-card"
             },
             {
@@ -261,24 +265,24 @@
                     "id": "Network"
                 },
                 {
-                    "id": "WallpaperSelector"
-                },
-                {
                     "id": "NoctaliaPerformance"
-                }
-            ],
-            "right": [
-                {
-                    "id": "Notifications"
                 },
                 {
                     "id": "PowerProfile"
                 },
                 {
                     "id": "KeepAwake"
-                },
+                }
+            ],
+            "right": [
                 {
                     "id": "NightLight"
+                },
+                {
+                    "id": "DarkMode"
+                },
+                {
+                    "id": "WallpaperSelector"
                 }
             ]
         }
@@ -291,32 +295,54 @@
                 "name": "HDMI-A-1",
                 "widgets": [
                     {
-                        "clockStyle": "digital",
-                        "format": "HH:mm\\nd MMMM yyyy",
-                        "id": "Clock",
+                        "defaultSettings": {
+                            "barWidth": 0.6,
+                            "bloomIntensity": 0.5,
+                            "customPrimaryColor": "#6750A4",
+                            "customSecondaryColor": "#625B71",
+                            "fadeWhenIdle": false,
+                            "innerDiameter": 0.7,
+                            "ringOpacity": 0.8,
+                            "rotationSpeed": 0.5,
+                            "sensitivity": 1.5,
+                            "useCustomColors": false,
+                            "visualizationMode": 3,
+                            "waveThickness": 1
+                        },
+                        "id": "plugin:fancy-audiovisualizer",
                         "showBackground": true,
-                        "useCustomFont": false,
-                        "usePrimaryColor": false,
-                        "x": 50,
-                        "y": 50
+                        "x": 1545,
+                        "y": 658
                     },
                     {
-                        "hideMode": "visible",
+                        "clockStyle": "analog",
+                        "customFont": "",
+                        "format": "HH:mm\\nd MMMM yyyy",
+                        "id": "Clock",
+                        "roundedCorners": true,
+                        "showBackground": true,
+                        "useCustomFont": false,
+                        "usePrimaryColor": true,
+                        "x": 20,
+                        "y": 43
+                    },
+                    {
+                        "hideMode": "hidden",
                         "id": "MediaPlayer",
                         "roundedCorners": true,
                         "showAlbumArt": true,
                         "showBackground": true,
                         "showButtons": true,
                         "showVisualizer": true,
-                        "visualizerType": "linear",
-                        "x": 100,
-                        "y": 200
+                        "visualizerType": "mirrored",
+                        "x": 1499,
+                        "y": 976
                     },
                     {
                         "id": "Weather",
                         "showBackground": true,
-                        "x": 100,
-                        "y": 300
+                        "x": 200,
+                        "y": 84
                     }
                 ]
             }
@@ -330,14 +356,14 @@
         "displayMode": "auto_hide",
         "enabled": true,
         "floatingRatio": 1,
-        "inactiveIndicators": false,
+        "inactiveIndicators": true,
         "monitors": [
             "HDMI-A-1"
         ],
         "onlySameOutput": true,
         "pinnedApps": [
         ],
-        "pinnedStatic": false,
+        "pinnedStatic": true,
         "position": "bottom",
         "size": 1
     },
@@ -382,7 +408,7 @@
         "wallpaperChange": ""
     },
     "location": {
-        "analogClockInCalendar": false,
+        "analogClockInCalendar": true,
         "firstDayOfWeek": -1,
         "hideWeatherCityName": false,
         "hideWeatherTimezone": false,
@@ -401,7 +427,7 @@
         "bluetoothRssiPollIntervalMs": 10000,
         "bluetoothRssiPollingEnabled": false,
         "wifiDetailsViewMode": "grid",
-        "wifiEnabled": true
+        "wifiEnabled": false
     },
     "nightLight": {
         "autoSchedule": true,
@@ -434,7 +460,7 @@
         },
         "sounds": {
             "criticalSoundFile": "",
-            "enabled": false,
+            "enabled": true,
             "excludedApps": "discord,firefox,chrome,chromium,edge",
             "lowSoundFile": "",
             "normalSoundFile": "",
@@ -449,7 +475,8 @@
         "enabledTypes": [
             0,
             1,
-            2
+            2,
+            3
         ],
         "location": "top_right",
         "monitors": [
@@ -458,9 +485,9 @@
     },
     "sessionMenu": {
         "countdownDuration": 10000,
-        "enableCountdown": true,
-        "largeButtonsLayout": "grid",
-        "largeButtonsStyle": false,
+        "enableCountdown": false,
+        "largeButtonsLayout": "single-row",
+        "largeButtonsStyle": true,
         "position": "center",
         "powerOptions": [
             {
@@ -478,7 +505,7 @@
             {
                 "action": "hibernate",
                 "command": "",
-                "countdownEnabled": true,
+                "countdownEnabled": false,
                 "enabled": false
             },
             {
@@ -501,7 +528,7 @@
             }
         ],
         "showHeader": true,
-        "showNumberLabels": true
+        "showNumberLabels": false
     },
     "settingsVersion": 47,
     "systemMonitor": {
@@ -535,10 +562,6 @@
         "activeTemplates": [
             {
                 "enabled": true,
-                "id": "gtk"
-            },
-            {
-                "enabled": true,
                 "id": "qt"
             },
             {
@@ -560,6 +583,10 @@
             {
                 "enabled": true,
                 "id": "zenBrowser"
+            },
+            {
+                "enabled": true,
+                "id": "gtk"
             }
         ],
         "enableUserTheming": false
@@ -575,7 +602,7 @@
         "networkPanelView": "wifi",
         "panelBackgroundOpacity": 1,
         "panelsAttachedToBar": true,
-        "settingsPanelMode": "attached",
+        "settingsPanelMode": "window",
         "tooltipsEnabled": true,
         "wifiDetailsViewMode": "grid"
     },
@@ -585,13 +612,13 @@
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "fillColor": "#000000",
-        "fillMode": "crop",
+        "fillMode": "fit",
         "hideWallpaperFilenames": false,
         "monitorDirectories": [
         ],
         "overviewEnabled": false,
         "panelPosition": "follow_bar",
-        "randomIntervalSec": 300,
+        "randomIntervalSec": 3600,
         "setWallpaperOnAllMonitors": true,
         "showHiddenFiles": false,
         "solidColor": "#1a1a2e",

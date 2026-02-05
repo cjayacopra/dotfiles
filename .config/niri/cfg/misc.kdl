@@ -10,10 +10,10 @@
 
         QT_QPA_PLATFORM "wayland"
         QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
-        QT_QPA_PLATFORMTHEME "adw-gtk3-dark"
+        QT_QPA_PLATFORMTHEME "qt6ct"
         QT_AUTO_SCREEN_SCALE_FACTOR "1"
 
-        GTK_THEME "adw-gtk3-dark"
+        GTK_THEME "adw-gtk3"
         GTK_IM_MODULE "simple"
 
         GDK_BACKEND "wayland"
