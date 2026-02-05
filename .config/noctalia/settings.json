@@ -185,12 +185,12 @@
                 },
                 {
                     "colorizeDistroLogo": false,
-                    "colorizeSystemIcon": "none",
+                    "colorizeSystemIcon": "primary",
                     "customIconPath": "",
-                    "enableColorization": false,
+                    "enableColorization": true,
                     "icon": "noctalia",
                     "id": "ControlCenter",
-                    "useDistroLogo": false
+                    "useDistroLogo": true
                 }
             ]
         }
@@ -222,7 +222,7 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
-        "predefinedScheme": "Catppuccin Lavender",
+        "predefinedScheme": "Tokyo Night",
         "schedulingMode": "off",
         "useWallpaperColors": false
     },
@@ -347,7 +347,7 @@
         "animationDisabled": false,
         "animationSpeed": 1,
         "autoStartAuth": false,
-        "avatarImage": "/mnt/files/Downloads/Portfolio.png",
+        "avatarImage": "/mnt/files/Downloads/Portfolio Assets/Profile/Portfolio.png",
         "boxRadiusRatio": 1,
         "compactLockScreen": false,
         "dimmerOpacity": 0.25,
@@ -570,7 +570,7 @@
         "boxBorderEnabled": true,
         "fontDefault": "Noto Sans CJK JP",
         "fontDefaultScale": 1,
-        "fontFixed": "Adwaita Mono",
+        "fontFixed": "CaskaydiaCove Nerd Font Mono",
         "fontFixedScale": 1,
         "networkPanelView": "wifi",
         "panelBackgroundOpacity": 1,
