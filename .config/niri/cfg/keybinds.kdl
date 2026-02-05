@@ -6,23 +6,23 @@ binds {
     // ─── noctalia-shell keybinds ───
     // https://docs.noctalia.dev/getting-started/keybinds/
 
-    Mod+Shift+ESCAPE                    hotkey-overlay-title="Keybind Cheatsheet: noctalia keybind-cheatsheet" { spawn-sh "qs -c noctalia-shell ipc call plugin togglePanel keybind-cheatsheet"; }
+    Mod+Shift+ESCAPE                    hotkey-overlay-title="Keybind Cheatsheet" { spawn-sh "qs -c noctalia-shell ipc call plugin togglePanel keybind-cheatsheet"; }
 
     // ─── Applications ───
-    Mod+Return                          hotkey-overlay-title="Open Terminal: Kitty" { spawn "kitty"; }
-    Mod+SPACE                           hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
-    Mod+B                               hotkey-overlay-title="Open Browser: Zen Browser" { spawn "zen-browser"; }
-    Mod+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
-    Mod+Shift+Q                         hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
-
+    Mod+Return                          hotkey-overlay-title="Open Kitty" { spawn "kitty"; }
+    Mod+SPACE                           hotkey-overlay-title="Open App Launcher " { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    Mod+B                               hotkey-overlay-title="Open Zen Browser" { spawn "zen-browser"; }
+    Mod+ALT+L                           hotkey-overlay-title="Lock Screen" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
+    Mod+Shift+Q                         hotkey-overlay-title="Session Menu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+    Mod+Shift+N                         hotkey-overlay-title="Open Antigravity" { spawn "antigravity"; }
     // Please choose your own file manager.
     Mod+E                               hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
 
     // ─── Audio Controls ───
-    XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
-    XF86AudioLowerVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume decrease"; }
-    XF86AudioMute                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteOutput"; }
-    XF86AudioMicMute                    allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteInput"; }
+    XF86AudioRaiseVolume                hotkey-overlay-title="Volume Up" allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
+    XF86AudioLowerVolume                hotkey-overlay-title="Volume Down" allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume decrease"; }
+    XF86AudioMute                       hotkey-overlay-title="Mute Volume" allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteOutput"; }
+    XF86AudioMicMute                    hotkey-overlay-title="Mute Microphone" allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteInput"; }
 
     // ─── Window Movement and Focus ───
     Mod+Q                               { close-window; }
@@ -111,11 +111,15 @@ binds {
     Mod+T                               { toggle-window-floating; }
     Mod+F                               { fullscreen-window; }
     Mod+W                               { toggle-column-tabbed-display; }
+    Mod+Ctrl+Shift+F                    { toggle-windowed-fullscreen; }
 
     // ─── Screenshots ───
     CTRL+Shift+1                        { screenshot; }
     CTRL+Shift+2                        { screenshot-screen; }
     CTRL+Shift+3                        { screenshot-window; }
+
+    // Clipboard
+    Mod+V                               hotkey-overlay-title="Clipboard" { spawn-sh "qs -c noctalia-shell ipc call launcher clipboard"; }
 
     // ─── Emergency Escape Key ───
     // Use this when a fullscreen app blocks your keybinds.

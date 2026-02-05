@@ -1,7 +1,9 @@
-window-rule {
-    match app-id="zen"
-    open-maximized true
-}
+// window-rule {
+//     match app-id="zen"
+//     exclude title="Bitwarden"
+//     exclude title="Picture-in-Picture"
+//     open-maximized true
+// }
 
 window-rule {
     match app-id="antigravity"

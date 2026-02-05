@@ -1,9 +1,9 @@
 // Example PiP window rule in your ~/.config/niri/config.kdl
 window-rule {
-    match title="^Picture-in-Picture$"
-    match app-id="firefox" // Optional, for Firefox specific
-    match app-id="google-chrome" // Optional, for Chrome specific
-    match app-id="chromium"
+    match app-id="zen" title="^Picture-in-Picture$"
+    match app-id="firefox" title="^Picture-in-Picture$"
+    match app-id="google-chrome" title="^Picture-in-Picture$"
+    match app-id="chromium" title="^Picture-in-Picture$"
     open-floating true
     default-floating-position x=16 y=16 relative-to="bottom-right"
 }

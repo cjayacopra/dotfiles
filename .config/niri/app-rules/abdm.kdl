@@ -8,8 +8,7 @@ window-rule {
 
 // Submenus and popups
 window-rule {
-    match title="Untitled"
-    match app-id="com-abdownloadmanager-desktop-AppKt"
+    match app-id="com-abdownloadmanager-desktop-AppKt" title="Untitled"
     
     open-floating true
     open-focused false
