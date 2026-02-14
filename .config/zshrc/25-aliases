@@ -20,6 +20,8 @@ alias clock='tty-clock'
 
 alias lampp="sudo /opt/lampp/lampp"
 
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+
 # -----------------------------------------------------
 # System
 # -----------------------------------------------------

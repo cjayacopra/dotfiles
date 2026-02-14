@@ -8,6 +8,7 @@ include "./cfg/misc.kdl"
 include "./cfg/cursor.kdl"
 
 // ─── Application Rules ───
+include "./app-rules/floating.kdl"
 include "./app-rules/abdm.kdl"
 include "./app-rules/maximized.kdl"
 include "./app-rules/pip.kdl"

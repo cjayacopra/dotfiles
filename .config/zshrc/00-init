@@ -19,6 +19,7 @@ fi
 export EDITOR=antigravity
 export BROWSER=zen-browser
 export TERM=kitty
+export TERMINAL=kitty
 
 
 # -----------------------------------------------------
@@ -28,7 +29,7 @@ export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/.local/share/JetBrains/Toolbox/scripts
 export PATH=$PATH:~/.spicetify
-export PATH=$PATH:/.opencode/bin
+export PATH=$PATH:~/.opencode/bin
 
 
 # -----------------------------------------------------
@@ -37,3 +38,11 @@ export PATH=$PATH:/.opencode/bin
 export ZOXIDE_CMD_OVERRIDE=cd
 export ZSH="/usr/share/oh-my-zsh"
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+# ─── NVM ───
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# ─── Laravel and Composer Global Binaries ───
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"

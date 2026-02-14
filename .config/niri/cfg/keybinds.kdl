@@ -15,6 +15,9 @@ binds {
     Mod+ALT+L                           hotkey-overlay-title="Lock Screen" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
     Mod+Shift+Q                         hotkey-overlay-title="Session Menu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
     Mod+Shift+N                         hotkey-overlay-title="Open Antigravity" { spawn "antigravity"; }
+    Mod+Shift+T                         hotkey-overlay-title="Open BTOP++" { spawn-sh "~/.config/niri/scripts/float-run btop"; } 
+    Mod+Shift+S                         hotkey-overlay-title="Open Surge TUI" { spawn-sh "~/.config/niri/scripts/float-run surge connect"; } 
+    Mod+Shift+D                         hotkey-overlay-title="Open dotfiles" { spawn-sh "agy ~/dotfiles/"; }
     // Please choose your own file manager.
     Mod+E                               hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
 
@@ -23,6 +26,10 @@ binds {
     XF86AudioLowerVolume                hotkey-overlay-title="Volume Down" allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume decrease"; }
     XF86AudioMute                       hotkey-overlay-title="Mute Volume" allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteOutput"; }
     XF86AudioMicMute                    hotkey-overlay-title="Mute Microphone" allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteInput"; }
+
+    // ─── Wallpaper ───
+    Mod+Shift+W                         hotkey-overlay-title="Wallpaper" { spawn-sh "qs -c noctalia-shell ipc call wallpaper toggle"; }
+    
 
     // ─── Window Movement and Focus ───
     Mod+Q                               { close-window; }

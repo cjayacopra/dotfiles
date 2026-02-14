@@ -6,18 +6,21 @@
         "clipboardWrapText": true,
         "customLaunchPrefix": "",
         "customLaunchPrefixEnabled": false,
+        "density": "default",
         "enableClipPreview": true,
         "enableClipboardHistory": true,
+        "enableSessionSearch": true,
         "enableSettingsSearch": true,
         "enableWindowsSearch": true,
         "iconMode": "native",
         "ignoreMouseInput": false,
+        "overviewLayer": true,
         "pinnedApps": [
         ],
         "position": "center",
         "screenshotAnnotationTool": "satty --filename -",
         "showCategories": true,
-        "showIconBackground": false,
+        "showIconBackground": true,
         "sortByMostUsed": true,
         "terminalCommand": "kitty -e",
         "useApp2Unit": false,
@@ -36,13 +39,13 @@
     "bar": {
         "autoHideDelay": 500,
         "autoShowDelay": 150,
-        "backgroundOpacity": 0.73,
-        "barType": "framed",
+        "backgroundOpacity": 0,
+        "barType": "floating",
         "capsuleColorKey": "none",
         "capsuleOpacity": 1,
         "density": "default",
         "displayMode": "always_visible",
-        "floating": false,
+        "floating": true,
         "frameRadius": 24,
         "frameThickness": 8,
         "hideOnOverview": false,
@@ -154,10 +157,12 @@
             "right": [
                 {
                     "defaultSettings": {
-                        "hideInactive": false,
-                        "removeMargins": false
+                        "currentIconName": "world-download",
+                        "hideOnZero": false,
+                        "updateIntervalMinutes": 30,
+                        "updateTerminalCommand": "foot -e"
                     },
-                    "id": "plugin:privacy-indicator"
+                    "id": "plugin:update-count"
                 },
                 {
                     "defaultSettings": {
@@ -459,14 +464,40 @@
         "clockFormat": "hh\\nmm",
         "clockStyle": "custom",
         "compactLockScreen": false,
-        "dimmerOpacity": 0.25,
-        "enableLockScreenCountdown": true,
+        "dimmerOpacity": 0.4,
+        "enableLockScreenCountdown": false,
         "enableShadows": true,
         "forceBlackScreenCorners": true,
         "iRadiusRatio": 1,
+        "keybinds": {
+            "keyDown": [
+                "Down"
+            ],
+            "keyEnter": [
+                "Return"
+            ],
+            "keyEscape": [
+                "Esc"
+            ],
+            "keyLeft": [
+                "Left"
+            ],
+            "keyRight": [
+                "Right"
+            ],
+            "keyUp": [
+                "Up"
+            ]
+        },
         "language": "",
         "lockOnSuspend": true,
+        "lockScreenAnimations": true,
+        "lockScreenBlur": 0.3,
         "lockScreenCountdownDuration": 10000,
+        "lockScreenMonitors": [
+            "HDMI-A-1"
+        ],
+        "lockScreenTint": 0.05,
         "radiusRatio": 1,
         "scaleRatio": 1,
         "screenRadiusRatio": 1,
@@ -522,7 +553,7 @@
         "nightTemp": "4000"
     },
     "notifications": {
-        "backgroundOpacity": 1,
+        "backgroundOpacity": 0.86,
         "criticalUrgencyDuration": 15,
         "enableBatteryToast": true,
         "enableKeyboardLayoutToast": true,
@@ -566,7 +597,7 @@
         "overlayLayer": true
     },
     "plugins": {
-        "autoUpdate": false
+        "autoUpdate": true
     },
     "sessionMenu": {
         "countdownDuration": 10000,
@@ -579,43 +610,48 @@
                 "action": "lock",
                 "command": "",
                 "countdownEnabled": true,
-                "enabled": true
+                "enabled": true,
+                "keybind": "1"
             },
             {
                 "action": "suspend",
                 "command": "",
                 "countdownEnabled": true,
-                "enabled": true
+                "enabled": true,
+                "keybind": "2"
             },
             {
                 "action": "hibernate",
                 "command": "",
                 "countdownEnabled": false,
-                "enabled": false
+                "enabled": false,
+                "keybind": "3"
             },
             {
                 "action": "reboot",
                 "command": "",
                 "countdownEnabled": true,
-                "enabled": true
+                "enabled": true,
+                "keybind": "4"
             },
             {
                 "action": "logout",
                 "command": "",
                 "countdownEnabled": true,
-                "enabled": true
+                "enabled": true,
+                "keybind": "5"
             },
             {
                 "action": "shutdown",
                 "command": "",
                 "countdownEnabled": true,
-                "enabled": true
+                "enabled": true,
+                "keybind": "6"
             }
         ],
-        "showHeader": true,
-        "showNumberLabels": false
+        "showHeader": true
     },
-    "settingsVersion": 49,
+    "settingsVersion": 53,
     "systemMonitor": {
         "batteryCriticalThreshold": 5,
         "batteryWarningThreshold": 20,
@@ -674,6 +710,22 @@
             {
                 "enabled": true,
                 "id": "gtk"
+            },
+            {
+                "enabled": true,
+                "id": "kcolorscheme"
+            },
+            {
+                "enabled": true,
+                "id": "discord"
+            },
+            {
+                "enabled": true,
+                "id": "alacritty"
+            },
+            {
+                "enabled": true,
+                "id": "spicetify"
             }
         ],
         "enableUserTheming": false
@@ -687,7 +739,7 @@
         "fontFixed": "CaskaydiaCove Nerd Font Mono",
         "fontFixedScale": 1,
         "networkPanelView": "wifi",
-        "panelBackgroundOpacity": 1,
+        "panelBackgroundOpacity": 0.4,
         "panelsAttachedToBar": true,
         "settingsPanelMode": "window",
         "tooltipsEnabled": true,
@@ -698,16 +750,21 @@
         "directory": "/mnt/files/Pictures/Wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
+        "favorites": [
+        ],
         "fillColor": "#000000",
         "fillMode": "fit",
         "hideWallpaperFilenames": true,
         "monitorDirectories": [
         ],
+        "overviewBlur": 0.4,
         "overviewEnabled": false,
+        "overviewTint": 0.6,
         "panelPosition": "follow_bar",
         "randomIntervalSec": 3600,
         "setWallpaperOnAllMonitors": true,
         "showHiddenFiles": false,
+        "skipStartupTransition": false,
         "solidColor": "#1a1a2e",
         "sortOrder": "name",
         "transitionDuration": 1500,
