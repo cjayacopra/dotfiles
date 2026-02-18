@@ -1,9 +1,11 @@
 # Ignore Noctalia plugin settings
 .config/noctalia/plugins/**/settings.json
 
-# Gemini CLI metadata
+#  Agents metadata
 /.gemini
 GEMINI.md
-dotfiles-manager
-dotfiles-manager.skill
 .profile
+/.opencode
+
+# Backups (machine-specific)
+/backups/

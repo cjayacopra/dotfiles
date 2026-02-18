@@ -1,0 +1,653 @@
+#!/bin/bash
+#
+# Dotfiles Management Script
+# Uses GNU Stow for symlink management
+#
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Configuration
+# Find the dotfiles repo root (where stow/ directory exists)
+find_dotfiles_root() {
+    local dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    while [[ "$dir" != "/" ]]; do
+        if [[ -d "$dir/stow" ]]; then
+            echo "$dir"
+            return 0
+        fi
+        dir="$(dirname "$dir")"
+    done
+    # Fallback to the old method if not found
+    echo "$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+}
+
+DOTFILES_DIR="$(find_dotfiles_root)"
+STOW_DIR="${DOTFILES_DIR}/stow"
+BACKUP_DIR="${DOTFILES_DIR}/backups/latest"
+
+# Helper functions
+log_info() {
+    echo -e "${BLUE}[INFO]${NC} $1"
+}
+
+log_success() {
+    echo -e "${GREEN}[OK]${NC} $1"
+}
+
+log_warn() {
+    echo -e "${YELLOW}[WARN]${NC} $1"
+}
+
+log_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
+
+# Check if stow is installed
+check_stow() {
+    if ! command -v stow &> /dev/null; then
+        log_error "GNU Stow is not installed. Install it with: sudo pacman -S stow"
+        return 1
+    fi
+    return 0
+}
+
+# Validate stow package structure
+validate_stow_structure() {
+    local pkg=$1
+    local pkg_dir="$STOW_DIR/$pkg"
+    local issues=0
+    
+    # Check for common structure issues
+    case "$pkg" in
+        kitty|lazygit|niri|noctalia|warp|surge)
+            # These should have files under .config/<app>/ not directly under .config/
+            if [[ -d "$pkg_dir/.config" ]]; then
+                # Check if there are files directly in .config/ (incorrect)
+                local files_in_root=$(find "$pkg_dir/.config" -maxdepth 1 -type f 2>/dev/null | wc -l)
+                if [[ $files_in_root -gt 0 ]]; then
+                    log_warn "Package '$pkg' has files directly in .config/ instead of .config/$pkg/"
+                    ((issues++))
+                fi
+            fi
+            ;;
+        fonts)
+            # Should have files under .local/share/fonts/
+            if [[ -d "$pkg_dir/.local/share" ]]; then
+                local files_in_root=$(find "$pkg_dir/.local/share" -maxdepth 1 -type f 2>/dev/null | wc -l)
+                if [[ $files_in_root -gt 0 ]]; then
+                    log_warn "Package '$pkg' has files directly in .local/share/ instead of .local/share/fonts/"
+                    ((issues++))
+                fi
+            fi
+            ;;
+        zsh)
+            # Should have modular configs under .config/zshrc/
+            if [[ -d "$pkg_dir/.config" ]]; then
+                local files_in_root=$(find "$pkg_dir/.config" -maxdepth 1 -type f 2>/dev/null | grep -v "/zshrc/" | wc -l)
+                if [[ $files_in_root -gt 0 ]]; then
+                    log_warn "Package '$pkg' has files directly in .config/ instead of .config/zshrc/"
+                    ((issues++))
+                fi
+            fi
+            ;;
+    esac
+    
+    return $issues
+}
+
+# Get list of available stow packages
+get_packages() {
+    if [[ -d "$STOW_DIR" ]]; then
+        ls -1 "$STOW_DIR" 2>/dev/null | sort
+    fi
+}
+
+# Sync command - stow all or specific packages
+cmd_sync() {
+    local dry_run=false
+    local packages=()
+    
+    # Parse arguments
+    for arg in "$@"; do
+        case "$arg" in
+            --dry-run|-n)
+                dry_run=true
+                ;;
+            *)
+                packages+=("$arg")
+                ;;
+        esac
+    done
+    
+    check_stow || return 1
+    
+    log_info "Syncing dotfiles..."
+    
+    if [[ ${#packages[@]} -eq 0 ]]; then
+        # Sync all packages
+        packages=($(get_packages))
+        log_info "Syncing all packages: ${packages[*]}"
+    fi
+    
+    local stow_args="--target=$HOME --dir=$STOW_DIR"
+    if $dry_run; then
+        stow_args="$stow_args --simulate"
+        log_info "DRY RUN MODE - No changes will be made"
+    fi
+    
+    for pkg in "${packages[@]}"; do
+        if [[ ! -d "$STOW_DIR/$pkg" ]]; then
+            log_warn "Package '$pkg' not found in $STOW_DIR"
+            continue
+        fi
+        
+        log_info "Stowing package: $pkg"
+        
+        # Validate structure before stowing
+        validate_stow_structure "$pkg"
+        
+        # Backup existing files before stowing
+        if ! $dry_run; then
+            backup_existing "$pkg"
+        fi
+        
+        if stow $stow_args --restow "$pkg"; then
+            log_success "Package '$pkg' synced"
+        else
+            log_error "Failed to stow package '$pkg'"
+            return 1
+        fi
+    done
+    
+    log_success "Sync complete!"
+}
+
+# Backup existing files before stowing
+backup_existing() {
+    local pkg=$1
+    local pkg_dir="$STOW_DIR/$pkg"
+    
+    # Create backup directory with timestamp only once per session
+    if [[ ! -d "$BACKUP_DIR" ]]; then
+        BACKUP_DIR="${DOTFILES_DIR}/backups/$(date +%Y%m%d_%H%M%S)"
+        mkdir -p "$BACKUP_DIR"
+    fi
+    
+    # Find all files in the package
+    while IFS= read -r -d '' file; do
+        # Get relative path from package root
+        local rel_path="${file#$pkg_dir/}"
+        local target="$HOME/$rel_path"
+        
+        # If target exists and is not a symlink, back it up
+        if [[ -e "$target" && ! -L "$target" ]]; then
+            local backup_path="$BACKUP_DIR/$rel_path"
+            mkdir -p "$(dirname "$backup_path")"
+            mv "$target" "$backup_path"
+            log_info "Backed up: $rel_path"
+        fi
+    done < <(find "$pkg_dir" -type f -print0 2>/dev/null)
+}
+
+# Add command - move config into repo and stow it
+cmd_add() {
+    local path="$1"
+    local auto_stow=false
+    
+    if [[ "$2" == "--stow" ]]; then
+        auto_stow=true
+    fi
+    
+    if [[ -z "$path" ]]; then
+        log_error "Usage: dotfiles add <path> [--stow]"
+        return 1
+    fi
+    
+    # Expand path if relative
+    if [[ ! "$path" = /* ]]; then
+        path="$HOME/$path"
+    fi
+    
+    if [[ ! -e "$path" ]]; then
+        log_error "Path does not exist: $path"
+        return 1
+    fi
+    
+    # Determine which package this belongs to
+    local rel_path="${path#$HOME/}"
+    local pkg_name
+    
+    # Try to guess package name from path
+    if [[ "$rel_path" == .config/* ]]; then
+        pkg_name=$(echo "$rel_path" | cut -d'/' -f2)
+    elif [[ "$rel_path" == .local/* ]]; then
+        pkg_name="local"
+    elif [[ "$rel_path" == .* ]]; then
+        pkg_name="zsh"
+    else
+        log_info "Enter package name for this config:"
+        read pkg_name
+        if [[ -z "$pkg_name" ]]; then
+            pkg_name="misc"
+        fi
+    fi
+    
+    local pkg_dir="$STOW_DIR/$pkg_name"
+    local target_path="$pkg_dir/$rel_path"
+    
+    log_info "Adding to package: $pkg_name"
+    
+    # Create directory structure
+    mkdir -p "$(dirname "$target_path")"
+    
+    # Move file to repo
+    if [[ -d "$path" ]]; then
+        cp -r "$path" "$target_path"
+        rm -rf "$path"
+    else
+        mv "$path" "$target_path"
+    fi
+    
+    log_success "Moved $rel_path to $target_path"
+    
+    # Stow the package
+    if $auto_stow; then
+        check_stow && cmd_sync "$pkg_name"
+    else
+        log_info "Run 'dotfiles sync $pkg_name' to apply changes"
+    fi
+}
+
+# Check command - verify symlinks
+cmd_check() {
+    log_info "Checking dotfiles integrity..."
+    
+    local issues=0
+    
+    # Check stow is installed
+    if ! command -v stow &> /dev/null; then
+        log_error "GNU Stow is not installed"
+        ((issues++))
+    else
+        log_success "GNU Stow is installed"
+    fi
+    
+    # Check each package
+    for pkg in $(get_packages); do
+        log_info "Checking package: $pkg"
+        
+        # Find all files in package
+        while IFS= read -r -d '' file; do
+            local rel_path="${file#$STOW_DIR/$pkg/}"
+            local target="$HOME/$rel_path"
+            local is_managed=false
+            
+            # Check if target is directly symlinked
+            if [[ -L "$target" ]]; then
+                local link_target=$(readlink "$target")
+                if [[ "$link_target" == *"$pkg/$rel_path"* ]]; then
+                    is_managed=true
+                fi
+            else
+                # Check if any parent directory is symlinked to our package
+                local check_path="$target"
+                while [[ "$check_path" != "$HOME" ]]; do
+                    check_path=$(dirname "$check_path")
+                    if [[ -L "$check_path" ]]; then
+                        local parent_target=$(readlink "$check_path")
+                        if [[ "$parent_target" == *"stow/$pkg"* ]]; then
+                            is_managed=true
+                            break
+                        fi
+                    fi
+                done
+            fi
+            
+            if ! $is_managed; then
+                if [[ -e "$target" ]]; then
+                    log_warn "Regular file exists (not symlinked): $rel_path"
+                else
+                    log_warn "Missing: $rel_path"
+                fi
+                ((issues++))
+            fi
+        done < <(find "$STOW_DIR/$pkg" -type f -print0 2>/dev/null)
+    done
+    
+    # Check for orphaned symlinks
+    log_info "Checking for orphaned symlinks..."
+    find ~ -maxdepth 3 -type l 2>/dev/null | while read -r link; do
+        local target=$(readlink "$link")
+        if [[ "$target" == "$DOTFILES_DIR"* ]] && [[ ! -e "$target" ]]; then
+            log_warn "Orphaned symlink: ${link#$HOME/}"
+            ((issues++))
+        fi
+    done
+    
+    if [[ $issues -eq 0 ]]; then
+        log_success "All checks passed!"
+    else
+        log_warn "Found $issues issue(s)"
+    fi
+    
+    return $issues
+}
+
+# Status command - show current state
+cmd_status() {
+    log_info "Dotfiles Status"
+    echo "=================="
+    
+    # Show available packages
+    echo -e "\n${BLUE}Available Packages:${NC}"
+    for pkg in $(get_packages); do
+        local file_count=$(find "$STOW_DIR/$pkg" -type f 2>/dev/null | wc -l)
+        echo "  $pkg ($file_count files)"
+    done
+    
+    # Git status
+    echo -e "\n${BLUE}Git Status:${NC}"
+    cd "$DOTFILES_DIR"
+    git status --short
+    
+    if [[ $(git status --porcelain | wc -l) -eq 0 ]]; then
+        log_success "Working tree is clean"
+    fi
+    
+    # Show active stowed packages
+    echo -e "\n${BLUE}Active Symlinks:${NC}"
+    find ~ -maxdepth 3 -type l 2>/dev/null | while read -r link; do
+        local target=$(readlink "$link")
+        if [[ "$target" == "$STOW_DIR"* ]]; then
+            echo "  ${link#$HOME/} -> ${target#$HOME/}"
+        fi
+    done | head -20
+}
+
+# Install command - check and install dependencies
+cmd_install() {
+    local check_only=false
+    
+    if [[ "$1" == "--check-only" ]]; then
+        check_only=true
+    fi
+    
+    log_info "Checking dependencies..."
+    
+    # Define dependencies by category
+    declare -A pacman_deps
+    pacman_deps=(
+        ["stow"]="GNU Stow (symlink manager)"
+        ["niri"]="Niri (Wayland compositor)"
+        ["kitty"]="Kitty (Terminal emulator)"
+        ["zsh"]="Zsh (Shell)"
+        ["fastfetch"]="Fastfetch (System info)"
+        ["bat"]="Bat (cat replacement)"
+        ["ripgrep"]="Ripgrep (grep replacement)"
+        ["lazygit"]="Lazygit (TUI git)"
+        ["eza"]="Eza (ls replacement)"
+    )
+    
+    declare -A cargo_deps
+    cargo_deps=(
+        ["zoxide"]="Zoxide (smart cd)"
+    )
+    
+    local missing=()
+    
+    # Check pacman packages
+    echo -e "\n${BLUE}Pacman Packages:${NC}"
+    for pkg in "${!pacman_deps[@]}"; do
+        local desc="${pacman_deps[$pkg]}"
+        if pacman -Qi "$pkg" &> /dev/null || pacman -Q "$pkg" &> /dev/null; then
+            log_success "$desc"
+        else
+            log_warn "$desc - MISSING"
+            missing+=("$pkg")
+        fi
+    done
+    
+    # Check cargo packages
+    echo -e "\n${BLUE}Cargo Packages:${NC}"
+    for pkg in "${!cargo_deps[@]}"; do
+        local desc="${cargo_deps[$pkg]}"
+        if command -v "$pkg" &> /dev/null; then
+            log_success "$desc"
+        else
+            log_warn "$desc - MISSING"
+            missing+=("cargo:$pkg")
+        fi
+    done
+    
+    # Install if not check-only
+    if [[ ${#missing[@]} -gt 0 ]] && ! $check_only; then
+        echo -e "\n${YELLOW}Install missing packages? (y/N)${NC}"
+        read -r response
+        if [[ "$response" =~ ^[Yy]$ ]]; then
+            # Install pacman packages
+            local pacman_missing=()
+            for pkg in "${missing[@]}"; do
+                if [[ ! "$pkg" == cargo:* ]]; then
+                    pacman_missing+=("$pkg")
+                fi
+            done
+            
+            if [[ ${#pacman_missing[@]} -gt 0 ]]; then
+                log_info "Installing: ${pacman_missing[*]}"
+                sudo pacman -S --needed "${pacman_missing[@]}"
+            fi
+            
+            # Install cargo packages
+            for pkg in "${missing[@]}"; do
+                if [[ "$pkg" == cargo:* ]]; then
+                    local cargo_pkg="${pkg#cargo:}"
+                    log_info "Installing cargo package: $cargo_pkg"
+                    cargo install "$cargo_pkg"
+                fi
+            done
+            
+            log_success "Installation complete!"
+        fi
+    elif [[ ${#missing[@]} -eq 0 ]]; then
+        log_success "All dependencies are installed!"
+    fi
+}
+
+# Repair command - fix common stow structure issues
+cmd_repair() {
+    log_info "Checking and repairing stow structures..."
+    local fixed=0
+    
+    for pkg in $(get_packages); do
+        local pkg_dir="$STOW_DIR/$pkg"
+        local needs_fix=false
+        
+        case "$pkg" in
+            kitty|lazygit|niri|noctalia|warp|surge)
+                if [[ -d "$pkg_dir/.config" ]]; then
+                    # Check if files are directly in .config/ instead of .config/<app>/
+                    local misplaced_files=$(find "$pkg_dir/.config" -maxdepth 1 -type f 2>/dev/null)
+                    if [[ -n "$misplaced_files" ]]; then
+                        log_info "Fixing $pkg structure..."
+                        mkdir -p "$pkg_dir/.config/$pkg"
+                        mv "$pkg_dir/.config"/* "$pkg_dir/.config/$pkg/" 2>/dev/null || true
+                        # Move back the directory we just created
+                        if [[ -d "$pkg_dir/.config/$pkg/$pkg" ]]; then
+                            rm -rf "$pkg_dir/.config/$pkg/$pkg"
+                        fi
+                        ((fixed++))
+                    fi
+                fi
+                ;;
+            fonts)
+                if [[ -d "$pkg_dir/.local/share" ]]; then
+                    local misplaced_files=$(find "$pkg_dir/.local/share" -maxdepth 1 -type f 2>/dev/null)
+                    if [[ -n "$misplaced_files" ]]; then
+                        log_info "Fixing $pkg structure..."
+                        mkdir -p "$pkg_dir/.local/share/fonts"
+                        mv "$pkg_dir/.local/share"/*.ttf "$pkg_dir/.local/share/fonts/" 2>/dev/null || true
+                        ((fixed++))
+                    fi
+                fi
+                ;;
+            zsh)
+                if [[ -d "$pkg_dir/.config" ]]; then
+                    local misplaced_files=$(find "$pkg_dir/.config" -maxdepth 1 -type f 2>/dev/null | grep -v "/zshrc/")
+                    if [[ -n "$misplaced_files" ]]; then
+                        log_info "Fixing $pkg structure..."
+                        mkdir -p "$pkg_dir/.config/zshrc"
+                        mv "$pkg_dir/.config"/* "$pkg_dir/.config/zshrc/" 2>/dev/null || true
+                        # Move back the directory we just created
+                        if [[ -d "$pkg_dir/.config/zshrc/zshrc" ]]; then
+                            rm -rf "$pkg_dir/.config/zshrc/zshrc"
+                        fi
+                        ((fixed++))
+                    fi
+                fi
+                ;;
+        esac
+    done
+    
+    if [[ $fixed -eq 0 ]]; then
+        log_success "All structures are correct!"
+    else
+        log_success "Fixed $fixed package(s)"
+        log_info "Run 'dotfiles sync' to apply the fixes"
+    fi
+}
+
+# Theme command - switch themes
+cmd_theme() {
+    local theme_name="$1"
+    
+    # Available themes
+    local themes=("catppuccin-mocha" "catppuccin-macchiato" "catppuccin-latte" "catppuccin-frappe")
+    
+    if [[ -z "$theme_name" ]]; then
+        log_info "Available themes:"
+        for theme in "${themes[@]}"; do
+            echo "  - $theme"
+        done
+        return 0
+    fi
+    
+    log_info "Switching to theme: $theme_name"
+    
+    # Update kitty theme
+    if [[ -f "$HOME/.config/kitty/themes/$theme_name.conf" ]]; then
+        ln -sf "$HOME/.config/kitty/themes/$theme_name.conf" "$HOME/.config/kitty/current-theme.conf"
+        log_success "Updated Kitty theme"
+    fi
+    
+    # Update warp theme
+    if [[ -f "$HOME/.local/share/warp-terminal/themes/$theme_name.yml" ]]; then
+        # Warp might need restart or config update
+        log_success "Updated Warp theme (restart Warp to apply)"
+    fi
+    
+    # Update Noctalia theme
+    if [[ -f "$HOME/.config/noctalia/colors.json" ]]; then
+        log_info "Update Noctalia theme manually in ~/.config/noctalia/colors.json"
+    fi
+    
+    log_success "Theme switch complete!"
+}
+
+# Help command
+cmd_help() {
+    cat << 'EOF'
+Dotfiles Manager - Usage Guide
+==============================
+
+Commands:
+  sync [package...] [--dry-run]   Sync dotfiles using stow
+  add <path> [--stow]             Add a config file to the repo
+  check                           Verify all symlinks and configs
+  repair                          Fix stow structure issues
+  status                          Show status of dotfiles
+  install [--check-only]          Check and install dependencies
+  theme [name]                    Switch between themes
+  help                            Show this help message
+
+Examples:
+  dotfiles sync                   # Sync all packages
+  dotfiles sync kitty niri        # Sync specific packages
+  dotfiles sync --dry-run         # Preview changes
+  dotfiles add ~/.config/btop     # Add btop config
+  dotfiles add ~/.zshrc_custom    # Add custom zsh config
+  dotfiles repair                 # Fix structure issues
+  dotfiles check                  # Verify everything
+  dotfiles install                # Install missing dependencies
+  dotfiles theme catppuccin-mocha # Switch theme
+
+Stow Directory Structure:
+  The dotfiles are organized in stow/ directory:
+  - stow/zsh/      -> ~/.zshrc, ~/.config/zshrc/
+  - stow/niri/     -> ~/.config/niri/
+  - stow/kitty/    -> ~/.config/kitty/
+  - stow/local/    -> ~/.local/share/
+  - stow/fonts/    -> ~/.local/share/fonts/
+  - etc.
+
+Package Structure Guidelines:
+  - kitty, lazygit, niri, noctalia, warp, surge:
+    Files should be in stow/<pkg>/.config/<pkg>/
+    NOT directly in stow/<pkg>/.config/
+  
+  - fonts:
+    Files should be in stow/fonts/.local/share/fonts/
+    NOT directly in stow/fonts/.local/share/
+  
+  - zsh:
+    Modular configs in stow/zsh/.config/zshrc/
+    Root files (.zshrc, .p10k.zsh) in stow/zsh/
+
+EOF
+}
+
+# Main entry point
+main() {
+    local cmd="${1:-help}"
+    shift || true
+    
+    case "$cmd" in
+        sync)
+            cmd_sync "$@"
+            ;;
+        add)
+            cmd_add "$@"
+            ;;
+        check)
+            cmd_check
+            ;;
+        status)
+            cmd_status
+            ;;
+        install)
+            cmd_install "$@"
+            ;;
+        repair)
+            cmd_repair
+            ;;
+        theme)
+            cmd_theme "$@"
+            ;;
+        help|--help|-h)
+            cmd_help
+            ;;
+        *)
+            log_error "Unknown command: $cmd"
+            cmd_help
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"
