@@ -206,6 +206,21 @@
                 },
                 {
                     "defaultSettings": {
+                        "activeColor": "primary",
+                        "hideInactive": false,
+                        "inactiveColor": "none",
+                        "removeMargins": false
+                    },
+                    "id": "plugin:privacy-indicator"
+                },
+                {
+                    "defaultSettings": {
+                        "refreshInterval": 5000
+                    },
+                    "id": "plugin:mini-docker"
+                },
+                {
+                    "defaultSettings": {
                         "cursorPosition": 0,
                         "filePath": "",
                         "fontSize": 14,
@@ -227,6 +242,7 @@
                         "filenamePattern": "recording_yyyyMMdd_HHmmss",
                         "frameRate": "60",
                         "hideInactive": false,
+                        "iconColor": "none",
                         "quality": "very_high",
                         "resolution": "original",
                         "showCursor": true,
@@ -234,23 +250,6 @@
                         "videoSource": "portal"
                     },
                     "id": "plugin:screen-recorder"
-                },
-                {
-                    "defaultSettings": {
-                        "refreshInterval": 5000
-                    },
-                    "id": "plugin:mini-docker"
-                },
-                {
-                    "blacklist": [
-                    ],
-                    "chevronColor": "none",
-                    "colorizeIcons": false,
-                    "drawerEnabled": true,
-                    "hidePassive": false,
-                    "id": "Tray",
-                    "pinned": [
-                    ]
                 },
                 {
                     "hideWhenZero": false,
@@ -272,6 +271,17 @@
                     "iconColor": "none",
                     "id": "Brightness",
                     "textColor": "none"
+                },
+                {
+                    "blacklist": [
+                    ],
+                    "chevronColor": "none",
+                    "colorizeIcons": false,
+                    "drawerEnabled": true,
+                    "hidePassive": false,
+                    "id": "Tray",
+                    "pinned": [
+                    ]
                 },
                 {
                     "colorizeDistroLogo": false,
@@ -380,26 +390,6 @@
             {
                 "name": "HDMI-A-1",
                 "widgets": [
-                    {
-                        "defaultSettings": {
-                            "barWidth": 0.6,
-                            "bloomIntensity": 0.5,
-                            "customPrimaryColor": "#6750A4",
-                            "customSecondaryColor": "#625B71",
-                            "fadeWhenIdle": false,
-                            "innerDiameter": 0.7,
-                            "ringOpacity": 0.8,
-                            "rotationSpeed": 0.5,
-                            "sensitivity": 1.5,
-                            "useCustomColors": false,
-                            "visualizationMode": 3,
-                            "waveThickness": 1
-                        },
-                        "id": "plugin:fancy-audiovisualizer",
-                        "showBackground": true,
-                        "x": 1545,
-                        "y": 658
-                    },
                     {
                         "clockStyle": "analog",
                         "customFont": "",
@@ -753,7 +743,7 @@
         "favorites": [
         ],
         "fillColor": "#000000",
-        "fillMode": "fit",
+        "fillMode": "crop",
         "hideWallpaperFilenames": true,
         "monitorDirectories": [
         ],

@@ -2,7 +2,7 @@
 .config/noctalia/plugins/**/settings.json
 
 # Gemini CLI metadata
-.gemini
+/.gemini
 GEMINI.md
 dotfiles-manager
 dotfiles-manager.skill

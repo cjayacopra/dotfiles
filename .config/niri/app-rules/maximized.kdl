@@ -19,3 +19,8 @@ window-rule {
     match app-id="anytype"
     open-maximized true
 }
+
+window-rule {
+    match app-id="dartotsu"
+    open-maximized true
+}

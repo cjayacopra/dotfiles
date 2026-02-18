@@ -16,8 +16,12 @@ binds {
     Mod+Shift+Q                         hotkey-overlay-title="Session Menu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
     Mod+Shift+N                         hotkey-overlay-title="Open Antigravity" { spawn "antigravity"; }
     Mod+Shift+T                         hotkey-overlay-title="Open BTOP++" { spawn-sh "~/.config/niri/scripts/float-run btop"; } 
-    Mod+Shift+S                         hotkey-overlay-title="Open Surge TUI" { spawn-sh "~/.config/niri/scripts/float-run surge connect"; } 
+    Mod+Shift+S                         hotkey-overlay-title="Open Surge TUI" { spawn-sh ". ~/.profile; ~/.config/niri/scripts/float-run surge connect $SURGE_HOST --token $SURGE_TOKEN"; } 
     Mod+Shift+D                         hotkey-overlay-title="Open dotfiles" { spawn-sh "agy ~/dotfiles/"; }
+
+    // ─── Dartotsu ───
+    Mod+Shift+A                         hotkey-overlay-title="Open Dartotsu" { spawn-sh "/home/shiraneko/.local/bin/dartotsu"; }
+  
     // Please choose your own file manager.
     Mod+E                               hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
 
