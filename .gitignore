@@ -10,3 +10,6 @@ GEMINI.md
 
 # Backups (machine-specific)
 /backups/
+
+# Surge token (contains secrets)
+stow/surge/.config/surge/token
