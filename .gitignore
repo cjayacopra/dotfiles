@@ -1,5 +1,6 @@
-# Ignore Noctalia plugin settings
+# Ignore Noctalia plugin settings (in both root and stow)
 .config/noctalia/plugins/**/settings.json
+stow/noctalia/.config/noctalia/plugins/**/settings.json
 
 #  Agents metadata
 /.gemini
