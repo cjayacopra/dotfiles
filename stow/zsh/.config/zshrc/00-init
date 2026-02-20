@@ -37,6 +37,7 @@ export PATH=$PATH:$HOME/.spicetify
 export PATH=$PATH:$HOME/.opencode/bin
 export PATH=$PATH:$HOME/.cargo/bin/cargo
 export PATH=$PATH:$HOME/.cargo/bin/rustup
+export PATH=$PATH:$HOME/.local/share/nvim/site
 
 
 # -----------------------------------------------------
