@@ -1,0 +1,26 @@
+// window-rule {
+//     match app-id="zen"
+//     exclude title="Bitwarden"
+//     exclude title="Picture-in-Picture"
+//     open-maximized true
+// }
+
+window-rule {
+    match app-id="antigravity"
+    open-maximized true
+}
+
+window-rule {
+    match app-id="dev.warp.Warp"
+    open-maximized true
+}
+
+window-rule {
+    match app-id="anytype"
+    open-maximized true
+}
+
+window-rule {
+    match app-id="dartotsu"
+    open-maximized true
+}

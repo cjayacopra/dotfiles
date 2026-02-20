@@ -15,7 +15,6 @@
 plugins=(
     aliases
     git
-    github
     sudo
     web-search
     archlinux
@@ -35,10 +34,6 @@ plugins=(
     tmux
     uv
     systemd
-    copyfile
-    copypath
-    docker
-    docker-compose
 )
 
 # Set-up oh-my-zsh
