@@ -136,9 +136,9 @@ cmd_sync() {
         log_info "Syncing all packages: ${packages[*]}"
     fi
     
-    local stow_args="--target=$HOME --dir=$STOW_DIR"
+    local stow_args=(--target="$HOME" --dir="$STOW_DIR")
     if $dry_run; then
-        stow_args="$stow_args --simulate"
+        stow_args+=("--simulate")
         log_info "DRY RUN MODE - No changes will be made"
     fi
     
@@ -158,7 +158,7 @@ cmd_sync() {
             backup_existing "$pkg"
         fi
         
-        if stow $stow_args --restow "$pkg"; then
+        if stow "${stow_args[@]}" --restow "$pkg"; then
             log_success "Package '$pkg' synced"
         else
             log_error "Failed to stow package '$pkg'"
@@ -188,6 +188,11 @@ backup_existing() {
         
         # If target exists and is not a symlink, back it up
         if [[ -e "$target" && ! -L "$target" ]]; then
+            # Skip if it's already the same file (e.g. via parent symlink)
+            if [[ "$target" -ef "$file" ]]; then
+                continue
+            fi
+            
             local backup_path="$BACKUP_DIR/$rel_path"
             mkdir -p "$(dirname "$backup_path")"
             mv "$target" "$backup_path"
@@ -523,6 +528,52 @@ cmd_repair() {
     fi
 }
 
+# Remove command - unstow and optionally delete from repo
+cmd_remove() {
+    local delete_from_repo=false
+    local packages=()
+    
+    # Parse arguments
+    for arg in "$@"; do
+        case "$arg" in
+            --delete|-d)
+                delete_from_repo=true
+                ;;
+            *)
+                packages+=("$arg")
+                ;;
+        esac
+    done
+    
+    if [[ ${#packages[@]} -eq 0 ]]; then
+        log_error "Usage: dotfiles remove <package...> [--delete]"
+        return 1
+    fi
+    
+    check_stow || return 1
+    
+    for pkg in "${packages[@]}"; do
+        if [[ ! -d "$STOW_DIR/$pkg" ]]; then
+            log_warn "Package '$pkg' not found in $STOW_DIR"
+            continue
+        fi
+        
+        log_info "Removing package symlinks: $pkg"
+        if stow --target="$HOME" --dir="$STOW_DIR" -D "$pkg"; then
+            log_success "Package '$pkg' unstowed"
+            
+            if $delete_from_repo; then
+                log_info "Deleting package from repository: $pkg"
+                rm -rf "$STOW_DIR/$pkg"
+                log_success "Package '$pkg' deleted from $STOW_DIR"
+            fi
+        else
+            log_error "Failed to unstow package '$pkg'"
+            return 1
+        fi
+    done
+}
+
 # Theme command - switch themes
 cmd_theme() {
     local theme_name="$1"
@@ -569,6 +620,7 @@ Dotfiles Manager - Usage Guide
 Commands:
   sync [package...] [--dry-run]   Sync dotfiles using stow
   add <path> [--stow]             Add a config file to the repo
+  remove <package...> [--delete]  Unstow and optionally delete from repo
   check                           Verify all symlinks and configs
   repair                          Fix stow structure issues
   status                          Show status of dotfiles
@@ -582,6 +634,8 @@ Examples:
   dotfiles sync --dry-run         # Preview changes
   dotfiles add ~/.config/btop     # Add btop config
   dotfiles add ~/.zshrc_custom    # Add custom zsh config
+  dotfiles remove kitty           # Unstow kitty (remove symlinks)
+  dotfiles remove niri --delete   # Unstow and delete from repo
   dotfiles repair                 # Fix structure issues
   dotfiles check                  # Verify everything
   dotfiles install                # Install missing dependencies
@@ -623,6 +677,9 @@ main() {
             ;;
         add)
             cmd_add "$@"
+            ;;
+        remove)
+            cmd_remove "$@"
             ;;
         check)
             cmd_check

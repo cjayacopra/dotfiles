@@ -2,7 +2,7 @@
 # INIT
 # -----------------------------------------------------
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Enable Powerlevel10k instant prompt. Should stay close to the top of $HOME/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -12,7 +12,7 @@ fi
 # -----------------------------------------------------
 # Load profile
 # -----------------------------------------------------
-source ~/.profile
+source $HOME/.profile
 
 # -----------------------------------------------------
 # Exports
@@ -30,11 +30,13 @@ export TERMINAL=kitty
 # -----------------------------------------------------
 # PATH
 # -----------------------------------------------------
-export PATH=$PATH:~/.cargo/bin
-export PATH=$PATH:~/.local/bin
-export PATH=$PATH:~/.local/share/JetBrains/Toolbox/scripts
-export PATH=$PATH:~/.spicetify
-export PATH=$PATH:~/.opencode/bin
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts
+export PATH=$PATH:$HOME/.spicetify
+export PATH=$PATH:$HOME/.opencode/bin
+export PATH=$PATH:$HOME/.cargo/bin/cargo
+export PATH=$PATH:$HOME/.cargo/bin/rustup
 
 
 # -----------------------------------------------------
