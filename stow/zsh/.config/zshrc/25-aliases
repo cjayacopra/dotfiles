@@ -21,6 +21,8 @@ alias clock='tty-clock'
 alias cat='bat'
 alias grep='rg'
 
+alias zed='zeditor'
+
 alias lampp="sudo /opt/lampp/lampp"
 
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
@@ -29,3 +31,6 @@ alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 # System
 # -----------------------------------------------------
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+
+# Dotfiles manager
+alias dotfiles="$HOME/dotfiles/.agents/skills/dotfiles/dotfiles"

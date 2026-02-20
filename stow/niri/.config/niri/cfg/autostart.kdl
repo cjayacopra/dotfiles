@@ -1,8 +1,0 @@
-// ────────────── Startup Applications ──────────────
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-sh-at-startup
-
-    spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &" // Polkit
-    // spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
-    spawn-at-startup "/home/shiraneko/.config/niri/scripts/dynamic-float.py"
-    spawn-sh-at-startup "qs -c noctalia-shell"
-    spawn-sh-at-startup ". ~/.profile; /home/shiraneko/go/bin/surge server --token $SURGE_TOKEN"
