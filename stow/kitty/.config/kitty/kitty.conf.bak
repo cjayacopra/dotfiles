@@ -87,6 +87,6 @@ term                    xterm-kitty
 # ── Theme Integration ─────────────────────────────────────────────────────────
 
 # BEGIN_KITTY_THEME
-# Noctalia
+# Noctalia (Loaded from external file)
 include current-theme.conf
 # END_KITTY_THEME
