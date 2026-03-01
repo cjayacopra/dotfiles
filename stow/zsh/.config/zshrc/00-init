@@ -38,6 +38,16 @@ export PATH=$PATH:$HOME/.opencode/bin
 export PATH=$PATH:$HOME/.cargo/bin/cargo
 export PATH=$PATH:$HOME/.cargo/bin/rustup
 export PATH=$PATH:$HOME/.local/share/nvim/site
+export PATH=$PATH:$HOME/.flutter/flutter/bin
+export FLUTTER_ROOT=$HOME/.flutter/flutter
+
+export CHROME_EXECUTABLE=/usr/bin/chromium
+
+# ─── Android SDK ───
+export ANDROID_HOME=/opt/android-sdk
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/emulator
 
 
 # -----------------------------------------------------

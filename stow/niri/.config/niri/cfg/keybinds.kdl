@@ -18,6 +18,8 @@ binds {
     Mod+Shift+T                         hotkey-overlay-title="Open BTOP++" { spawn-sh "~/.config/niri/scripts/float-run btop"; } 
     Mod+Shift+S                         hotkey-overlay-title="Open Surge TUI" { spawn-sh ". ~/.profile; ~/.config/niri/scripts/float-run surge connect $SURGE_HOST --token $SURGE_TOKEN"; } 
     Mod+Shift+D                         hotkey-overlay-title="Open dotfiles" { spawn-sh "agy ~/dotfiles/"; }
+    Mod+V                               hotkey-overlay-title="Open Clipper" { spawn-sh "qs -c noctalia-shell ipc call plugin:clipper toggle"; }
+    Mod+Shift+C                         hotkey-overlay-title="Add selection to NoteCard" { spawn-sh "qs -c noctalia-shell ipc call plugin:clipper addSelectionToNoteCard"; }
 
     // ─── Dartotsu ───
     Mod+Shift+A                         hotkey-overlay-title="Open Dartotsu" { spawn-sh "/home/shiraneko/.local/bin/dartotsu"; }
@@ -130,7 +132,7 @@ binds {
     CTRL+Shift+3                        { screenshot-window; }
 
     // Clipboard
-    Mod+V                               hotkey-overlay-title="Clipboard" { spawn-sh "qs -c noctalia-shell ipc call launcher clipboard"; }
+    Mod+Shift+V                               hotkey-overlay-title="Clipboard" { spawn-sh "qs -c noctalia-shell ipc call launcher clipboard"; }
 
     // ─── Emergency Escape Key ───
     // Use this when a fullscreen app blocks your keybinds.

@@ -11,7 +11,7 @@ alias pf='fastfetch'
 alias ff='fastfetch'
 # alias ls='eza -a --icons=always'
 # alias ll='eza -al --icons=always'
-# alias lt='eza -a --tree --level=1 --icons=always'
+alias lt='eza -a --tree --icons=always'
 alias shutdown='systemctl poweroff'
 alias v='$EDITOR'
 alias vim='$EDITOR'
@@ -25,6 +25,11 @@ alias lampp="sudo /opt/lampp/lampp"
 
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
+alias update-agy='f() { 
+  sed -i "s/^pkgver=.*/pkgver=$1/" PKGBUILD && \
+  updpkgsums && \
+  makepkg -si
+}; f'
 # -----------------------------------------------------
 # System
 # -----------------------------------------------------
