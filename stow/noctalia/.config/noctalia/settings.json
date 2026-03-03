@@ -16,6 +16,8 @@
         "ignoreMouseInput": false,
         "overviewLayer": true,
         "pinnedApps": [
+            "jetbrains-idea-50b4dba1-eb89-4e23-8046-a7f4d66eb106",
+            "antigravity"
         ],
         "position": "center",
         "screenshotAnnotationTool": "satty --filename -",
