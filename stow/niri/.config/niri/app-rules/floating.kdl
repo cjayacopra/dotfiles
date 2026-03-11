@@ -5,3 +5,11 @@ window-rule {
     default-window-height { proportion 0.8; }
     default-column-width { proportion 0.8; }
 }
+
+window-rule {
+    match app-id="scrcpy"
+    open-floating true
+    default-floating-position x=32 y=266 relative-to="top-left"
+    default-window-height { fixed 702; }
+    default-column-width { fixed 338; }
+}

@@ -26,13 +26,13 @@
         "sortByMostUsed": true,
         "terminalCommand": "kitty -e",
         "useApp2Unit": false,
-        "viewMode": "list"
+        "viewMode": "grid"
     },
     "audio": {
-        "cavaFrameRate": 120,
         "mprisBlacklist": [
         ],
         "preferredPlayer": "spotify",
+        "spectrumFrameRate": 120,
         "visualizerType": "linear",
         "volumeFeedback": false,
         "volumeFeedbackSoundFile": "",
@@ -42,27 +42,33 @@
     "bar": {
         "autoHideDelay": 500,
         "autoShowDelay": 150,
-        "backgroundOpacity": 0.5,
-        "barType": "floating",
+        "backgroundOpacity": 0.8,
+        "barType": "simple",
         "capsuleColorKey": "none",
         "capsuleOpacity": 0,
         "contentPadding": 2,
         "density": "default",
         "displayMode": "always_visible",
-        "floating": true,
+        "floating": false,
         "fontScale": 1,
         "frameRadius": 24,
         "frameThickness": 8,
         "hideOnOverview": false,
         "marginHorizontal": 4,
         "marginVertical": 4,
+        "middleClickAction": "settings",
+        "middleClickCommand": "",
+        "middleClickFollowMouse": false,
         "monitors": [
         ],
-        "mouseWheelAction": "none",
+        "mouseWheelAction": "workspace",
         "mouseWheelWrap": true,
         "outerCorners": true,
         "position": "top",
-        "reverseScroll": false,
+        "reverseScroll": true,
+        "rightClickAction": "controlCenter",
+        "rightClickCommand": "",
+        "rightClickFollowMouse": true,
         "screenOverrides": [
         ],
         "showCapsule": true,
@@ -79,6 +85,7 @@
                     "enableScrollWheel": true,
                     "focusedColor": "primary",
                     "followFocusedScreen": false,
+                    "fontWeight": "bold",
                     "groupedBorderOpacity": 1,
                     "hideUnoccupied": true,
                     "iconScale": 0.8,
@@ -121,6 +128,7 @@
                     "diskPath": "/",
                     "iconColor": "none",
                     "id": "SystemMonitor",
+                    "showCpuCores": false,
                     "showCpuFreq": false,
                     "showCpuTemp": true,
                     "showCpuUsage": true,
@@ -161,7 +169,7 @@
                     "visualizerType": "linear"
                 },
                 {
-                    "colorizeIcons": true,
+                    "colorizeIcons": false,
                     "hideMode": "hidden",
                     "id": "ActiveWindow",
                     "maxWidth": 145,
@@ -226,33 +234,6 @@
                         }
                     },
                     "id": "plugin:assistant-panel"
-                },
-                {
-                    "defaultSettings": {
-                        "barCycleIntervalSec": 5,
-                        "barDisplayMode": "active",
-                        "barMetric": "prompts",
-                        "providers": {
-                            "claude": {
-                                "credentialsPath": "~/.claude/.credentials.json",
-                                "enabled": false,
-                                "statsPath": "~/.claude/stats-cache.json"
-                            },
-                            "codex": {
-                                "enabled": false
-                            },
-                            "openrouter": {
-                                "apiKey": "",
-                                "enabled": false
-                            },
-                            "zen": {
-                                "apiKey": "",
-                                "enabled": false
-                            }
-                        },
-                        "refreshIntervalSec": 30
-                    },
-                    "id": "plugin:model-usage"
                 },
                 {
                     "defaultSettings": {
@@ -372,7 +353,6 @@
             }
         ],
         "diskPath": "/",
-        "openAtMouseOnBarRightClick": true,
         "position": "close_to_bar_button",
         "shortcuts": {
             "left": [
@@ -416,6 +396,7 @@
     "desktopWidgets": {
         "enabled": true,
         "gridSnap": true,
+        "gridSnapScale": false,
         "monitorWidgets": [
             {
                 "name": "HDMI-A-1",
@@ -480,7 +461,7 @@
     },
     "dock": {
         "animationSpeed": 1,
-        "backgroundOpacity": 0.5,
+        "backgroundOpacity": 0.8,
         "colorizeIcons": false,
         "deadOpacity": 0.5,
         "displayMode": "auto_hide",
@@ -495,7 +476,7 @@
         "indicatorColor": "primary",
         "indicatorOpacity": 0.6,
         "indicatorThickness": 3,
-        "launcherIconColor": "secondary",
+        "launcherIconColor": "primary",
         "launcherPosition": "start",
         "monitors": [
             "HDMI-A-1"
@@ -521,7 +502,8 @@
         "clockFormat": "hh\\nmm",
         "clockStyle": "custom",
         "compactLockScreen": false,
-        "dimmerOpacity": 0.4,
+        "dimmerOpacity": 0.6,
+        "enableBlurBehind": true,
         "enableLockScreenCountdown": false,
         "enableLockScreenMediaControls": false,
         "enableShadows": true,
@@ -587,7 +569,7 @@
     },
     "idle": {
         "customCommands": "[]",
-        "enabled": true,
+        "enabled": false,
         "fadeDuration": 5,
         "lockCommand": "",
         "lockTimeout": 660,
@@ -615,6 +597,7 @@
     },
     "network": {
         "airplaneModeEnabled": false,
+        "bluetoothAutoConnect": true,
         "bluetoothDetailsViewMode": "grid",
         "bluetoothHideUnnamedDevices": false,
         "bluetoothRssiPollIntervalMs": 10000,
@@ -627,11 +610,15 @@
     "nightLight": {
         "autoSchedule": true,
         "dayTemp": "6500",
-        "enabled": false,
+        "enabled": true,
         "forced": false,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "nightTemp": "4000"
+    },
+    "noctaliaPerformance": {
+        "disableDesktopWidgets": true,
+        "disableWallpaper": true
     },
     "notifications": {
         "backgroundOpacity": 0.86,
@@ -709,41 +696,48 @@
                 "command": "",
                 "countdownEnabled": false,
                 "enabled": false,
-                "keybind": "3"
+                "keybind": ""
             },
             {
                 "action": "reboot",
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
-                "keybind": "4"
+                "keybind": "3"
             },
             {
                 "action": "logout",
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
-                "keybind": "5"
+                "keybind": "4"
             },
             {
                 "action": "shutdown",
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
-                "keybind": "6"
+                "keybind": "5"
             },
             {
                 "action": "rebootToUefi",
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
-                "keybind": ""
+                "keybind": "6"
+            },
+            {
+                "action": "userspaceReboot",
+                "command": "",
+                "countdownEnabled": true,
+                "enabled": true,
+                "keybind": "7"
             }
         ],
         "showHeader": true,
         "showKeybinds": true
     },
-    "settingsVersion": 54,
+    "settingsVersion": 57,
     "systemMonitor": {
         "batteryCriticalThreshold": 5,
         "batteryWarningThreshold": 20,
@@ -780,10 +774,6 @@
             {
                 "enabled": true,
                 "id": "spicetify"
-            },
-            {
-                "enabled": true,
-                "id": "kitty"
             },
             {
                 "enabled": true,
@@ -838,17 +828,19 @@
         "fontDefaultScale": 1,
         "fontFixed": "CaskaydiaCove Nerd Font Mono",
         "fontFixedScale": 1,
-        "panelBackgroundOpacity": 0.4,
+        "panelBackgroundOpacity": 0.8,
         "panelsAttachedToBar": true,
+        "scrollbarAlwaysVisible": true,
         "settingsPanelMode": "window",
         "settingsPanelSideBarCardStyle": false,
-        "tooltipsEnabled": true
+        "tooltipsEnabled": true,
+        "translucentWidgets": false
     },
     "wallpaper": {
         "automationEnabled": false,
         "directory": "/mnt/files/Pictures/Wallpapers",
         "enableMultiMonitorDirectories": false,
-        "enabled": true,
+        "enabled": false,
         "favorites": [
             {
                 "colorScheme": "Tokyo Night",

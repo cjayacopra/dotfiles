@@ -20,6 +20,7 @@ binds {
     Mod+Shift+D                         hotkey-overlay-title="Open dotfiles" { spawn-sh "agy ~/dotfiles/"; }
     Mod+V                               hotkey-overlay-title="Open Clipper" { spawn-sh "qs -c noctalia-shell ipc call plugin:clipper toggle"; }
     Mod+Shift+C                         hotkey-overlay-title="Add selection to NoteCard" { spawn-sh "qs -c noctalia-shell ipc call plugin:clipper addSelectionToNoteCard"; }
+    Mod+Shift+M                         hotkey-overlay-title="Open Scrcpy" { spawn-sh "scrcpy --pause-on-exit=if-error --turn-screen-off --stay-awake"; }
 
     // ─── Dartotsu ───
     Mod+Shift+A                         hotkey-overlay-title="Open Dartotsu" { spawn-sh "/home/shiraneko/.local/bin/dartotsu"; }

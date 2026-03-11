@@ -13,6 +13,7 @@ x-scheme-handler/anytype=anytype.desktop
 x-scheme-handler/discord=vesktop.desktop
 x-scheme-handler/jetbrains=jetbrainsd.desktop
 x-scheme-handler/jetbrains-gateway=jetbrains-gateway.desktop
+text/x-markdown=jetbrains-idea.desktop
 
 [Added Associations]
 x-scheme-handler/http=zen.desktop;

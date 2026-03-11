@@ -42,12 +42,18 @@ export PATH=$PATH:$HOME/.cargo/bin/cargo
 export PATH=$PATH:$HOME/.cargo/bin/rustup
 export PATH=$PATH:$HOME/.local/share/nvim/site
 
+# ─── XWayland ───
+export PATH=$PATH:/usr/bin/xwayland-satellite
+
 # ─── Flutter ───
 export PATH=$PATH:$HOME/.flutter/flutter/bin
 export FLUTTER_ROOT=$HOME/.flutter/flutter
 
+# ─── Android ───
+export PATH=$PATH:$HOME/Android/Sdk/platform-tools
 
-
+# ─── ADB ───
+# export ADB_MDNS_OPENSCREEN=0
 
 # -----------------------------------------------------
 # Overrides
