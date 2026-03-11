@@ -43,13 +43,13 @@
         "autoHideDelay": 500,
         "autoShowDelay": 150,
         "backgroundOpacity": 0.8,
-        "barType": "simple",
+        "barType": "floating",
         "capsuleColorKey": "none",
         "capsuleOpacity": 0,
         "contentPadding": 2,
         "density": "default",
         "displayMode": "always_visible",
-        "floating": false,
+        "floating": true,
         "fontScale": 1,
         "frameRadius": 24,
         "frameThickness": 8,
@@ -502,7 +502,7 @@
         "clockFormat": "hh\\nmm",
         "clockStyle": "custom",
         "compactLockScreen": false,
-        "dimmerOpacity": 0.6,
+        "dimmerOpacity": 0.8,
         "enableBlurBehind": true,
         "enableLockScreenCountdown": false,
         "enableLockScreenMediaControls": false,
@@ -781,10 +781,6 @@
             },
             {
                 "enabled": true,
-                "id": "zenBrowser"
-            },
-            {
-                "enabled": true,
                 "id": "discord"
             },
             {
@@ -818,15 +814,19 @@
             {
                 "enabled": true,
                 "id": "yazi"
+            },
+            {
+                "enabled": true,
+                "id": "zenBrowser"
             }
         ],
         "enableUserTheming": false
     },
     "ui": {
         "boxBorderEnabled": true,
-        "fontDefault": "Noto Sans CJK JP",
+        "fontDefault": "Maple Mono NF",
         "fontDefaultScale": 1,
-        "fontFixed": "CaskaydiaCove Nerd Font Mono",
+        "fontFixed": "JetBrainsMono Nerd Font Mono",
         "fontFixedScale": 1,
         "panelBackgroundOpacity": 0.8,
         "panelsAttachedToBar": true,
@@ -834,7 +834,7 @@
         "settingsPanelMode": "window",
         "settingsPanelSideBarCardStyle": false,
         "tooltipsEnabled": true,
-        "translucentWidgets": false
+        "translucentWidgets": true
     },
     "wallpaper": {
         "automationEnabled": false,

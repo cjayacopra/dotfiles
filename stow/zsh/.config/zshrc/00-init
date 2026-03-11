@@ -23,7 +23,8 @@ source $HOME/.profile
 # -----------------------------------------------------
 export EDITOR=antigravity
 export BROWSER=zen-browser
-export TERM=kitty
+export TERM=xterm-256color
+export COLORTERM=truecolor
 export TERMINAL=kitty
 # ─── Chrome ───
 export CHROME_EXECUTABLE=/usr/bin/chromium
