@@ -8,7 +8,9 @@
         "customLaunchPrefixEnabled": false,
         "density": "default",
         "enableClipPreview": true,
+        "enableClipboardChips": true,
         "enableClipboardHistory": true,
+        "enableClipboardSmartIcons": true,
         "enableSessionSearch": true,
         "enableSettingsSearch": true,
         "enableWindowsSearch": true,
@@ -25,7 +27,6 @@
         "showIconBackground": true,
         "sortByMostUsed": true,
         "terminalCommand": "kitty -e",
-        "useApp2Unit": false,
         "viewMode": "grid"
     },
     "audio": {
@@ -49,6 +50,7 @@
         "contentPadding": 2,
         "density": "default",
         "displayMode": "always_visible",
+        "enableExclusionZoneInset": true,
         "floating": true,
         "fontScale": 1,
         "frameRadius": 24,
@@ -94,6 +96,7 @@
                     "occupiedColor": "secondary",
                     "pillSize": 0.6,
                     "showApplications": false,
+                    "showApplicationsHover": false,
                     "showBadge": true,
                     "showLabelsOnlyWhenOccupied": true,
                     "unfocusedIconsOpacity": 1
@@ -108,20 +111,6 @@
                     "id": "Clock",
                     "tooltipFormat": "h:mm ddd, MMM dd",
                     "useCustomFont": false
-                },
-                {
-                    "defaultSettings": {
-                        "arrowType": "caret",
-                        "byteThresholdActive": 1024,
-                        "fontSizeModifier": 1,
-                        "forceMegabytes": false,
-                        "iconSizeModifier": 1,
-                        "minWidth": 0,
-                        "showNumbers": true,
-                        "spacingInbetween": 0,
-                        "useCustomColors": false
-                    },
-                    "id": "plugin:network-indicator"
                 },
                 {
                     "compactMode": true,
@@ -205,54 +194,6 @@
                         "refreshInterval": 5000
                     },
                     "id": "plugin:mini-docker"
-                },
-                {
-                    "defaultSettings": {
-                        "ai": {
-                            "apiKeys": {
-                            },
-                            "maxHistoryLength": 100,
-                            "model": "gemini-2.5-flash",
-                            "openaiBaseUrl": "https://api.openai.com/v1/chat/completions",
-                            "openaiLocal": false,
-                            "provider": "google",
-                            "systemPrompt": "You are a helpful assistant integrated into a Linux desktop shell. Be concise and helpful.",
-                            "temperature": 0.7
-                        },
-                        "maxHistoryLength": 100,
-                        "panelDetached": true,
-                        "panelHeightRatio": 0.85,
-                        "panelPosition": "right",
-                        "panelWidth": 520,
-                        "scale": 1,
-                        "translator": {
-                            "backend": "google",
-                            "deeplApiKey": "",
-                            "realTimeTranslation": true,
-                            "sourceLanguage": "auto",
-                            "targetLanguage": "en"
-                        }
-                    },
-                    "id": "plugin:assistant-panel"
-                },
-                {
-                    "defaultSettings": {
-                        "audioCodec": "opus",
-                        "audioSource": "default_output",
-                        "colorRange": "limited",
-                        "copyToClipboard": false,
-                        "directory": "",
-                        "filenamePattern": "recording_yyyyMMdd_HHmmss",
-                        "frameRate": "60",
-                        "hideInactive": false,
-                        "iconColor": "none",
-                        "quality": "very_high",
-                        "resolution": "original",
-                        "showCursor": true,
-                        "videoCodec": "h264",
-                        "videoSource": "portal"
-                    },
-                    "id": "plugin:screen-recorder"
                 },
                 {
                     "hideWhenZero": false,
@@ -432,27 +373,6 @@
                         "showBackground": true,
                         "x": 40,
                         "y": 80
-                    },
-                    {
-                        "defaultSettings": {
-                            "barWidth": 0.6,
-                            "bloomIntensity": 0.5,
-                            "customPrimaryColor": "#6750A4",
-                            "customSecondaryColor": "#625B71",
-                            "fadeWhenIdle": false,
-                            "innerDiameter": 0.7,
-                            "ringOpacity": 0.8,
-                            "rotationSpeed": 0.5,
-                            "sensitivity": 1.5,
-                            "useCustomColors": false,
-                            "visualizationMode": 3,
-                            "waveThickness": 1
-                        },
-                        "id": "plugin:fancy-audiovisualizer",
-                        "scale": 2.1826729200126875,
-                        "showBackground": true,
-                        "x": 1240,
-                        "y": 300
                     }
                 ]
             }
@@ -476,8 +396,10 @@
         "indicatorColor": "primary",
         "indicatorOpacity": 0.6,
         "indicatorThickness": 3,
+        "launcherIcon": "",
         "launcherIconColor": "primary",
         "launcherPosition": "start",
+        "launcherUseDistroLogo": false,
         "monitors": [
             "HDMI-A-1"
         ],
@@ -557,6 +479,7 @@
         "telemetryEnabled": false
     },
     "hooks": {
+        "colorGeneration": "",
         "darkModeChange": "",
         "enabled": false,
         "performanceModeDisabled": "",
@@ -610,7 +533,7 @@
     "nightLight": {
         "autoSchedule": true,
         "dayTemp": "6500",
-        "enabled": true,
+        "enabled": false,
         "forced": false,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
@@ -668,7 +591,8 @@
         "overlayLayer": true
     },
     "plugins": {
-        "autoUpdate": true
+        "autoUpdate": true,
+        "notifyUpdates": true
     },
     "sessionMenu": {
         "countdownDuration": 10000,
@@ -737,7 +661,7 @@
         "showHeader": true,
         "showKeybinds": true
     },
-    "settingsVersion": 57,
+    "settingsVersion": 59,
     "systemMonitor": {
         "batteryCriticalThreshold": 5,
         "batteryWarningThreshold": 20,
@@ -899,7 +823,14 @@
         "sortOrder": "name",
         "transitionDuration": 1500,
         "transitionEdgeSmoothness": 0.05,
-        "transitionType": "random",
+        "transitionType": [
+            "fade",
+            "disc",
+            "stripes",
+            "wipe",
+            "pixelate",
+            "honeycomb"
+        ],
         "useSolidColor": false,
         "useWallhaven": false,
         "viewMode": "single",
