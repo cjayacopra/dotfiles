@@ -8,9 +8,7 @@
         "customLaunchPrefixEnabled": false,
         "density": "default",
         "enableClipPreview": true,
-        "enableClipboardChips": true,
         "enableClipboardHistory": true,
-        "enableClipboardSmartIcons": true,
         "enableSessionSearch": true,
         "enableSettingsSearch": true,
         "enableWindowsSearch": true,
@@ -27,6 +25,7 @@
         "showIconBackground": true,
         "sortByMostUsed": true,
         "terminalCommand": "kitty -e",
+        "useApp2Unit": false,
         "viewMode": "grid"
     },
     "audio": {
@@ -396,10 +395,8 @@
         "indicatorColor": "primary",
         "indicatorOpacity": 0.6,
         "indicatorThickness": 3,
-        "launcherIcon": "",
         "launcherIconColor": "primary",
         "launcherPosition": "start",
-        "launcherUseDistroLogo": false,
         "monitors": [
             "HDMI-A-1"
         ],
@@ -425,7 +422,7 @@
         "clockStyle": "custom",
         "compactLockScreen": false,
         "dimmerOpacity": 0.8,
-        "enableBlurBehind": true,
+        "enableBlurBehind": false,
         "enableLockScreenCountdown": false,
         "enableLockScreenMediaControls": false,
         "enableShadows": true,
@@ -479,7 +476,6 @@
         "telemetryEnabled": false
     },
     "hooks": {
-        "colorGeneration": "",
         "darkModeChange": "",
         "enabled": false,
         "performanceModeDisabled": "",
@@ -591,8 +587,7 @@
         "overlayLayer": true
     },
     "plugins": {
-        "autoUpdate": true,
-        "notifyUpdates": true
+        "autoUpdate": true
     },
     "sessionMenu": {
         "countdownDuration": 10000,
@@ -661,7 +656,7 @@
         "showHeader": true,
         "showKeybinds": true
     },
-    "settingsVersion": 59,
+    "settingsVersion": 57,
     "systemMonitor": {
         "batteryCriticalThreshold": 5,
         "batteryWarningThreshold": 20,
@@ -823,14 +818,7 @@
         "sortOrder": "name",
         "transitionDuration": 1500,
         "transitionEdgeSmoothness": 0.05,
-        "transitionType": [
-            "fade",
-            "disc",
-            "stripes",
-            "wipe",
-            "pixelate",
-            "honeycomb"
-        ],
+        "transitionType": "random",
         "useSolidColor": false,
         "useWallhaven": false,
         "viewMode": "single",
