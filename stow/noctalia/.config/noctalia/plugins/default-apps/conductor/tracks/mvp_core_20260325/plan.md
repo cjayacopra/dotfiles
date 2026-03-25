@@ -1,6 +1,6 @@
 # Implementation Plan: Build MVP: MIME management and default association core
 
-## Phase 1: Core Plugin Infrastructure
+## Phase 1: Core Plugin Infrastructure [checkpoint: 38ae66a]
 - [x] **Task: Scaffold Noctalia Standalone Plugin** (977016b)
   - Create the basic directory structure and `manifest.json` for a Noctalia standalone plugin.
 - [x] **Task: Implement Entry Point** (b0a6a6b)
