@@ -9,7 +9,7 @@
 ## Phase 2: Backend Logic Core
 - [x] **Task: MIME Type Discovery Logic** (71d9bb2)
   - Implement a JavaScript module to list MIME types from the system (e.g., parsing `/usr/share/mime`).
-- [ ] **Task: Default Handler Query Logic**
+- [x] **Task: Default Handler Query Logic** (ccb5c2c)
   - Implement logic using `xdg-mime query default <mimetype>` to get the current handler.
 - [ ] **Task: Association Management Logic**
   - Implement logic using `xdg-mime default <application>.desktop <mimetype>` to update associations.
