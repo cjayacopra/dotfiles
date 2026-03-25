@@ -7,6 +7,7 @@ ColumnLayout {
     id: browserRoot
     spacing: 15
 
+    property alias mimeModel: mimeModel
     signal mimeTypeSelected(string mimeType)
 
     TextField {

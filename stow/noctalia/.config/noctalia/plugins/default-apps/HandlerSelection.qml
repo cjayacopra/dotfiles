@@ -9,6 +9,7 @@ ColumnLayout {
 
     property string mimeType: ""
     property string currentDefault: ""
+    property alias handlerModel: handlerModel
     
     signal handlerSelected(string desktopFile)
 

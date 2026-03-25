@@ -22,4 +22,12 @@ describe('Main Entry Point', () => {
       expect(content).toContain('AppWindow');
     }
   });
+
+  it('should integrate MimeTypeBrowser and HandlerSelection', () => {
+    if (fs.existsSync(qmlPath)) {
+      const content = fs.readFileSync(qmlPath, 'utf8');
+      expect(content).toContain('MimeTypeBrowser');
+      expect(content).toContain('HandlerSelection');
+    }
+  });
 });
