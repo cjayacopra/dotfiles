@@ -50,6 +50,23 @@ class MimeLogic {
       });
     });
   }
+
+  /**
+   * Sets the default handler for a given MIME type.
+   * @param {string} mimeType 
+   * @param {string} handlerDesktopFile 
+   * @returns {Promise<void>}
+   */
+  static async setDefaultHandler(mimeType, handlerDesktopFile) {
+    return new Promise((resolve, reject) => {
+      exec(`xdg-mime default "${handlerDesktopFile}" "${mimeType}"`, (err, stdout, stderr) => {
+        if (err) {
+          return reject(new Error(`Failed to set default handler: ${stderr}`));
+        }
+        resolve();
+      });
+    });
+  }
 }
 
 module.exports = MimeLogic;
