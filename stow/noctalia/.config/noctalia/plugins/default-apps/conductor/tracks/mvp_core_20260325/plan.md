@@ -15,7 +15,7 @@
   - Implement logic using `xdg-mime default <application>.desktop <mimetype>` to update associations.
 
 ## Phase 3: Basic UI Implementation
-- [ ] **Task: MIME Type Browser UI**
+- [x] **Task: MIME Type Browser UI** (fe4ac91)
   - Create a QML view to display a searchable list of MIME types.
 - [ ] **Task: Handler Selection UI**
   - Implement a view to show current defaults and list other available applications for a selected MIME type.
