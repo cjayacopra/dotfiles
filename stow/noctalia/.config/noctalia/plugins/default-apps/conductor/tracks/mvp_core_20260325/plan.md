@@ -7,7 +7,7 @@
   - Create `main.qml` that defines a basic window using Noctalia's `AppWindow` or equivalent component.
 
 ## Phase 2: Backend Logic Core
-- [ ] **Task: MIME Type Discovery Logic**
+- [x] **Task: MIME Type Discovery Logic** (71d9bb2)
   - Implement a JavaScript module to list MIME types from the system (e.g., parsing `/usr/share/mime`).
 - [ ] **Task: Default Handler Query Logic**
   - Implement logic using `xdg-mime query default <mimetype>` to get the current handler.
