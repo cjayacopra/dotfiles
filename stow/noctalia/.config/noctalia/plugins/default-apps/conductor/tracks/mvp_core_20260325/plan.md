@@ -3,7 +3,7 @@
 ## Phase 1: Core Plugin Infrastructure
 - [x] **Task: Scaffold Noctalia Standalone Plugin** (977016b)
   - Create the basic directory structure and `manifest.json` for a Noctalia standalone plugin.
-- [ ] **Task: Implement Entry Point**
+- [x] **Task: Implement Entry Point** (b0a6a6b)
   - Create `main.qml` that defines a basic window using Noctalia's `AppWindow` or equivalent component.
 
 ## Phase 2: Backend Logic Core
