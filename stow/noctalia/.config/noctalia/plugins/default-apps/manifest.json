@@ -1,0 +1,11 @@
+{
+  "id": "org.noctalia.default-apps",
+  "name": "Default Apps Manager",
+  "version": "1.0.0",
+  "description": "Manage default application associations for file types.",
+  "main": "main.qml",
+  "type": "standalone",
+  "author": "Shiraneko",
+  "icon": "icon.svg",
+  "permissions": []
+}
