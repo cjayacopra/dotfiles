@@ -21,7 +21,7 @@
   - Implement a view to show current defaults and list other available applications for a selected MIME type.
 
 ## Phase 4: Verification & MVP Polish
-- [ ] **Task: Basic Integration Testing**
+- [x] **Task: Basic Integration Testing** (b07b505)
   - Verify that changes in the UI correctly update the system's `xdg-mime` associations.
 - [ ] **Task: Basic UI/UX Polish**
   - Ensure the UI follows Noctalia design guidelines (consistent margins, spacing, and styling).
