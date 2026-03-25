@@ -6,12 +6,12 @@
 - [x] **Task: Implement Entry Point** (b0a6a6b)
   - Create `main.qml` that defines a basic window using Noctalia's `AppWindow` or equivalent component.
 
-## Phase 2: Backend Logic Core
+## Phase 2: Backend Logic Core [checkpoint: 287fb15]
 - [x] **Task: MIME Type Discovery Logic** (71d9bb2)
   - Implement a JavaScript module to list MIME types from the system (e.g., parsing `/usr/share/mime`).
 - [x] **Task: Default Handler Query Logic** (ccb5c2c)
   - Implement logic using `xdg-mime query default <mimetype>` to get the current handler.
-- [ ] **Task: Association Management Logic**
+- [x] **Task: Association Management Logic** (e3a3f35)
   - Implement logic using `xdg-mime default <application>.desktop <mimetype>` to update associations.
 
 ## Phase 3: Basic UI Implementation
