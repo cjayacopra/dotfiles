@@ -14,10 +14,10 @@
 - [x] **Task: Association Management Logic** (e3a3f35)
   - Implement logic using `xdg-mime default <application>.desktop <mimetype>` to update associations.
 
-## Phase 3: Basic UI Implementation
+## Phase 3: Basic UI Implementation [checkpoint: d372aeb]
 - [x] **Task: MIME Type Browser UI** (fe4ac91)
   - Create a QML view to display a searchable list of MIME types.
-- [ ] **Task: Handler Selection UI**
+- [x] **Task: Handler Selection UI** (63331a4)
   - Implement a view to show current defaults and list other available applications for a selected MIME type.
 
 ## Phase 4: Verification & MVP Polish
