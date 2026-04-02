@@ -1,11 +1,36 @@
 {
-  "id": "org.noctalia.default-apps",
-  "name": "Default Apps Manager",
-  "version": "1.0.0",
-  "description": "Manage default application associations for file types.",
-  "main": "main.qml",
-  "type": "standalone",
-  "author": "Shiraneko",
-  "icon": "icon.svg",
-  "permissions": []
+    "id": "default-apps",
+    "name": "Default Applications",
+    "version": "1.0.0",
+    "minNoctaliaVersion": "4.0.0",
+    "author": "user",
+    "license": "MIT",
+    "repository": "",
+    "description": "Manage default applications (browser, terminal, file manager, etc.) using xdg-mime and xdg-settings",
+    "tags": ["Utility", "System", "Settings"],
+    "entryPoints": {
+        "main": "Main.qml",
+        "barWidget": "BarWidget.qml",
+        "panel": "Panel.qml",
+        "settings": "Settings.qml"
+    },
+    "dependencies": {
+        "plugins": []
+    },
+    "metadata": {
+        "defaultSettings": {
+            "visibleCategories": [
+                "browser",
+                "terminal",
+                "file-manager",
+                "email",
+                "video",
+                "audio",
+                "image",
+                "text"
+            ],
+            "showCurrentInBar": true,
+            "barCategory": "browser"
+        }
+    }
 }

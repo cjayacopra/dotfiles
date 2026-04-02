@@ -8,7 +8,9 @@
         "customLaunchPrefixEnabled": false,
         "density": "default",
         "enableClipPreview": true,
+        "enableClipboardChips": true,
         "enableClipboardHistory": true,
+        "enableClipboardSmartIcons": true,
         "enableSessionSearch": true,
         "enableSettingsSearch": true,
         "enableWindowsSearch": true,
@@ -17,7 +19,12 @@
         "overviewLayer": true,
         "pinnedApps": [
             "jetbrains-idea-50b4dba1-eb89-4e23-8046-a7f4d66eb106",
-            "antigravity"
+            "antigravity",
+            "io.anytype.anytype",
+            "termius",
+            "vesktop",
+            "onlyoffice-desktopeditors",
+            "com.stremio.Stremio"
         ],
         "position": "center",
         "screenshotAnnotationTool": "satty --filename -",
@@ -25,14 +32,14 @@
         "showIconBackground": true,
         "sortByMostUsed": true,
         "terminalCommand": "kitty -e",
-        "useApp2Unit": false,
-        "viewMode": "grid"
+        "viewMode": "list"
     },
     "audio": {
         "mprisBlacklist": [
         ],
         "preferredPlayer": "spotify",
         "spectrumFrameRate": 120,
+        "spectrumMirrored": true,
         "visualizerType": "linear",
         "volumeFeedback": false,
         "volumeFeedbackSoundFile": "",
@@ -50,7 +57,6 @@
         "density": "default",
         "displayMode": "always_visible",
         "enableExclusionZoneInset": true,
-        "floating": true,
         "fontScale": 1,
         "frameRadius": 24,
         "frameThickness": 8,
@@ -134,13 +140,6 @@
                     "usePadding": false
                 },
                 {
-                    "defaultSettings": {
-                        "hideBackground": false,
-                        "minimumThreshold": 10
-                    },
-                    "id": "plugin:catwalk"
-                },
-                {
                     "compactMode": false,
                     "hideMode": "hidden",
                     "hideWhenIdle": false,
@@ -163,6 +162,7 @@
                     "maxWidth": 145,
                     "scrollingMode": "hover",
                     "showIcon": true,
+                    "showText": true,
                     "textColor": "none",
                     "useFixedWidth": false
                 }
@@ -193,6 +193,27 @@
                         "refreshInterval": 5000
                     },
                     "id": "plugin:mini-docker"
+                },
+                {
+                    "defaultSettings": {
+                        "animationsFolder": "~/.config/niri/animations",
+                        "iconColor": "none",
+                        "targetFile": "~/.config/niri/config.kdl"
+                    },
+                    "id": "plugin:niri-animation-picker"
+                },
+                {
+                    "defaultSettings": {
+                        "barCategory": "browser",
+                        "showCurrentInBar": true,
+                        "visibleCategories": [
+                            "browser",
+                            "terminal",
+                            "file-manager",
+                            "email"
+                        ]
+                    },
+                    "id": "plugin:default-apps"
                 },
                 {
                     "hideWhenZero": false,
@@ -261,8 +282,9 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
-        "predefinedScheme": "Tokyo Night",
+        "predefinedScheme": "Tokyo Night Moon",
         "schedulingMode": "off",
+        "syncGsettings": true,
         "useWallpaperColors": false
     },
     "controlCenter": {
@@ -318,17 +340,6 @@
                 },
                 {
                     "id": "WallpaperSelector"
-                },
-                {
-                    "enableOnStateLogic": false,
-                    "generalTooltipText": "Video Wallpaper",
-                    "icon": "photo-video",
-                    "id": "CustomButton",
-                    "onClicked": "qs -c noctalia-shell ipc call plugin:videowallpaper openPanel",
-                    "onMiddleClicked": "",
-                    "onRightClicked": "",
-                    "showExecTooltip": true,
-                    "stateChecksJson": "[]"
                 }
             ]
         }
@@ -395,8 +406,10 @@
         "indicatorColor": "primary",
         "indicatorOpacity": 0.6,
         "indicatorThickness": 3,
+        "launcherIcon": "",
         "launcherIconColor": "primary",
         "launcherPosition": "start",
+        "launcherUseDistroLogo": false,
         "monitors": [
             "HDMI-A-1"
         ],
@@ -473,9 +486,11 @@
         "showHibernateOnLockScreen": false,
         "showScreenCorners": true,
         "showSessionButtonsOnLockScreen": true,
+        "smoothScrollEnabled": true,
         "telemetryEnabled": false
     },
     "hooks": {
+        "colorGeneration": "",
         "darkModeChange": "",
         "enabled": false,
         "performanceModeDisabled": "",
@@ -491,7 +506,7 @@
         "enabled": false,
         "fadeDuration": 5,
         "lockCommand": "",
-        "lockTimeout": 660,
+        "lockTimeout": 0,
         "resumeLockCommand": "",
         "resumeScreenOffCommand": "",
         "resumeSuspendCommand": "",
@@ -515,7 +530,6 @@
         "weatherShowEffects": true
     },
     "network": {
-        "airplaneModeEnabled": false,
         "bluetoothAutoConnect": true,
         "bluetoothDetailsViewMode": "grid",
         "bluetoothHideUnnamedDevices": false,
@@ -523,8 +537,7 @@
         "bluetoothRssiPollingEnabled": false,
         "disableDiscoverability": false,
         "networkPanelView": "wifi",
-        "wifiDetailsViewMode": "grid",
-        "wifiEnabled": false
+        "wifiDetailsViewMode": "grid"
     },
     "nightLight": {
         "autoSchedule": true,
@@ -587,7 +600,8 @@
         "overlayLayer": true
     },
     "plugins": {
-        "autoUpdate": true
+        "autoUpdate": true,
+        "notifyUpdates": true
     },
     "sessionMenu": {
         "countdownDuration": 10000,
@@ -649,14 +663,14 @@
                 "action": "userspaceReboot",
                 "command": "",
                 "countdownEnabled": true,
-                "enabled": true,
-                "keybind": "7"
+                "enabled": false,
+                "keybind": ""
             }
         ],
         "showHeader": true,
         "showKeybinds": true
     },
-    "settingsVersion": 57,
+    "settingsVersion": 59,
     "systemMonitor": {
         "batteryCriticalThreshold": 5,
         "batteryWarningThreshold": 20,
@@ -728,11 +742,15 @@
             },
             {
                 "enabled": true,
+                "id": "yazi"
+            },
+            {
+                "enabled": true,
                 "id": "code"
             },
             {
                 "enabled": true,
-                "id": "yazi"
+                "id": "steam"
             },
             {
                 "enabled": true,
@@ -743,9 +761,9 @@
     },
     "ui": {
         "boxBorderEnabled": true,
-        "fontDefault": "Maple Mono NF",
+        "fontDefault": "Inter",
         "fontDefaultScale": 1,
-        "fontFixed": "JetBrainsMono Nerd Font Mono",
+        "fontFixed": "Maple Mono NF",
         "fontFixedScale": 1,
         "panelBackgroundOpacity": 0.8,
         "panelsAttachedToBar": true,
@@ -759,7 +777,7 @@
         "automationEnabled": false,
         "directory": "/mnt/files/Pictures/Wallpapers",
         "enableMultiMonitorDirectories": false,
-        "enabled": false,
+        "enabled": true,
         "favorites": [
             {
                 "colorScheme": "Tokyo Night",
@@ -804,7 +822,13 @@
         "fillColor": "#000000",
         "fillMode": "crop",
         "hideWallpaperFilenames": true,
+        "linkLightAndDarkWallpapers": true,
         "monitorDirectories": [
+            {
+                "directory": "/mnt/files/Pictures/Wallpapers",
+                "name": "HDMI-A-1",
+                "wallpaper": ""
+            }
         ],
         "overviewBlur": 0.4,
         "overviewEnabled": false,
@@ -818,7 +842,15 @@
         "sortOrder": "name",
         "transitionDuration": 1500,
         "transitionEdgeSmoothness": 0.05,
-        "transitionType": "random",
+        "transitionType": [
+            "fade",
+            "disc",
+            "stripes",
+            "wipe",
+            "pixelate",
+            "honeycomb"
+        ],
+        "useOriginalImages": true,
         "useSolidColor": false,
         "useWallhaven": false,
         "viewMode": "single",

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "build": {
+      "model": "opencode/minimax-m2.5-free",
+      // "model": "kilo/minimax/minimax-m2.5:free",
+      "prompt": "{file:./prompts/build.txt}",
+      "temperature": 0.3,
+      "permission": {
+        "bash": {
+          "*": "ask",
+          "mkdir *": "allow",
+          "cat *": "allow",
+          "ls *": "allow",
+          "grep *": "allow",
+          "find *": "allow"
+        },
+        "edit": "ask"
+      },
+      "permission": {
+        "task": {
+          "*": "allow"
+        }
+      }
+    },
+    "plan": {
+      "model": "kilo/minimax/minimax-m2.5:free",
+      "prompt": "{file:./prompts/plan.txt}",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "*": "deny",
+          "cat *": "allow",
+          "ls *": "allow",
+          "grep *": "allow",
+          "find *": "allow"
+        }
+      }
+    }
+  }
+}

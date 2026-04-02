@@ -1,0 +1,43 @@
+{
+    "plugin": {
+        "name": "Default Applications",
+        "description": "Manage default applications (browser, terminal, file manager, etc.) using xdg-mime and xdg-settings"
+    },
+    "category": {
+        "browser": "Browser",
+        "terminal": "Terminal",
+        "fileManager": "File Manager",
+        "email": "Email",
+        "video": "Video",
+        "audio": "Audio",
+        "image": "Image",
+        "text": "Text Editor"
+    },
+    "panel": {
+        "title": "Default Applications",
+        "subtitle": "Choose default applications",
+        "selectCategory": "Select a category above",
+        "loadingApps": "Loading applications...",
+        "noApps": "No applications found",
+        "appsAvailable": "apps",
+        "currentDefault": "Current:",
+        "settingDefault": "Setting default...",
+        "defaultSet": "Default application set",
+        "defaultFailed": "Failed to set default application",
+        "refreshed": "Defaults refreshed"
+    },
+    "settings": {
+        "barWidget": "Bar Widget",
+        "showCurrentInBar": "Show current default in bar",
+        "showCurrentInBarDesc": "Display the current default application icon in the bar",
+        "barCategory": "Category to show in bar",
+        "barCategoryDesc": "Which category's default to display in the bar",
+        "visibleCategories": "Visible Categories",
+        "visibleCategoriesDesc": "Choose which categories to show in the panel"
+    },
+    "actions": {
+        "open-panel": "Open Panel",
+        "refresh": "Refresh",
+        "widget-settings": "Widget Settings"
+    }
+}

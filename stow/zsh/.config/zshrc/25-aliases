@@ -25,11 +25,7 @@ alias lampp="sudo /opt/lampp/lampp"
 
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
-alias update-agy='f() { 
-  sed -i "s/^pkgver=.*/pkgver=$1/" PKGBUILD && \
-  updpkgsums && \
-  makepkg -si
-}; f'
+alias agy='antigravity'
 # -----------------------------------------------------
 # System
 # -----------------------------------------------------

@@ -18,3 +18,4 @@ include "./app-rules/cast.kdl"
 include "./noctalia.kdl"
 
 
+include "./animations/ribbons.kdl"

@@ -3,7 +3,7 @@ window-rule {
     open-floating true
     default-floating-position x=0 y=80 relative-to="top"
     default-window-height { proportion 0.8; }
-    default-column-width { proportion 0.8; }
+    default-column-width { proportion 0.93; }
 }
 
 window-rule {

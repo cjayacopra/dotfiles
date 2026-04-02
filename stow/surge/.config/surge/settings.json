@@ -2,9 +2,50 @@
   "general": {
     "default_download_dir": "/mnt/files/Downloads",
     "warn_on_duplicate": false,
+    "download_complete_notification": true,
+    "allow_remote_open_actions": false,
     "extension_prompt": false,
     "auto_resume": false,
     "skip_update_check": false,
+    "category_enabled": true,
+    "categories": [
+      {
+        "name": "Videos",
+        "description": "MP4s, MKVs, AVIs, and other video files.",
+        "pattern": "(?i)\\.(mp4|mkv|avi|mov|wmv|flv|webm|m4v|mpg|mpeg|3gp)$",
+        "path": "/mnt/files/Videos"
+      },
+      {
+        "name": "Music",
+        "description": "MP3s, FLACs, and other audio files.",
+        "pattern": "(?i)\\.(mp3|flac|wav|aac|ogg|wma|m4a|opus)$",
+        "path": "/mnt/files/Music"
+      },
+      {
+        "name": "Compressed",
+        "description": "ZIPs, RARs, and other archive files.",
+        "pattern": "(?i)\\.(zip|rar|7z|tar|gz|bz2|xz|zst|tgz)$",
+        "path": "/mnt/files/Downloads"
+      },
+      {
+        "name": "Documents",
+        "description": "PDFs, Word docs, spreadsheets, etc.",
+        "pattern": "(?i)\\.(pdf|doc|docx|xls|xlsx|ppt|pptx|odt|ods|txt|rtf|csv|epub)$",
+        "path": "/mnt/files/Documents"
+      },
+      {
+        "name": "Programs",
+        "description": "Executables, installers, and scripts.",
+        "pattern": "(?i)\\.(exe|msi|deb|rpm|appimage|dmg|pkg|flatpak|snap|sh|run|bin)$",
+        "path": "/mnt/files/Downloads"
+      },
+      {
+        "name": "Images",
+        "description": "JPEGs, PNGs, and other image files.",
+        "pattern": "(?i)\\.(jpg|jpeg|png|gif|bmp|svg|webp|ico|tiff|psd)$",
+        "path": "/mnt/files/Pictures"
+      }
+    ],
     "clipboard_monitor": true,
     "theme": 0,
     "log_retention_count": 5
