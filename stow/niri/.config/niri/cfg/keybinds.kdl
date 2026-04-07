@@ -14,10 +14,10 @@ binds {
     Mod+B                               hotkey-overlay-title="Open Zen Browser" { spawn "zen-browser"; }
     Mod+ALT+L                           hotkey-overlay-title="Lock Screen" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
     Mod+Shift+Q                         hotkey-overlay-title="Session Menu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
-    Mod+Shift+N                         hotkey-overlay-title="Open Antigravity" { spawn "antigravity"; }
+    Mod+Shift+N                         hotkey-overlay-title="Open Zed Editor" { spawn "zeditor"; }
     Mod+Shift+T                         hotkey-overlay-title="Open BTOP++" { spawn-sh "~/.config/niri/scripts/float-run btop"; } 
     Mod+Shift+S                         hotkey-overlay-title="Open Surge TUI" { spawn-sh ". ~/.profile; ~/.config/niri/scripts/float-run Surge connect $SURGE_HOST --token $SURGE_TOKEN"; } 
-    Mod+Shift+D                         hotkey-overlay-title="Open dotfiles" { spawn-sh "antigravity ~/dotfiles/"; }
+    Mod+Shift+D                         hotkey-overlay-title="Open dotfiles" { spawn-sh "zeditor ~/dotfiles/"; }
     Mod+V                               hotkey-overlay-title="Open Clipper" { spawn-sh "qs -c noctalia-shell ipc call plugin:clipper toggle"; }
     Mod+Shift+C                         hotkey-overlay-title="Add selection to NoteCard" { spawn-sh "qs -c noctalia-shell ipc call plugin:clipper addSelectionToNoteCard"; }
     Mod+Shift+M                         hotkey-overlay-title="Open Scrcpy" { spawn-sh "scrcpy --pause-on-exit=if-error --turn-screen-off --stay-awake"; }
