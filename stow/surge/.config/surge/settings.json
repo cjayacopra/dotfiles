@@ -3,7 +3,7 @@
     "default_download_dir": "/mnt/files/Downloads",
     "warn_on_duplicate": false,
     "download_complete_notification": true,
-    "allow_remote_open_actions": false,
+    "allow_remote_open_actions": true,
     "extension_prompt": false,
     "auto_resume": false,
     "skip_update_check": false,
@@ -25,7 +25,7 @@
         "name": "Compressed",
         "description": "ZIPs, RARs, and other archive files.",
         "pattern": "(?i)\\.(zip|rar|7z|tar|gz|bz2|xz|zst|tgz)$",
-        "path": "/mnt/files/Downloads"
+        "path": "/mnt/files/Downloads/Compressed"
       },
       {
         "name": "Documents",

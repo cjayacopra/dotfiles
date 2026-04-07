@@ -16,7 +16,7 @@ binds {
     Mod+Shift+Q                         hotkey-overlay-title="Session Menu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
     Mod+Shift+N                         hotkey-overlay-title="Open Antigravity" { spawn "antigravity"; }
     Mod+Shift+T                         hotkey-overlay-title="Open BTOP++" { spawn-sh "~/.config/niri/scripts/float-run btop"; } 
-    Mod+Shift+S                         hotkey-overlay-title="Open Surge TUI" { spawn-sh ". ~/.profile; ~/.config/niri/scripts/float-run surge connect $SURGE_HOST --token $SURGE_TOKEN"; } 
+    Mod+Shift+S                         hotkey-overlay-title="Open Surge TUI" { spawn-sh ". ~/.profile; ~/.config/niri/scripts/float-run Surge connect $SURGE_HOST --token $SURGE_TOKEN"; } 
     Mod+Shift+D                         hotkey-overlay-title="Open dotfiles" { spawn-sh "antigravity ~/dotfiles/"; }
     Mod+V                               hotkey-overlay-title="Open Clipper" { spawn-sh "qs -c noctalia-shell ipc call plugin:clipper toggle"; }
     Mod+Shift+C                         hotkey-overlay-title="Add selection to NoteCard" { spawn-sh "qs -c noctalia-shell ipc call plugin:clipper addSelectionToNoteCard"; }

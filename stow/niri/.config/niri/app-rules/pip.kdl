@@ -1,6 +1,6 @@
 // Example PiP window rule in your ~/.config/niri/config.kdl
 window-rule {
-    match app-id="zen" title="^Picture-in-Picture$"
+    match app-id="zen-browser" title="^Picture-in-Picture$"
     match app-id="firefox" title="^Picture-in-Picture$"
     match app-id="google-chrome" title="^Picture-in-Picture$"
     match app-id="chromium" title="^Picture-in-Picture$"
