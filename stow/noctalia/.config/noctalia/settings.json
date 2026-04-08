@@ -6,7 +6,7 @@
         "clipboardWrapText": true,
         "customLaunchPrefix": "",
         "customLaunchPrefixEnabled": false,
-        "density": "default",
+        "density": "comfortable",
         "enableClipPreview": true,
         "enableClipboardChips": true,
         "enableClipboardHistory": true,
@@ -14,7 +14,7 @@
         "enableSessionSearch": true,
         "enableSettingsSearch": true,
         "enableWindowsSearch": true,
-        "iconMode": "native",
+        "iconMode": "tabler",
         "ignoreMouseInput": false,
         "overviewLayer": true,
         "pinnedApps": [
@@ -29,7 +29,7 @@
         "position": "center",
         "screenshotAnnotationTool": "satty --filename -",
         "showCategories": true,
-        "showIconBackground": true,
+        "showIconBackground": false,
         "sortByMostUsed": true,
         "terminalCommand": "kitty -e",
         "viewMode": "list"
@@ -50,7 +50,7 @@
         "autoHideDelay": 500,
         "autoShowDelay": 150,
         "backgroundOpacity": 0.8,
-        "barType": "floating",
+        "barType": "simple",
         "capsuleColorKey": "none",
         "capsuleOpacity": 0,
         "contentPadding": 2,
@@ -62,7 +62,7 @@
         "frameThickness": 8,
         "hideOnOverview": false,
         "marginHorizontal": 4,
-        "marginVertical": 4,
+        "marginVertical": 0,
         "middleClickAction": "settings",
         "middleClickCommand": "",
         "middleClickFollowMouse": false,
@@ -77,11 +77,15 @@
         "rightClickCommand": "",
         "rightClickFollowMouse": true,
         "screenOverrides": [
+            {
+                "enabled": false,
+                "name": "HDMI-A-1"
+            }
         ],
         "showCapsule": true,
         "showOnWorkspaceSwitch": true,
         "showOutline": true,
-        "useSeparateOpacity": true,
+        "useSeparateOpacity": false,
         "widgetSpacing": 6,
         "widgets": {
             "center": [
@@ -108,6 +112,11 @@
                 }
             ],
             "left": [
+                {
+                    "defaultSettings": {
+                    },
+                    "id": "plugin:workspace-overview"
+                },
                 {
                     "clockColor": "primary",
                     "customFont": "",
@@ -179,6 +188,33 @@
                 },
                 {
                     "defaultSettings": {
+                        "activeAnimFile": "",
+                        "activeBorderFile": "",
+                        "activeShaderFile": "",
+                        "autoApply": true,
+                        "borderSize": 2,
+                        "isSystemActive": false,
+                        "overlayPath": "~/.cache/noctalia/HVE/overlay.conf"
+                    },
+                    "id": "plugin:hyprland-visual-editor"
+                },
+                {
+                    "defaultSettings": {
+                        "autoHeight": true,
+                        "cheatsheetData": [
+                        ],
+                        "columnCount": 3,
+                        "detectedCompositor": "",
+                        "hyprlandConfigPath": "~/.config/hypr/hyprland.conf",
+                        "modKeyVariable": "$mod",
+                        "niriConfigPath": "~/.config/niri/config.kdl",
+                        "windowHeight": 0,
+                        "windowWidth": 1400
+                    },
+                    "id": "plugin:keybind-cheatsheet"
+                },
+                {
+                    "defaultSettings": {
                         "autoStartBreaks": false,
                         "autoStartWork": false,
                         "longBreakDuration": 15,
@@ -193,27 +229,6 @@
                         "refreshInterval": 5000
                     },
                     "id": "plugin:mini-docker"
-                },
-                {
-                    "defaultSettings": {
-                        "animationsFolder": "~/.config/niri/animations",
-                        "iconColor": "none",
-                        "targetFile": "~/.config/niri/config.kdl"
-                    },
-                    "id": "plugin:niri-animation-picker"
-                },
-                {
-                    "defaultSettings": {
-                        "barCategory": "browser",
-                        "showCurrentInBar": true,
-                        "visibleCategories": [
-                            "browser",
-                            "terminal",
-                            "file-manager",
-                            "email"
-                        ]
-                    },
-                    "id": "plugin:default-apps"
                 },
                 {
                     "hideWhenZero": false,
@@ -282,7 +297,7 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
-        "predefinedScheme": "Tokyo Night Moon",
+        "predefinedScheme": "Tokyo Night",
         "schedulingMode": "off",
         "syncGsettings": true,
         "useWallpaperColors": false
@@ -407,9 +422,9 @@
         "indicatorOpacity": 0.6,
         "indicatorThickness": 3,
         "launcherIcon": "",
-        "launcherIconColor": "primary",
+        "launcherIconColor": "secondary",
         "launcherPosition": "start",
-        "launcherUseDistroLogo": false,
+        "launcherUseDistroLogo": true,
         "monitors": [
             "HDMI-A-1"
         ],
@@ -435,7 +450,7 @@
         "clockStyle": "custom",
         "compactLockScreen": false,
         "dimmerOpacity": 0.8,
-        "enableBlurBehind": false,
+        "enableBlurBehind": true,
         "enableLockScreenCountdown": false,
         "enableLockScreenMediaControls": false,
         "enableShadows": true,
@@ -474,7 +489,7 @@
             "HDMI-A-1"
         ],
         "lockScreenTint": 0.05,
-        "passwordChars": false,
+        "passwordChars": true,
         "radiusRatio": 1,
         "reverseScroll": false,
         "scaleRatio": 1,
@@ -552,7 +567,7 @@
     },
     "noctaliaPerformance": {
         "disableDesktopWidgets": true,
-        "disableWallpaper": true
+        "disableWallpaper": false
     },
     "notifications": {
         "backgroundOpacity": 0.86,
@@ -678,12 +693,12 @@
         "batteryWarningThreshold": 20,
         "cpuCriticalThreshold": 90,
         "cpuWarningThreshold": 80,
-        "criticalColor": "",
+        "criticalColor": "#f85149",
         "diskAvailCriticalThreshold": 10,
         "diskAvailWarningThreshold": 20,
         "diskCriticalThreshold": 90,
         "diskWarningThreshold": 80,
-        "enableDgpuMonitoring": false,
+        "enableDgpuMonitoring": true,
         "externalMonitor": "resources || missioncenter || jdsystemmonitor || corestats || system-monitoring-center || gnome-system-monitor || plasma-systemmonitor || mate-system-monitor || ukui-system-monitor || deepin-system-monitor || pantheon-system-monitor",
         "gpuCriticalThreshold": 90,
         "gpuWarningThreshold": 80,
@@ -694,7 +709,7 @@
         "tempCriticalThreshold": 90,
         "tempWarningThreshold": 80,
         "useCustomColors": false,
-        "warningColor": ""
+        "warningColor": "#bc8cff"
     },
     "templates": {
         "activeTemplates": [
@@ -728,10 +743,6 @@
             },
             {
                 "enabled": true,
-                "id": "alacritty"
-            },
-            {
-                "enabled": true,
                 "id": "gtk"
             },
             {
@@ -757,6 +768,18 @@
             {
                 "enabled": true,
                 "id": "zenBrowser"
+            },
+            {
+                "enabled": true,
+                "id": "kitty"
+            },
+            {
+                "enabled": true,
+                "id": "hyprland"
+            },
+            {
+                "enabled": true,
+                "id": "hyprtoolkit"
             }
         ],
         "enableUserTheming": false
@@ -795,6 +818,7 @@
                 "useWallpaperColors": false
             },
             {
+                "appearance": "dark",
                 "colorScheme": "Tokyo Night",
                 "darkMode": true,
                 "generationMethod": "tonal-spot",

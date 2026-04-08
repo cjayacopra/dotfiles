@@ -11,11 +11,13 @@ This is a **Linux dotfiles repository** using GNU Stow for configuration managem
 ├── stow/                    # Configuration packages (GNU Stow format)
 │   ├── configs/             # Misc configs (btop, git, fastfetch)
 │   ├── fonts/               # Nerd Fonts
+│   ├── hypr/                # Hyprland (Wayland)
 │   ├── kitty/               # Kitty terminal
 │   ├── lazygit/             # Lazygit TUI
 │   ├── local/               # ~/.local/share (icons, themes)
 │   ├── niri/                # Niri window manager
 │   ├── noctalia/            # Noctalia desktop shell
+│   ├── nvim/                # Neovim config
 │   ├── surge/               # Surge proxy
 │   ├── warp/                # Warp terminal
 │   └── zsh/                 # Zsh configuration

@@ -108,7 +108,7 @@ Check and install dependencies.
 ```
 
 Monitored packages:
-- **Pacman**: stow, niri, kitty, zsh, fastfetch, bat, ripgrep, lazygit, eza
+- **Pacman**: stow, hyprland, niri, kitty, neovim, zsh, fastfetch, bat, ripgrep, lazygit, eza
 - **Cargo**: zoxide
 
 #### theme [name]
@@ -136,11 +136,13 @@ Configs are organized in the `stow/` directory:
 stow/
 ├── configs/          # Miscellaneous configs (btop, fastfetch, git, browser flags)
 ├── fonts/            # Nerd Fonts (Caskaydia Cove, JetBrains Mono)
+├── hypr/             # Hyprland (Wayland)
 ├── kitty/            # Kitty terminal
 ├── lazygit/          # Lazygit TUI
 ├── local/            # ~/.local/share (icons, warp themes)
 ├── niri/             # Niri window manager
 ├── noctalia/         # Noctalia desktop shell
+├── nvim/             # Neovim config
 ├── surge/            # Surge proxy
 ├── warp/             # Warp terminal
 └── zsh/              # Zsh configuration

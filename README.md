@@ -19,6 +19,7 @@ cd ~/dotfiles
 ## What's Included
 
 ### Window Manager & Desktop
+- **[Hyprland](https://hyprland.org)** - Dynamic tiling Wayland compositor
 - **[Niri](https://github.com/YaLTeR/niri)** - Scrollable tiling Wayland compositor
 - **[Noctalia](https://noctalia.dev)** - Customizable desktop shell (app launcher, bar, notifications)
 
@@ -29,6 +30,7 @@ cd ~/dotfiles
 - **Lazygit** - Terminal UI for git
 
 ### Development Tools
+- **Neovim** - Modal editor with custom config
 - **Fastfetch** - System information display
 - **Bat** - Syntax-highlighted cat replacement
 - **Ripgrep (rg)** - Fast grep replacement
@@ -48,11 +50,13 @@ Configurations are organized using GNU Stow:
 stow/
 ├── configs/          # Miscellaneous configs (btop, fastfetch, git, browser flags)
 ├── fonts/            # Nerd Fonts (Caskaydia Cove, JetBrains Mono)
+├── hypr/             # Hyprland (Wayland)
 ├── kitty/            # Kitty terminal
 ├── lazygit/          # Lazygit TUI
 ├── local/            # ~/.local/share (icons, warp themes)
 ├── niri/             # Niri window manager
 ├── noctalia/         # Noctalia desktop shell
+├── nvim/             # Neovim config
 ├── surge/            # Surge proxy configuration
 ├── warp/             # Warp terminal
 └── zsh/              # Zsh configuration and Powerlevel10k

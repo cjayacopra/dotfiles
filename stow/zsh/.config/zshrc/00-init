@@ -42,6 +42,7 @@ export PATH=$PATH:$HOME/.opencode/bin
 export PATH=$PATH:$HOME/.cargo/bin/cargo
 export PATH=$PATH:$HOME/.cargo/bin/rustup
 export PATH=$PATH:$HOME/.local/share/nvim/site
+export PATH=$PATH:$HOME/scripts
 
 # ─── XWayland ───
 export PATH=$PATH:/usr/bin/xwayland-satellite
