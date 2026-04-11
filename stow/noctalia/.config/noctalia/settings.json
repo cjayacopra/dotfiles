@@ -50,7 +50,7 @@
         "autoHideDelay": 500,
         "autoShowDelay": 150,
         "backgroundOpacity": 0.8,
-        "barType": "simple",
+        "barType": "floating",
         "capsuleColorKey": "none",
         "capsuleOpacity": 0,
         "contentPadding": 2,
@@ -297,7 +297,7 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
-        "predefinedScheme": "Tokyo Night",
+        "predefinedScheme": "Osaka jade",
         "schedulingMode": "off",
         "syncGsettings": true,
         "useWallpaperColors": false
@@ -362,7 +362,7 @@
     "desktopWidgets": {
         "enabled": true,
         "gridSnap": true,
-        "gridSnapScale": false,
+        "gridSnapScale": true,
         "monitorWidgets": [
             {
                 "name": "HDMI-A-1",
@@ -373,31 +373,65 @@
                         "format": "HH:mm\\nd MMMM yyyy",
                         "id": "Clock",
                         "roundedCorners": true,
-                        "scale": 2.2096313660454245,
+                        "scale": 2.5215012585503342,
                         "showBackground": true,
                         "useCustomFont": false,
                         "usePrimaryColor": true,
-                        "x": 440,
-                        "y": 80
+                        "x": 20,
+                        "y": 700
                     },
                     {
                         "hideMode": "hidden",
                         "id": "MediaPlayer",
                         "roundedCorners": true,
+                        "scale": 1.35,
                         "showAlbumArt": true,
                         "showBackground": true,
                         "showButtons": true,
                         "showVisualizer": true,
                         "visualizerType": "mirrored",
-                        "x": 1499,
-                        "y": 976
+                        "x": 1360,
+                        "y": 960
                     },
                     {
                         "id": "Weather",
-                        "scale": 1.3502572417955552,
+                        "scale": 1.449428677633647,
                         "showBackground": true,
-                        "x": 40,
-                        "y": 80
+                        "x": 1520,
+                        "y": 40
+                    },
+                    {
+                        "barWidth": 1,
+                        "bloomIntensity": 0,
+                        "customPrimaryColor": "#6750a4",
+                        "customSecondaryColor": "#625b71",
+                        "defaultSettings": {
+                            "barWidth": 0.6,
+                            "bloomIntensity": 0.5,
+                            "customPrimaryColor": "#6750A4",
+                            "customSecondaryColor": "#625B71",
+                            "fadeWhenIdle": false,
+                            "innerDiameter": 0.7,
+                            "ringOpacity": 0.8,
+                            "rotationSpeed": 0.5,
+                            "sensitivity": 1.5,
+                            "useCustomColors": false,
+                            "visualizationMode": 3,
+                            "waveThickness": 1
+                        },
+                        "fadeWhenIdle": true,
+                        "id": "plugin:fancy-audiovisualizer",
+                        "innerDiameter": 1,
+                        "ringOpacity": 0.8,
+                        "rotationSpeed": 0.5,
+                        "scale": 3.2666666666666666,
+                        "sensitivity": 3,
+                        "showBackground": true,
+                        "useCustomColors": false,
+                        "visualizationMode": 3,
+                        "waveThickness": 1,
+                        "x": 440,
+                        "y": 60
                     }
                 ]
             }
@@ -491,7 +525,7 @@
         "lockScreenTint": 0.05,
         "passwordChars": true,
         "radiusRatio": 1,
-        "reverseScroll": false,
+        "reverseScroll": true,
         "scaleRatio": 1,
         "screenRadiusRatio": 1,
         "shadowDirection": "bottom_right",
@@ -805,6 +839,7 @@
         "enabled": true,
         "favorites": [
             {
+                "appearance": "dark",
                 "colorScheme": "Tokyo Night",
                 "darkMode": true,
                 "generationMethod": "tonal-spot",
@@ -819,19 +854,20 @@
             },
             {
                 "appearance": "dark",
-                "colorScheme": "Tokyo Night",
+                "colorScheme": "Osaka jade",
                 "darkMode": true,
                 "generationMethod": "tonal-spot",
                 "paletteColors": [
-                    "#7aa2f7",
-                    "#bb9af7",
-                    "#9ece6a",
-                    "#f7768e"
+                    "#1e9177",
+                    "#167a63",
+                    "#26a589",
+                    "#933636"
                 ],
                 "path": "/mnt/files/Pictures/Wallpapers/1347028.jpeg",
                 "useWallpaperColors": false
             },
             {
+                "appearance": "dark",
                 "colorScheme": "Tokyo Night",
                 "darkMode": true,
                 "generationMethod": "tonal-spot",
@@ -842,6 +878,90 @@
                     "#f7768e"
                 ],
                 "path": "/mnt/files/Pictures/Wallpapers/1354384.png",
+                "useWallpaperColors": false
+            },
+            {
+                "appearance": "dark",
+                "colorScheme": "Osaka jade",
+                "darkMode": true,
+                "generationMethod": "tonal-spot",
+                "paletteColors": [
+                    "#1e9177",
+                    "#167a63",
+                    "#26a589",
+                    "#933636"
+                ],
+                "path": "/mnt/files/Pictures/Wallpapers/1352213.png",
+                "useWallpaperColors": false
+            },
+            {
+                "appearance": "dark",
+                "colorScheme": "Osaka jade",
+                "darkMode": true,
+                "generationMethod": "tonal-spot",
+                "paletteColors": [
+                    "#1e9177",
+                    "#167a63",
+                    "#26a589",
+                    "#933636"
+                ],
+                "path": "/mnt/files/Pictures/Wallpapers/explorer_green_day.jpg",
+                "useWallpaperColors": false
+            },
+            {
+                "appearance": "dark",
+                "colorScheme": "Osaka jade",
+                "darkMode": true,
+                "generationMethod": "tonal-spot",
+                "paletteColors": [
+                    "#1e9177",
+                    "#167a63",
+                    "#26a589",
+                    "#933636"
+                ],
+                "path": "/mnt/files/Pictures/Wallpapers/green_sea.jpg",
+                "useWallpaperColors": false
+            },
+            {
+                "appearance": "dark",
+                "colorScheme": "Osaka jade",
+                "darkMode": true,
+                "generationMethod": "tonal-spot",
+                "paletteColors": [
+                    "#1e9177",
+                    "#167a63",
+                    "#26a589",
+                    "#933636"
+                ],
+                "path": "/mnt/files/Pictures/Wallpapers/space-city.jpg",
+                "useWallpaperColors": false
+            },
+            {
+                "appearance": "dark",
+                "colorScheme": "Osaka jade",
+                "darkMode": true,
+                "generationMethod": "tonal-spot",
+                "paletteColors": [
+                    "#1e9177",
+                    "#167a63",
+                    "#26a589",
+                    "#933636"
+                ],
+                "path": "/mnt/files/Pictures/Wallpapers/nature.jpg",
+                "useWallpaperColors": false
+            },
+            {
+                "appearance": "dark",
+                "colorScheme": "Osaka jade",
+                "darkMode": true,
+                "generationMethod": "tonal-spot",
+                "paletteColors": [
+                    "#1e9177",
+                    "#167a63",
+                    "#26a589",
+                    "#933636"
+                ],
+                "path": "/mnt/files/Pictures/Wallpapers/woc_6.png",
                 "useWallpaperColors": false
             }
         ],
