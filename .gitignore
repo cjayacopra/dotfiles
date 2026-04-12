@@ -7,6 +7,9 @@ stow/noctalia/.config/noctalia/plugins/**/settings.json
 GEMINI.md
 .profile
 /.opencode
+/.omx
+/.kilo
+/.sisyphus
 
 # Backups (machine-specific)
 /backups/
