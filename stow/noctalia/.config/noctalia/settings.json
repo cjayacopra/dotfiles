@@ -51,7 +51,7 @@
         "autoShowDelay": 150,
         "backgroundOpacity": 0.8,
         "barType": "floating",
-        "capsuleColorKey": "none",
+        "capsuleColorKey": "error",
         "capsuleOpacity": 0,
         "contentPadding": 2,
         "density": "default",
@@ -62,7 +62,7 @@
         "frameThickness": 8,
         "hideOnOverview": false,
         "marginHorizontal": 4,
-        "marginVertical": 0,
+        "marginVertical": 4,
         "middleClickAction": "settings",
         "middleClickCommand": "",
         "middleClickFollowMouse": false,
@@ -82,41 +82,13 @@
                 "name": "HDMI-A-1"
             }
         ],
-        "showCapsule": true,
+        "showCapsule": false,
         "showOnWorkspaceSwitch": true,
-        "showOutline": true,
+        "showOutline": false,
         "useSeparateOpacity": false,
         "widgetSpacing": 6,
         "widgets": {
             "center": [
-                {
-                    "characterCount": 2,
-                    "colorizeIcons": false,
-                    "emptyColor": "secondary",
-                    "enableScrollWheel": true,
-                    "focusedColor": "primary",
-                    "followFocusedScreen": false,
-                    "fontWeight": "bold",
-                    "groupedBorderOpacity": 1,
-                    "hideUnoccupied": true,
-                    "iconScale": 0.8,
-                    "id": "Workspace",
-                    "labelMode": "index",
-                    "occupiedColor": "secondary",
-                    "pillSize": 0.6,
-                    "showApplications": false,
-                    "showApplicationsHover": false,
-                    "showBadge": true,
-                    "showLabelsOnlyWhenOccupied": true,
-                    "unfocusedIconsOpacity": 1
-                }
-            ],
-            "left": [
-                {
-                    "defaultSettings": {
-                    },
-                    "id": "plugin:workspace-overview"
-                },
                 {
                     "clockColor": "primary",
                     "customFont": "",
@@ -125,7 +97,9 @@
                     "id": "Clock",
                     "tooltipFormat": "h:mm ddd, MMM dd",
                     "useCustomFont": false
-                },
+                }
+            ],
+            "left": [
                 {
                     "compactMode": true,
                     "diskPath": "/",
@@ -149,6 +123,27 @@
                     "usePadding": false
                 },
                 {
+                    "characterCount": 2,
+                    "colorizeIcons": false,
+                    "emptyColor": "secondary",
+                    "enableScrollWheel": true,
+                    "focusedColor": "primary",
+                    "followFocusedScreen": true,
+                    "fontWeight": "bold",
+                    "groupedBorderOpacity": 1,
+                    "hideUnoccupied": true,
+                    "iconScale": 0.8,
+                    "id": "Workspace",
+                    "labelMode": "index",
+                    "occupiedColor": "secondary",
+                    "pillSize": 0.6,
+                    "showApplications": true,
+                    "showApplicationsHover": false,
+                    "showBadge": true,
+                    "showLabelsOnlyWhenOccupied": true,
+                    "unfocusedIconsOpacity": 1
+                },
+                {
                     "compactMode": false,
                     "hideMode": "hidden",
                     "hideWhenIdle": false,
@@ -163,17 +158,6 @@
                     "textColor": "none",
                     "useFixedWidth": false,
                     "visualizerType": "linear"
-                },
-                {
-                    "colorizeIcons": false,
-                    "hideMode": "hidden",
-                    "id": "ActiveWindow",
-                    "maxWidth": 145,
-                    "scrollingMode": "hover",
-                    "showIcon": true,
-                    "showText": true,
-                    "textColor": "none",
-                    "useFixedWidth": false
                 }
             ],
             "right": [
@@ -188,6 +172,15 @@
                 },
                 {
                     "defaultSettings": {
+                        "refreshInterval": 5000
+                    },
+                    "id": "plugin:mini-docker"
+                },
+                {
+                    "id": "plugin:screen-toolkit"
+                },
+                {
+                    "defaultSettings": {
                         "activeAnimFile": "",
                         "activeBorderFile": "",
                         "activeShaderFile": "",
@@ -197,38 +190,6 @@
                         "overlayPath": "~/.cache/noctalia/HVE/overlay.conf"
                     },
                     "id": "plugin:hyprland-visual-editor"
-                },
-                {
-                    "defaultSettings": {
-                        "autoHeight": true,
-                        "cheatsheetData": [
-                        ],
-                        "columnCount": 3,
-                        "detectedCompositor": "",
-                        "hyprlandConfigPath": "~/.config/hypr/hyprland.conf",
-                        "modKeyVariable": "$mod",
-                        "niriConfigPath": "~/.config/niri/config.kdl",
-                        "windowHeight": 0,
-                        "windowWidth": 1400
-                    },
-                    "id": "plugin:keybind-cheatsheet"
-                },
-                {
-                    "defaultSettings": {
-                        "autoStartBreaks": false,
-                        "autoStartWork": false,
-                        "longBreakDuration": 15,
-                        "sessionsBeforeLongBreak": 4,
-                        "shortBreakDuration": 5,
-                        "workDuration": 25
-                    },
-                    "id": "plugin:pomodoro"
-                },
-                {
-                    "defaultSettings": {
-                        "refreshInterval": 5000
-                    },
-                    "id": "plugin:mini-docker"
                 },
                 {
                     "hideWhenZero": false,
@@ -244,6 +205,9 @@
                     "id": "Volume",
                     "middleClickCommand": "pwvucontrol || pavucontrol",
                     "textColor": "none"
+                },
+                {
+                    "id": "plugin:usb-drive-manager"
                 },
                 {
                     "blacklist": [
@@ -297,7 +261,7 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
-        "predefinedScheme": "Osaka jade",
+        "predefinedScheme": "GitHub Dark",
         "schedulingMode": "off",
         "syncGsettings": true,
         "useWallpaperColors": false
@@ -321,7 +285,7 @@
                 "id": "brightness-card"
             },
             {
-                "enabled": true,
+                "enabled": false,
                 "id": "weather-card"
             },
             {
@@ -749,10 +713,6 @@
         "activeTemplates": [
             {
                 "enabled": true,
-                "id": "zed"
-            },
-            {
-                "enabled": true,
                 "id": "niri"
             },
             {
@@ -805,15 +765,19 @@
             },
             {
                 "enabled": true,
-                "id": "kitty"
-            },
-            {
-                "enabled": true,
                 "id": "hyprland"
             },
             {
                 "enabled": true,
                 "id": "hyprtoolkit"
+            },
+            {
+                "enabled": true,
+                "id": "zed"
+            },
+            {
+                "enabled": true,
+                "id": "kitty"
             }
         ],
         "enableUserTheming": false
@@ -868,14 +832,14 @@
             },
             {
                 "appearance": "dark",
-                "colorScheme": "Tokyo Night",
+                "colorScheme": "GitHub Dark",
                 "darkMode": true,
                 "generationMethod": "tonal-spot",
                 "paletteColors": [
-                    "#7aa2f7",
-                    "#bb9af7",
-                    "#9ece6a",
-                    "#f7768e"
+                    "#58a6ff",
+                    "#bc8cff",
+                    "#bc8cff",
+                    "#f85149"
                 ],
                 "path": "/mnt/files/Pictures/Wallpapers/1354384.png",
                 "useWallpaperColors": false
@@ -952,14 +916,14 @@
             },
             {
                 "appearance": "dark",
-                "colorScheme": "Osaka jade",
+                "colorScheme": "GitHub Dark",
                 "darkMode": true,
                 "generationMethod": "tonal-spot",
                 "paletteColors": [
-                    "#1e9177",
-                    "#167a63",
-                    "#26a589",
-                    "#933636"
+                    "#58a6ff",
+                    "#bc8cff",
+                    "#bc8cff",
+                    "#f85149"
                 ],
                 "path": "/mnt/files/Pictures/Wallpapers/woc_6.png",
                 "useWallpaperColors": false

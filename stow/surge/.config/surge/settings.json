@@ -6,7 +6,7 @@
     "allow_remote_open_actions": true,
     "extension_prompt": false,
     "auto_resume": false,
-    "skip_update_check": false,
+    "skip_update_check": true,
     "category_enabled": true,
     "categories": [
       {
