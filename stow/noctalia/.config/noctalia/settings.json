@@ -11,10 +11,10 @@
         "enableClipboardChips": true,
         "enableClipboardHistory": true,
         "enableClipboardSmartIcons": true,
-        "enableSessionSearch": true,
-        "enableSettingsSearch": true,
-        "enableWindowsSearch": true,
-        "iconMode": "tabler",
+        "enableSessionSearch": false,
+        "enableSettingsSearch": false,
+        "enableWindowsSearch": false,
+        "iconMode": "native",
         "ignoreMouseInput": false,
         "overviewLayer": true,
         "pinnedApps": [
@@ -163,33 +163,24 @@
             "right": [
                 {
                     "defaultSettings": {
-                        "currentIconName": "world-download",
-                        "hideOnZero": false,
-                        "updateIntervalMinutes": 30,
-                        "updateTerminalCommand": "foot -e"
-                    },
-                    "id": "plugin:update-count"
-                },
-                {
-                    "defaultSettings": {
                         "refreshInterval": 5000
                     },
                     "id": "plugin:mini-docker"
                 },
                 {
-                    "id": "plugin:screen-toolkit"
-                },
-                {
                     "defaultSettings": {
-                        "activeAnimFile": "",
-                        "activeBorderFile": "",
-                        "activeShaderFile": "",
-                        "autoApply": true,
-                        "borderSize": 2,
-                        "isSystemActive": false,
-                        "overlayPath": "~/.cache/noctalia/HVE/overlay.conf"
+                        "colorHistory": [
+                        ],
+                        "detectedRecorder": "",
+                        "installedLangs": [
+                            "eng"
+                        ],
+                        "paletteColors": [
+                        ],
+                        "selectedOcrLang": "eng",
+                        "transAvailable": false
                     },
-                    "id": "plugin:hyprland-visual-editor"
+                    "id": "plugin:screen-toolkit"
                 },
                 {
                     "hideWhenZero": false,
@@ -207,6 +198,15 @@
                     "textColor": "none"
                 },
                 {
+                    "defaultSettings": {
+                        "autoMount": false,
+                        "fileBrowser": "yazi",
+                        "hideWhenEmpty": false,
+                        "iconColor": "none",
+                        "showBadge": false,
+                        "showNotifications": true,
+                        "terminalCommand": "kitty"
+                    },
                     "id": "plugin:usb-drive-manager"
                 },
                 {
@@ -218,11 +218,13 @@
                     "hidePassive": false,
                     "id": "Tray",
                     "pinned": [
+                        "Cachy-Update"
                     ]
                 },
                 {
                     "colorizeDistroLogo": false,
                     "colorizeSystemIcon": "primary",
+                    "colorizeSystemText": "none",
                     "customIconPath": "",
                     "enableColorization": true,
                     "icon": "noctalia",
@@ -332,17 +334,18 @@
                 "name": "HDMI-A-1",
                 "widgets": [
                     {
-                        "clockStyle": "analog",
+                        "clockColor": "none",
+                        "clockStyle": "digital",
                         "customFont": "",
                         "format": "HH:mm\\nd MMMM yyyy",
                         "id": "Clock",
                         "roundedCorners": true,
-                        "scale": 2.5215012585503342,
-                        "showBackground": true,
+                        "scale": 1.3376664501593287,
+                        "showBackground": false,
                         "useCustomFont": false,
                         "usePrimaryColor": true,
-                        "x": 20,
-                        "y": 700
+                        "x": 1520,
+                        "y": 220
                     },
                     {
                         "hideMode": "hidden",
@@ -350,19 +353,20 @@
                         "roundedCorners": true,
                         "scale": 1.35,
                         "showAlbumArt": true,
-                        "showBackground": true,
+                        "showBackground": false,
                         "showButtons": true,
                         "showVisualizer": true,
                         "visualizerType": "mirrored",
-                        "x": 1360,
-                        "y": 960
+                        "x": 20,
+                        "y": 940
                     },
                     {
                         "id": "Weather",
+                        "roundedCorners": true,
                         "scale": 1.449428677633647,
-                        "showBackground": true,
+                        "showBackground": false,
                         "x": 1520,
-                        "y": 40
+                        "y": 80
                     },
                     {
                         "barWidth": 1,
@@ -388,14 +392,14 @@
                         "innerDiameter": 1,
                         "ringOpacity": 0.8,
                         "rotationSpeed": 0.5,
-                        "scale": 3.2666666666666666,
+                        "scale": 2.466666666666667,
                         "sensitivity": 3,
                         "showBackground": true,
                         "useCustomColors": false,
                         "visualizationMode": 3,
                         "waveThickness": 1,
-                        "x": 440,
-                        "y": 60
+                        "x": 640,
+                        "y": -120
                     }
                 ]
             }
@@ -447,7 +451,7 @@
         "clockFormat": "hh\\nmm",
         "clockStyle": "custom",
         "compactLockScreen": false,
-        "dimmerOpacity": 0.8,
+        "dimmerOpacity": 0,
         "enableBlurBehind": true,
         "enableLockScreenCountdown": false,
         "enableLockScreenMediaControls": false,
@@ -721,10 +725,6 @@
             },
             {
                 "enabled": true,
-                "id": "qt"
-            },
-            {
-                "enabled": true,
                 "id": "discord"
             },
             {
@@ -737,14 +737,6 @@
             },
             {
                 "enabled": true,
-                "id": "gtk"
-            },
-            {
-                "enabled": true,
-                "id": "kcolorscheme"
-            },
-            {
-                "enabled": true,
                 "id": "telegram"
             },
             {
@@ -753,23 +745,23 @@
             },
             {
                 "enabled": true,
-                "id": "code"
-            },
-            {
-                "enabled": true,
                 "id": "steam"
             },
             {
                 "enabled": true,
-                "id": "zenBrowser"
+                "id": "kitty"
             },
             {
                 "enabled": true,
-                "id": "hyprland"
+                "id": "gtk"
             },
             {
                 "enabled": true,
-                "id": "hyprtoolkit"
+                "id": "kcolorscheme"
+            },
+            {
+                "enabled": true,
+                "id": "qt"
             },
             {
                 "enabled": true,
@@ -777,7 +769,23 @@
             },
             {
                 "enabled": true,
-                "id": "kitty"
+                "id": "zenBrowser"
+            },
+            {
+                "enabled": true,
+                "id": "code"
+            },
+            {
+                "enabled": true,
+                "id": "starship"
+            },
+            {
+                "enabled": true,
+                "id": "hyprtoolkit"
+            },
+            {
+                "enabled": true,
+                "id": "hyprland"
             }
         ],
         "enableUserTheming": false
@@ -788,10 +796,10 @@
         "fontDefaultScale": 1,
         "fontFixed": "Maple Mono NF",
         "fontFixedScale": 1,
-        "panelBackgroundOpacity": 0.8,
+        "panelBackgroundOpacity": 0.5,
         "panelsAttachedToBar": true,
         "scrollbarAlwaysVisible": true,
-        "settingsPanelMode": "window",
+        "settingsPanelMode": "attached",
         "settingsPanelSideBarCardStyle": false,
         "tooltipsEnabled": true,
         "translucentWidgets": true
@@ -818,14 +826,14 @@
             },
             {
                 "appearance": "dark",
-                "colorScheme": "Osaka jade",
+                "colorScheme": "GitHub Dark",
                 "darkMode": true,
                 "generationMethod": "tonal-spot",
                 "paletteColors": [
-                    "#1e9177",
-                    "#167a63",
-                    "#26a589",
-                    "#933636"
+                    "#58a6ff",
+                    "#bc8cff",
+                    "#bc8cff",
+                    "#f85149"
                 ],
                 "path": "/mnt/files/Pictures/Wallpapers/1347028.jpeg",
                 "useWallpaperColors": false

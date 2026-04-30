@@ -18,6 +18,8 @@ alias vim='$EDITOR'
 alias wifi='nmtui'
 alias clock='tty-clock'
 
+alias zed='zeditor'
+
 alias cat='bat'
 alias grep='rg'
 

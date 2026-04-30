@@ -1,0 +1,8 @@
+name = "New tab: shiraneko"
+
+[[panes]]
+id = "main"
+type = "terminal"
+directory = "/home/shiraneko"
+
+[params]
