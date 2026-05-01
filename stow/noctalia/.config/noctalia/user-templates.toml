@@ -1,0 +1,24 @@
+# ~/.config/noctalia/user-templates.toml
+#
+# Merge this into your existing user-templates.toml, or use it as a starting
+# point if you haven't created one yet.
+#
+# Prerequisites:
+#   1. Settings → Color Scheme → Templates → Advanced → enable "User templates"
+#   2. Warp theme directory must exist:
+#        macOS:  mkdir -p ~/.warp/themes/
+#        Linux:  mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/warp-terminal/themes/"
+#      Update output_path below to match your OS.
+
+[config]
+
+[templates.warp]
+# Path to the template source file
+input_path  = "~/.config/noctalia/templates/warp.yml"
+
+# macOS output path — change to the Linux path above if needed
+output_path = "/home/shiraneko/dotfiles/stow/local/.local/share/warp-terminal/themes/warp-noctalia.yml"
+
+# Reload: Warp auto-discovers new/changed theme files within a few seconds,
+# so no post_hook is required. Uncomment if you want a desktop notification:
+# post_hook = "notify-send 'Noctalia → Warp theme updated'"

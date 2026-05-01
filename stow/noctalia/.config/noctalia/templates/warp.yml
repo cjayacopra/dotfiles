@@ -1,0 +1,55 @@
+# Noctalia → Warp Terminal Theme Template
+# Place this file at: ~/.config/noctalia/templates/warp.yaml
+# Register it in:    ~/.config/noctalia/user-templates.toml
+#
+# Warp theme file will be written to: ~/.warp/themes/noctalia.yaml
+# Warp will auto-reload within a few seconds.
+
+name: Noctalia
+
+# ── Core UI colors ────────────────────────────────────────────────────────────
+accent:     '{{colors.primary.default.hex}}'
+cursor:     '{{colors.primary.default.hex | lighten 8}}'
+background: '{{colors.surface_dim.default.hex}}'
+foreground: '{{colors.on_surface.default.hex}}'
+details: darker
+
+# ── ANSI terminal colors ───────────────────────────────────────────────────────
+# Normal (standard) colors — toned, readable versions
+terminal_colors:
+  normal:
+    # black  → slightly elevated surface (used for "dim" output, backgrounds)
+    black:   '{{colors.surface_container.default.hex}}'
+    # red    → error (semantic red from MD3)
+    red:     '{{colors.error.default.hex}}'
+    # green  → tertiary shifted toward a readable mid-green
+    green:   '{{colors.tertiary.default.hex | set_lightness 55 | set_saturation 55}}'
+    # yellow → secondary shifted warm
+    yellow:  '{{colors.secondary.default.hex | set_lightness 60 | set_saturation 50}}'
+    # blue   → primary (the main accent hue)
+    blue:    '{{colors.primary.default.hex}}'
+    # magenta → tertiary (offset hue from primary, often purple/pink in MD3)
+    magenta: '{{colors.tertiary.default.hex}}'
+    # cyan   → primary_fixed_dim (cooler, desaturated primary)
+    cyan:    '{{colors.primary_fixed_dim.default.hex | set_lightness 60}}'
+    # white  → on_surface_variant (slightly muted foreground)
+    white:   '{{colors.on_surface_variant.default.hex}}'
+
+  # Bright colors — vivid, high-contrast versions used by bold/bright output
+  bright:
+    # bright black → higher-elevation surface (e.g. comments, disabled text)
+    black:   '{{colors.surface_container_high.default.hex}}'
+    # bright red → error lightened for emphasis
+    red:     '{{colors.error.default.hex | lighten 12}}'
+    # bright green → tertiary, lighter + more saturated
+    green:   '{{colors.tertiary.default.hex | set_lightness 70 | set_saturation 65}}'
+    # bright yellow → secondary, punchy and warm
+    yellow:  '{{colors.secondary.default.hex | set_lightness 75 | set_saturation 60}}'
+    # bright blue → primary lightened
+    blue:    '{{colors.primary.default.hex | lighten 15}}'
+    # bright magenta → on_tertiary_container (high contrast tertiary)
+    magenta: '{{colors.on_tertiary_container.default.hex | lighten 5}}'
+    # bright cyan → primary_fixed (consistent, lighter teal-blue)
+    cyan:    '{{colors.primary_fixed.default.hex}}'
+    # bright white → near-white foreground
+    white:   '{{colors.on_surface.default.hex}}'

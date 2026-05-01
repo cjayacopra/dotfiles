@@ -1,0 +1,55 @@
+# Noctalia → Warp Terminal Theme Template
+# Place this file at: ~/.config/noctalia/templates/warp.yaml
+# Register it in:    ~/.config/noctalia/user-templates.toml
+#
+# Warp theme file will be written to: ~/.warp/themes/noctalia.yaml
+# Warp will auto-reload within a few seconds.
+
+name: Noctalia
+
+# ── Core UI colors ────────────────────────────────────────────────────────────
+accent:     '#58a6ff'
+cursor:     '#81bcff'
+background: '#010409'
+foreground: '#c9d1d9'
+details: darker
+
+# ── ANSI terminal colors ───────────────────────────────────────────────────────
+# Normal (standard) colors — toned, readable versions
+terminal_colors:
+  normal:
+    # black  → slightly elevated surface (used for "dim" output, backgrounds)
+    black:   '#161b22'
+    # red    → error (semantic red from MD3)
+    red:     '#f85149'
+    # green  → tertiary shifted toward a readable mid-green
+    green:   '#824ecb'
+    # yellow → secondary shifted warm
+    yellow:  '#9066cc'
+    # blue   → primary (the main accent hue)
+    blue:    '#58a6ff'
+    # magenta → tertiary (offset hue from primary, often purple/pink in MD3)
+    magenta: '#bc8cff'
+    # cyan   → primary_fixed_dim (cooler, desaturated primary)
+    cyan:    '#3392ff'
+    # white  → on_surface_variant (slightly muted foreground)
+    white:   '#8b949e'
+
+  # Bright colors — vivid, high-contrast versions used by bold/bright output
+  bright:
+    # bright black → higher-elevation surface (e.g. comments, disabled text)
+    black:   '#1e252e'
+    # bright red → error lightened for emphasis
+    red:     '#fa8984'
+    # bright green → tertiary, lighter + more saturated
+    green:   '#aa81e4'
+    # bright yellow → secondary, punchy and warm
+    yellow:  '#b999e6'
+    # bright blue → primary lightened
+    blue:    '#a5cfff'
+    # bright magenta → on_tertiary_container (high contrast tertiary)
+    magenta: '#f0e6ff'
+    # bright cyan → primary_fixed (consistent, lighter teal-blue)
+    cyan:    '#b3d6ff'
+    # bright white → near-white foreground
+    white:   '#c9d1d9'
