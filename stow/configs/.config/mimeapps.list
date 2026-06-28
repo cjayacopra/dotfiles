@@ -114,20 +114,21 @@ image/x-xcursor=satty.desktop
 image/x-xfig=satty.desktop
 image/x-xpixmap=satty.desktop
 image/x-xwindowdump=satty.desktop
-text/html=chromium.desktop
+text/html=zen.desktop
 text/plain=micro.desktop
 text/x-markdown=jetbrains-idea.desktop
 x-scheme-handler/anytype=anytype.desktop
 x-scheme-handler/chrome=zen.desktop
 x-scheme-handler/discord=vesktop.desktop
-x-scheme-handler/http=chromium.desktop
-x-scheme-handler/https=chromium.desktop
+x-scheme-handler/http=zen.desktop
+x-scheme-handler/https=zen.desktop
 x-scheme-handler/jetbrains=jetbrainsd.desktop
 x-scheme-handler/jetbrains-gateway=jetbrains-gateway.desktop
 x-scheme-handler/terminal=kitty.desktop
 inode/directory=/usr/share/applications/org.gnome.Nautilus.desktop
-x-scheme-handler/about=chromium.desktop
-x-scheme-handler/unknown=chromium.desktop
+x-scheme-handler/about=zen.desktop
+x-scheme-handler/unknown=zen.desktop
+x-scheme-handler/antigravity=antigravity.desktop
 
 [Added Associations]
 application/x-extension-htm=zen.desktop

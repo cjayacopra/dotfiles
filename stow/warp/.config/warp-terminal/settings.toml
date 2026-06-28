@@ -1,5 +1,6 @@
 [terminal]
 use_audible_bell = true
+show_terminal_zero_state_block = false
 
 [terminal.input]
 alias_expansion_enabled = false
@@ -23,13 +24,8 @@ font_size = 15.0
 enforce_minimum_contrast = "only_named_colors"
 
 [appearance.themes]
-theme = {
-  custom = {
-    name = "Catppuccin Mocha",
-    path = "/home/shiraneko/.local/share/warp-terminal/themes/catppuccin_mocha.yml",
-  },
-}
-system_theme = true
+theme = { custom = { name = "Noctalia", path = "warp-noctalia.yml" } }
+system_theme = false
 selected_system_themes = {
   dark = {
     custom = { name = "Noctalia", path = "/home/shiraneko/.local/share/warp-terminal/themes/warp-noctalia.yml" },
@@ -84,13 +80,15 @@ play_notification_sound = true
 cloud_conversation_storage_enabled = true
 
 [agents.warp_agent]
+is_any_ai_enabled = false
 
 [agents.warp_agent.other]
 open_conversation_layout_preference = "split_pane"
+should_render_use_agent_toolbar_for_user_commands = false
 
 [agents.warp_agent.input]
 ai_command_denylist = ""
-nld_in_terminal_enabled = true
+nld_in_terminal_enabled = false
 
 [agents.voice]
 voice_input_toggle_key = "alt_left"
@@ -98,11 +96,18 @@ voice_input_toggle_key = "alt_left"
 [agents.profiles]
 agent_mode_coding_permissions = "always_allow_reading"
 
+[agents.third_party]
+auto_open_composer_on_cli_agent_start = false
+submit_on_ctrl_enter = false
+auto_dismiss_composer_after_submit = false
+
 [warpify]
 
 [warpify.ssh]
 ssh_hosts_denylist = ["192.168.1.1", "root@rpi3b.internal"]
-use_ssh_tmux_wrapper = true
+use_ssh_tmux_wrapper = false
+ssh_tmux_deprecation_notice_pending = false
+reuse_existing_control_master = true
 
 [code]
 

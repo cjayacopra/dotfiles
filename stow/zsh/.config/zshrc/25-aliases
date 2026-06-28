@@ -27,8 +27,6 @@ alias lampp="sudo /opt/lampp/lampp"
 
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
-alias agy='antigravity'
-
 alias surge-update='go install github.com/SurgeDM/Surge@latest'
 
 # -----------------------------------------------------

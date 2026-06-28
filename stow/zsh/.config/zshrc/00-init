@@ -21,7 +21,7 @@ source $HOME/.profile
 # -----------------------------------------------------
 # Applications
 # -----------------------------------------------------
-export EDITOR=zeditor
+export EDITOR=antigravity-ide
 export BROWSER=zen-browser
 export TERM=xterm-256color
 export COLORTERM=truecolor

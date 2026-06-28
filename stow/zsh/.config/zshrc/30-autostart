@@ -14,9 +14,20 @@
 #     fi
 # }
 
-# -----------------------------------------------------
-# Fastfetch
-# -----------------------------------------------------
-if [[ $(tty) == *"pts"* ]]; then
-    fastfetch
-fi
+# # -----------------------------------------------------
+# # Fastfetch (First-Prompt Hook)
+# # -----------------------------------------------------
+# if [[ $(tty) == *"pts"* ]]; then
+#     # Load the hook utility
+#     autoload -Uz add-zsh-hook
+
+#     # Define a function to run fastfetch and then delete itself
+#     _run_fastfetch_once() {
+#         fastfetch --logo-type kitty
+#         # Remove this hook immediately so it doesn't run after every command
+#         add-zsh-hook -d precmd _run_fastfetch_once
+#     }
+
+#     # Attach the function to run right before the first prompt is drawn
+#     add-zsh-hook precmd _run_fastfetch_once
+# fi
